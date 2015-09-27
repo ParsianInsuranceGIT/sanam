@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listcheckVagozarshode" pageWidth="1000" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+    	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+    		<box>
+    			<pen lineWidth="0.5" lineColor="#000000"/>
+    		</box>
+    		<conditionalStyle>
+    			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+    			<style backcolor="#EFF7FF"/>
+    		</conditionalStyle>
+    	</style>
+    	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+    		<box>
+    			<pen lineWidth="0.5" lineColor="#000000"/>
+    		</box>
+    	</style>
+
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\sanam_new\\sanam on a-chekah\\out\\artifacts\\life_war_exploded\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="pishnahadReport" class="com.bitarts.parsian.viewModel.PishnehadReport"/>
+     <field name="credebitList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+    <field name="sumOfPardakht" class="java.lang.Double"/>
+    <field name="tedadCheckHayeVagozarshode" class="java.lang.Long"/>
+     <field name="vagozari" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<frame>
+				<reportElement  x="0" y="0" width="1000" height="33"/>
+				<staticText>
+					<reportElement  style="table_CH" x="910" y="0" width="32" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[رديف]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="844" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ ايجاد فايل]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="766" y="0" width="78" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سري حرفي]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="688" y="0" width="78" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سري عددي]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="622" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سريال چك]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="556" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شماره حساب صاحب سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="490" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[بانك متعهد]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="424" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شعبه متعهد]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="358" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نوع سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="292" y="0" width="66" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ صدور]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="220" y="0" width="72" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[مبلغ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="149" y="0" width="71" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كد شناسه]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="77" y="0" width="72" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شماره اعتبار]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="table_CH" x="44" y="0" width="33" height="28"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نام]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+
+
+			<band height="200" splitType="Stretch">
+            			<subreport>
+            			<reportElement x="0" y="0" width="802" height="100"/>
+                        				<subreportParameter name="realPath"/>
+                        				<dataSourceExpression><![CDATA[$F{credebitList}]]></dataSourceExpression>
+                        				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/CheckVagozarshodeExcellFormat_row.jasper"]]></subreportExpression>
+
+            			</subreport>
+            		</band>
+
+	</detail>
+
+</jasperReport>

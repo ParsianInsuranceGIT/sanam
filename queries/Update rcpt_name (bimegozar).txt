@@ -1,0 +1,19 @@
+update tbl_credebit q
+set q.rcpt_name = (
+                      select concat(concat(shakhs.name,' '),shakhs.name_khanevadegi) as bimeGozar  
+                      from(
+                               select tbl_shakhs.name  , tbl_shakhs.NAME_KHANEVADEGI, bimegozar.crdId from tbl_shakhs
+                               inner join 
+                               (
+                                   select tbl_bimegozar.shakhs_id, pishnehad.crdId from tbl_bimegozar
+                                   inner join 
+                                   (
+                                       select tbl_pishnehad.bimegozar_id, tbl_credebit.id as crdId from tbl_pishnehad
+                                       inner join tbl_credebit on tbl_credebit.pishnehad_id=tbl_pishnehad.id
+                                   )pishnehad    
+                                   on tbl_bimegozar.id=pishnehad.bimegozar_id
+                               )bimegozar
+                               on tbl_shakhs.shakhs_id=bimegozar.shakhs_id
+                          )shakhs
+                      where q.id=shakhs.crdId    
+                  );

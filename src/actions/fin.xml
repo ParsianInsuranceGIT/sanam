@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="fin" extends="struts-default" namespace="/fin">
+        <result-types>
+            <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+            <result-type name="myStream" default="false" class="com.bitarts.parsian.action.DynamicStreamResult"/>
+        </result-types>
+        <action name="viewKhateSanadHa" class="com.bitarts.parsian.action.SabteSanadAction" method="viewKhateSanadHa">
+            <result name="success">/jsp/daryaftPardakht/page_viewKhateSanadHa.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listMaliNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listMaliNamayande">
+            <result name="success">/jsp/daryaftPardakht/page_listMaliNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listEtebarat" class="com.bitarts.parsian.action.CredebitAction" method="listEtebarat">
+            <result name="success">/jsp/daryaftPardakht/page_listEtebarat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listGozareshUpload" class="com.bitarts.parsian.action.CredebitAction" method="listGozareshUpload">
+            <result name="success">/jsp/daryaftPardakht/page_listGozareshUpload.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listGozareshVosouli" class="com.bitarts.parsian.action.CredebitAction" method="listGozareshVosouli">
+            <result name="success">/jsp/daryaftPardakht/page_listGozareshVosouli.jsp</result>
+             <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gozareshSoratVaziyateMaliBimename" class="com.bitarts.parsian.action.CredebitAction" method="gozareshSoratVaziyateMaliBimename">
+            <result name="success">/jsp/daryaftPardakht/page_GozareshSoratVaziyatMaliBimename.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gozareshkoliEtebarvaBedehi" class="com.bitarts.parsian.action.CredebitAction" method="gozareshkoliEtebarvaBedehi">
+            <result name="success">/jsp/reports/page_GozareshkoliEtebarvaBedehi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gozaresheListeKoleBedehi" class="com.bitarts.parsian.action.CredebitAction" method="gozareshkoliEtebarvaBedehi">
+            <result name="success">/jsp/reports/page_GozareshListeKoleBedehi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listPardakhtInternetiBedehi" class="com.bitarts.parsian.action.CredebitAction" method="listPardakhtInternetiBedehi">
+            <result name="success">/jsp/daryaftPardakht/page_listPardakhtInternetiBedehi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="viewPardakhtPayaForm" class="com.bitarts.parsian.action.CredebitAction" method="viewPardakhtPayaForm">
+            <result name="success">/jsp/daryaftPardakht/page_sabtPardakhtPayaForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="sabtPardakhtPayaForm" class="com.bitarts.parsian.action.CredebitAction" method="sabtPardakhtPayaForm">
+            <result name="success">/jsp/daryaftPardakht/page_listPardakhtPaya.jsp</result>
+            <result name="error">/jsp/daryaftPardakht/page_sabtPardakhtPayaForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listPardakhtPaya" class="com.bitarts.parsian.action.CredebitAction" method="listPardakhtPaya">
+            <result name="success">/jsp/daryaftPardakht/page_listPardakhtPaya.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="getEnableValidationUserAjax" class="com.bitarts.parsian.action.LoginAction" method="getEnableValidationUserAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">enableValidationUser</param>
+            </result>
+        </action>
+        <action name="validationShomareShaba" class="com.bitarts.parsian.action.CredebitAction" method="validationShomareShaba">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="validationIdentifierShaba" class="com.bitarts.parsian.action.CredebitAction" method="validationIdentifierShaba">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="operationCheckList" class="com.bitarts.parsian.action.CredebitAction" method="operationCheckList">
+            <result name="success">/jsp/daryaftPardakht/page_elamVagozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="operationSelectBedehiNamayande" class="com.bitarts.parsian.action.CredebitAction" method="operationSelectBedehiNamayande">
+            <result name="success">/jsp/daryaftPardakht/page_selectionBedehiNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtInternetiBedehi" class="com.bitarts.parsian.action.CredebitAction" method="pardakhtInternetiBedehi" >
+            <result name="success" type="redirect">${epaymentHost}/pecpaymentgateway?au=${authorityId}</result>
+            <result name="error" type="redirectAction">listBedehiNamayande</result>
+            <result name="nosession">/jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="taeedInternetiCredebitBedehi" class="com.bitarts.parsian.action.CredebitAction" method="taeedInternetiCredebitBedehi">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_taeedInternetiCredebitBedehi.jsp</result>-->
+            <!--<result name="error" type="redirectAction">listBedehiNamayande</result>-->
+            <!--<result name="nosession">/jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="pardakhtInternetiBedehiFinal" class="com.bitarts.parsian.action.CredebitAction" method="pardakhtInternetiBedehiFinal">
+            <result name="success">/jsp/daryaftPardakht/page_paymentFinalCredebit.jsp</result>
+            <result name="nosession">/jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="pardakhtInternetiCredebitBedehiFinal" class="com.bitarts.parsian.action.CredebitAction" method="pardakhtInternetiCredebitBedehiFinal">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_paymentFinalCredebitBedehi.jsp</result>-->
+            <!--<result name="error" type="redirectAction">listBedehiNamayande</result>-->
+            <!--<result name="nosession">/jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="elamVagozari" class="com.bitarts.parsian.action.CredebitAction" method="elamVagozari">
+            <result name="success">/jsp/daryaftPardakht/page_elamVagozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listVagozari" class="com.bitarts.parsian.action.CredebitAction" method="listVagozari">
+            <result name="success">/jsp/daryaftPardakht/page_listVagozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listEtebaratNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listEtebaratNamayande">
+            <result name="success">/jsp/daryaftPardakht/page_listEtebaratNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listBedehiNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listBedehiNamayande">
+            <result name="success">/jsp/daryaftPardakht/page_listBedehiNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listBedehiVahedeSodorNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listBedehiVahedeSodorNamayande">
+            <result name="success">/jsp/daryaftPardakht/listBedehiVahedeSodorNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listEtebaratVosulNashodeNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listEtebaratVosulNashodeNamayande">
+            <result name="success">/jsp/daryaftPardakht/listEtebaratVosulNashodeNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listMoghayeratDarVosolNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listMoghayeratDarVosolNamayande">
+            <result name="success">/jsp/daryaftPardakht/listMoghayeratDarVosolNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listBedehiHayeVosulNashodeNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listBedehiHayeVosulNashodeNamayande">
+            <result name="success">/jsp/daryaftPardakht/listBedehiHayeVosulNashodeNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="generateCodeMoshtariCredebit" class="com.bitarts.parsian.action.SabteSanadAction" method="generateCodeMoshtariCredebit">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">generateCodeMoshtariAjax</param>
+            </result>
+        </action>
+        <action name="getBankNameCredebitAjax" class="com.bitarts.parsian.action.SabteSanadAction" method="getBankNameCredebitAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">bankNameCredebit</param>
+            </result>
+        </action>
+        <action name="checkUsernamePassword" class="com.bitarts.parsian.action.CredebitAction" method="checkUsernamePassword">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">checkUsernameAjax</param>
+            </result>
+        </action>
+        <action name="isUserRoleNamayandeAjax" class="com.bitarts.parsian.action.SabteSanadAction" method="isUserRoleNamayandeAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">userRoleNamayande</param>
+            </result>
+        </action>
+        <action name="getTarikhSarresidCredebitAjax" class="com.bitarts.parsian.action.SabteSanadAction" method="getTarikhSarresidCredebitAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="changeVaziatSanad" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="changeVaziateSanad">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="takhsisCodeMoshtari" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="takhsisCodeMoshtari">
+            <result name="success">/jsp/daryaftPardakht/page_takhsisCodeMoshtari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="khateSanadsHaOfSanad" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="viewYekSanad">
+            <result name="success">/jsp/daryaftPardakht/tbl_ListKhateSanad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="khateSanadHaBySanadId" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="viewYekSanad">
+            <result name="success">/jsp/daryaftPardakht/khateSanadHaPaginated.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadSanadZani" class="com.bitarts.parsian.action.SabteSanadAction" method="loadSabteSanad">
+            <result name="success">/jsp/daryaftPardakht/page_sabteSanadeDasti.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadCredebitsByFilter" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="loadCredebitsByFilter">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHaPaginated.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadCredebitsByFilterSendToList" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="loadCredebitsByFilterSendToList">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHaPaginated.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteMultiSanad" class="com.bitarts.parsian.action.SabteSanadAction" method="sabteSanad" >
+            <result name="success">/jsp/daryaftPardakht/page_sabteSanadeDasti.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="checkEtebarDasti" class="com.bitarts.parsian.action.SabteSanadAction" method="checkEtebarDasti">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="printVagozariBeBank" class="com.bitarts.parsian.action.PrintAction" method="printVagozariBeBank">
+            <param name="sourceFilePath">report/vagozari_bank.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/vagozari_bank.pdf</param>
+                <param name="dataSource">credebitReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeSanad" class="com.bitarts.parsian.action.PrintAction" method="printeSanad">
+            <param name="sourceFilePath">report/sanad.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/sanad.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="cashTurnoverReport" class="com.bitarts.parsian.action.PrintAction" method="cashTurnoverReport">
+            <param name="sourceFilePath">report/cashTurnover.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/cashTurnover.${formatReport}</param>
+                <param name="dataSource">cashTurnoverReport</param>
+                <param name="format">${formatReport}</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareCashTurnoverReport" class="com.bitarts.parsian.action.PrintAction" method="prepareCashTurnoverReport">
+            <result name="success">/jsp/reports/page_cashTurnoverReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeFishBankMellat" class="com.bitarts.parsian.action.PrintAction" method="printeFishBankMellat">
+            <param name="sourceFilePath">report/fish_bankMellat_A5.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/fish_bankMellat_A5.pdf</param>
+                <param name="dataSource">credebitReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printCheckVagozarShode" class="com.bitarts.parsian.action.PrintAction" method="printCheckVagozarShode">
+            <param name="sourceFilePath">report/list_check_vagozarshode.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/list_check_vagozarshode.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeFishBankTejarat" class="com.bitarts.parsian.action.PrintAction" method="printeFishBankTejarat">
+            <param name="sourceFilePath">report/fish_bankTejarat_A5.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/fish_bankTejarat_A5.pdf</param>
+                <param name="dataSource">credebitReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeFishBankParsian" class="com.bitarts.parsian.action.PrintAction" method="printeFishBankParsian">
+            <param name="sourceFilePath">report/fish_bankParsian_A5.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/fish_bankParsian_A5.pdf</param>
+                <param name="dataSource">credebitReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printSoratVaziateMaliBimename" class="com.bitarts.parsian.action.PrintAction" method="printSoratVaziateMaliBimename">
+            <param name="sourceFilePath">report/soratVaziateMaliBimename.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/soratVaziateMaliBimename.pdf</param>
+                <!--<param name="dataSource">credebitVMReportList</param>-->
+                <param name="dataSource">vaziatMaliBimeNameReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printGozaresheKoliEtebarvaBedehi" class="com.bitarts.parsian.action.PrintAction" method="printGozaresheKoliEtebarvaBedehi">
+            <param name="sourceFilePath">report/gozaresheKoliEtebarvaBedehi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/gozaresheKoliEtebarvaBedehi.pdf</param>
+                <param name="dataSource">etebarBedehiVMReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printListKoleBedehi" class="com.bitarts.parsian.action.PrintAction" method="printListKoleBedehi">
+        <param name="sourceFilePath">report/listKoleBedehi.jrxml</param>
+        <param name="destFileDIR">content/report/</param>
+        <result name="success" type="jasper">
+            <param name="location">content/report/listKoleBedehi.pdf</param>
+            <param name="dataSource">pishnehadReport</param>
+            <param name="format">PDF</param>
+            <param name="realPath">${realPath}</param>
+        </result>
+        <result name="error">/jsp/user/page_login.jsp</result>
+    </action>
+
+        <action name="printListKoleBedehiWithExcelFormat" class="com.bitarts.parsian.action.PrintAction" method="printListKoleBedehiWithExcelFormat">
+            <param name="sourceFilePath">report/listKoleBedehiWithExcelFormat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/listKoleBedehi.xls</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">XLS</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="viewDasteCheckHa" class="com.bitarts.parsian.action.CheckAction" method="loadDasteCheckHa">
+            <result name="success">/jsp/management/check/page_viewDasteCheckHa.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllEtebaratCheck" class="com.bitarts.parsian.action.CredebitAction"
+                method="listAllEtebaratCheck">
+            <result name="success">/jsp/management/check/page_viewEtebarateCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteSanadOperation" class="com.bitarts.parsian.action.CredebitAction" method="deleteSanadOperation">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewKhateSanadHa</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="varizBeHesab" class="com.bitarts.parsian.action.CredebitAction" method="varizBeHesab">
+            <result name="success">/jsp/management/check/page_viewEtebarateCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="vosouleCheck" class="com.bitarts.parsian.action.CredebitAction" method="vosouleCheck">
+            <result name="success">/jsp/management/check/page_viewEtebarateCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="viewBankInfos" class="com.bitarts.parsian.action.CredebitAction" method="viewBankInfos">
+            <result name="success">/jsp/daryaftPardakht/tbl_ListBankInfo.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="bargashteCheck" class="com.bitarts.parsian.action.CredebitAction" method="bargashteCheck">
+            <result name="success">/jsp/management/check/page_viewEtebarateCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addDasteCheck" class="com.bitarts.parsian.action.CheckAction" method="addDasteCheck">
+            <result name="success">jsp/management/check/page_viewDasteCheckHa.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="viewCheckList" class="com.bitarts.parsian.action.CheckAction" method="viewCheckList">
+            <result name="success">/jsp/management/check/page_viewCheckList.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editCheck" class="com.bitarts.parsian.action.CheckAction" method="editCheck">
+            <result name="success">jsp/management/check/page_viewCheckList.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+         <!--b-h-->
+        <!--<action name="excelCheckVagozarshode" class="com.bitarts.parsian.action.PrintAction" method="excelCheckVagozarshode">-->
+            <!--<param name="sourceFilePath">report/CheckVagozarshodeExcellFormat.jrxml</param>-->
+            <!--<param name="destFileDIR">content/report/</param>-->
+            <!--<result name="success" type="jasper">-->
+                <!--<param name="location">content/report/checkvagozarshode.xls</param>-->
+                <!--<param name="dataSource">pishnehadReport</param>-->
+                <!--<param name="format">XLS</param>-->
+                <!--<param name="realPath">${realPath}</param>-->
+            <!--</result>-->
+            <!--<result name="error">/jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--b-h-->
+        <action name="excelCheckVagozarshode" class="com.bitarts.parsian.action.PrintAction" method="excelCheckVagozarshode">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileCLRBank</param>
+                <param name="contentDisposition">attachment;filename="${fileCLRBank_name}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+      <!--b-h-->
+        <action name="listBedehihayeDaftarParsian" class="com.bitarts.parsian.action.CredebitAction" method="listBedehihayeDaftarParsian">
+            <result name="success">/jsp/daryaftPardakht/page_enteghaleBedehiDaftarParsianBeNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="enteghalTakiBedehiBeDaftarNamayande" class="com.bitarts.parsian.action.CredebitAction" method="enteghalTakiBedehiBeDaftarNamayande">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listBedehihayeDaftarParsian</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="enteghalGoruhiBedehiParsian" class="com.bitarts.parsian.action.CredebitAction" method="enteghalGoruhiBedehiBeDaftarNamayande">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listBedehihayeDaftarParsian</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listBedehiHayeTasviyeNashodeNamayande" class="com.bitarts.parsian.action.CredebitAction" method="listBedehiHayeTasviyeNashodeNamayande">
+            <result name="success">/jsp/daryaftPardakht/listBedehiHayeTasviyeNashodeNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gozareshBedehiNamayande" class="com.bitarts.parsian.action.CredebitAction" method="gozareshBedehiNamayande">
+            <result name="success">/jsp/daryaftPardakht/page_gozareshBedehiNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printBedehiNamayande" class="com.bitarts.parsian.action.PrintAction" method="printBedehiNamayande">
+            <param name="sourceFilePath">report/printBedehiNamayande.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/listBedehiNamayande.pdf</param>
+                <!--<param name="dataSource">credebitVMReportList</param>-->
+                <param name="dataSource">vaziatMaliBimeNameReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+    </package>
+</struts>

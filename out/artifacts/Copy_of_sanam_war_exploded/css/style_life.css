@@ -1,0 +1,270 @@
+/*
+Template Design by TheWebhub.com
+http://www.thewebhub.com
+Released for free under a Creative Commons Attribution-Share Alike 3.0 Philippines
+*/
+
+/** Common Styles */
+
+body {
+	margin: 30px 0 20px 0;
+	padding: 0;
+	background: #E6E6E6;
+	text-align: justify;
+	line-height: 22px;
+	font-family: B Nazanin,Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #686868;
+}
+
+h1, h2, h3 {
+	padding: 0;
+	margin: 0;
+	text-transform: lowercase;	
+	color: #045fa8;
+}
+
+p, ul, ol {
+	margin-bottom: 1.3em;
+}
+
+ul {
+	margin: 0px;
+	padding: 0;
+}
+
+a {
+	color: #045fa8;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #f2c222;
+}
+
+/** Style for header starts here */
+
+#header {
+	/**width: 800px;
+	height: 200px;*/
+	width: 800px;
+	height: 107px;
+	margin: 0px auto;
+	background: url(/img/images/Parsian_Banner.jpg) no-repeat left top;
+}
+
+#header h1, #header h2 {
+	margin: 0px;
+	padding: 0;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-style: italic;
+	color: #B3E374;
+}
+
+#header h1 {
+	padding: 96px 0px 10px 100px;
+	letter-spacing: -1px;
+	font-size: 48px;
+	font-weight: normal;
+	color: #D7F5B5;
+}
+
+#header h2 {
+	margin-top: -4px;
+	padding: 0px 0px 0px 100px;
+	font-size: 14px;
+}
+
+/** Style for menu starts here */
+
+#menu {
+	width: 796px;
+	height: 30px;
+	margin: 0px auto;
+	background: #5488ad;
+	border-bottom: 2px solid #7e7e7e;
+	border-right: 2px solid #7e7e7e;
+	border-left: 2px solid #7e7e7e;
+	
+	
+}
+
+#menu ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#menu li {
+	display: inline;
+	float: right
+}
+
+#menu a {
+	display: block;
+	float: left;
+	height: 27px;
+	margin: 0px;
+	padding: 3px 30px 0px 30px;
+	letter-spacing: -1px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-family: B Nazanin,Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#menu a:hover {
+	background: #f2c222;
+	color: #045fa8;
+	font-weight: bold;
+}
+
+#menu .active a {
+	background: #f2c222;
+	color:#045fa8;font-weight: bold;
+}
+/** Style for wrapper starts here */
+
+#wrapper {
+	width: 800px;
+	margin: 0px auto;
+	background: #FFFFFF;
+	padding: 20px;
+	border: 10px solid #DBDBDB;
+}
+
+/** Style for content starts here */
+
+#content {
+	width: 800px;
+	margin: 0px auto;
+	padding-top: 25px;
+}
+
+#content h2 {
+	text-transform: capitalize;
+	font-size: 18px;	
+	font-weight: bold;
+}
+
+#content span {
+	color: #2D2D2D;
+}
+
+
+#content p {
+}
+
+#content strong {
+	color: #131313;
+}
+
+#left {
+	float: left;
+	width: 470px;
+	padding-left: 20px;
+	margin-bottom: 20px;
+	direction:rtl;
+}
+
+#left ul {
+	margin: 0 3em;
+	padding: 0;
+	list-style: none;
+	
+}
+
+#left li {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	line-height: 17px;
+}
+
+#left .post {
+	margin-bottom: 20px;
+}
+
+#right {
+	float: right;
+	width: 250px;
+	margin-bottom: 20px;
+	padding-right: 20px;
+	direction: rtl;
+}
+
+
+#right ul {
+	margin: 15px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+#right li {
+	padding: 6px 10px;
+	border-bottom: 1px solid #000000;
+	background: url(/img/images/images01.gif) no-repeat right 14px;background-color:white;
+}
+
+#right li a {
+	text-decoration: none;
+	font-weight:bold;
+	color: #045fa8;
+	font-size:13px;
+	
+}
+
+#right .active a {
+	padding: 6px 10px;	
+	font-weight:bold;	color:#f2c222;
+}
+
+#right h2 {
+	letter-spacing: -1px;
+	font-family: B Nazanin, Arial, Helvetica, sans-serif;
+	color: #045fa8;
+}
+
+/** Style for footer starts here */
+
+#footer {
+	clear: both;
+	width: 800px;
+	height: 42px;
+	margin: 0px auto;
+	padding-top: 13px;
+	border-top: 1px solid #444444;
+	text-transform: uppercase;
+	font-size: 13px;
+}
+
+#footer .copyright {
+	
+	text-align: center;
+	color:#045fa8;
+}
+
+#footer .links {
+	float: right;
+	margin: 0px;
+	padding-right: 20px;
+	text-align: center;
+}
+
+#footer .css {
+	padding-left: 20px;
+	background: url(/img/images/image01.png) no-repeat left 50%;
+}
+
+#footer .xhtml {
+	padding-left: 20px;
+	background: url(/img/images/image02.png) no-repeat left 50%;
+}
+
+#footer a {
+	color: #707070;
+}

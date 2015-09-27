@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+    <display-name>Apache-Axis</display-name>
+    <servlet>
+       <servlet-name>jaxws-servlet</servlet-name>
+       <servlet-class>
+           com.sun.xml.ws.transport.http.servlet.WSSpringServlet
+       </servlet-class>
+    </servlet>
+
+    <!--<servlet>-->
+        <!--<servlet-name>StickyCaptcha</servlet-name>-->
+        <!--<servlet-class>nl.captcha.servlet.StickyCaptchaServlet</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>width</param-name>-->
+            <!--<param-value>250</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>height</param-name>-->
+            <!--<param-value>75</param-value>-->
+        <!--</init-param>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>StickyCaptcha</servlet-name>-->
+        <!--<url-pattern>/stickyImg.captcha</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>Kaptcha</servlet-name>
+        <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Kaptcha</servlet-name>
+        <url-pattern>/kaptcha.jpg</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <display-name>Apache-Axis Servlet</display-name>
+        <servlet-name>AxisServlet</servlet-name>
+        <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>Axis Admin Servlet</display-name>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>org.apache.axis.transport.http.AdminServlet</servlet-class>
+        <load-on-startup>100</load-on-startup>
+    </servlet>
+    <servlet>
+        <display-name>SOAPMonitorService</display-name>
+        <servlet-name>SOAPMonitorService</servlet-name>
+        <servlet-class>org.apache.axis.monitor.SOAPMonitorService</servlet-class>
+        <init-param>
+            <param-name>SOAPMonitorPort</param-name>
+            <param-value>5101</param-value>
+        </init-param>
+        <load-on-startup>100</load-on-startup>
+    </servlet>
+
+
+
+    <servlet-mapping>
+       <servlet-name>jaxws-servlet</servlet-name>
+       <url-pattern>/services/BitartsWebService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/servlet/AxisServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>*.jws</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AxisServlet</servlet-name>
+        <url-pattern>/services/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SOAPMonitorService</servlet-name>
+        <url-pattern>/SOAPMonitor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/servlet/AdminServlet</url-pattern>
+    </servlet-mapping>
+    <mime-mapping>
+        <extension>wsdl</extension>
+        <mime-type>text/xml</mime-type>
+    </mime-mapping>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/application-context-*.xml</param-value>
+    </context-param>
+    <filter>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/WEB-INF/struts-html.tld</taglib-uri>
+            <taglib-location>/WEB-INF/struts-html.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
+
+
+    <filter>
+        <filter-name>OpenSession</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OpenSession</filter-name>
+        <url-pattern>*.*</url-pattern>
+    </filter-mapping>
+
+
+    <filter>
+        <filter-name>monitoring</filter-name>
+        <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+        <init-param>
+            <param-name>monitoring-path</param-name>
+            <param-value>/administrator/monitoring</param-value>
+        </init-param>
+        <!--<init-param>-->
+            <!--<param-name>log</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+    </filter>
+    <filter-mapping>
+        <filter-name>monitoring</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>monitoring</filter-name>-->
+        <!--<url-pattern>/fin/*</url-pattern>-->
+    <!--</filter-mapping>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>monitoring</filter-name>-->
+        <!--<url-pattern>/monitoring</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <listener>
+        <listener-class>net.bull.javamelody.SessionListener</listener-class>
+    </listener>
+
+
+    <!--<filter>-->
+        <!--<filter-name>EncodingFilter</filter-name>-->
+        <!--<filter-class>com.bitarts.common.filter.EncodingFilter</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>EncodingFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <filter>
+        <filter-name>struts2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>
+            /index.jsp
+        </welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+
+</web-app>

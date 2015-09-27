@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ghest_tejarat" pageWidth="597" pageHeight="842" columnWidth="597" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="ghestBandi" class="com.bitarts.parsian.model.asnadeSodor.GhestBandi"/>
+	<field name="ghestForPrintList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<detail>
+		<band height="842">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="842"/>
+				<subreport>
+					<reportElement x="0" y="0" width="595" height="842"/>
+					<dataSourceExpression><![CDATA[$F{ghestForPrintList}]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/ghest_tejarat_row_vam.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

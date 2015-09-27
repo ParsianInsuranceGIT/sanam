@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="soratVaziateAghsat_row" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="23"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<field name="amount" class="java.lang.String"/>
+	<field name="etebarCredebit.shomareMoshtari" class="java.lang.String"/>
+	<field name="etebarCredebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="bedehiCredebit.shomareMoshtari" class="java.lang.String"/>
+	<field name="bedehiCredebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="bedehiCredebit.rcptName" class="java.lang.String"/>
+	<field name="bedehiCredebit.identifier" class="java.lang.String"/>
+	<field name="bedehiCredebit.bimename" class="com.bitarts.parsian.model.bimename.Bimename"/>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" x="534" y="0" width="21" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="489" y="0" width="45" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="393" y="0" width="96" height="9"/>
+				<box>
+					<bottomPen lineStyle="Dotted"/>
+				</box>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.shomareMoshtari}==null?"-":$F{etebarCredebit.shomareMoshtari}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="297" y="0" width="96" height="9"/>
+				<box>
+					<bottomPen lineStyle="Dotted" lineColor="#999999"/>
+				</box>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.shomareMoshtari}==null?"-":$F{bedehiCredebit.shomareMoshtari}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="201" y="0" width="96" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.identifier}==null?"-":$F{bedehiCredebit.identifier}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="112" y="0" width="89" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.rcptName}==null?"-":$F{bedehiCredebit.rcptName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="0" y="0" width="112" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.bimename}.getPishnehad().getNamayande().getName_kod()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="297" y="9" width="96" height="9"/>
+				<box>
+					<topPen lineStyle="Dotted" lineColor="#999999"/>
+				</box>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.shenaseCredebit}==null?"-":$F{bedehiCredebit.shenaseCredebit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="393" y="9" width="96" height="9"/>
+				<box>
+					<topPen lineStyle="Dotted" lineColor="#999999"/>
+				</box>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.shenaseCredebit}==null?"-":$F{etebarCredebit.shenaseCredebit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

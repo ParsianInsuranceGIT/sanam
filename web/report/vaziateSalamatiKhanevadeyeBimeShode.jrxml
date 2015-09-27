@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vaziateSalamatiKhanevadeyeBimeShode" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nesbatBabimeShode" class="java.lang.String"/>
+	<field name="vaziateHayat" class="java.lang.String"/>
+	<field name="senneDarHayat" class="java.lang.String"/>
+	<field name="vaziateSalamati" class="java.lang.String"/>
+	<field name="senneDarZamaneFout" class="java.lang.String"/>
+	<field name="ellateFout" class="java.lang.String"/>
+	<field name="sharheEllateFout" class="java.lang.String"/>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="433" y="0" width="75" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nesbatBabimeShode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="61" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{vaziateHayat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="0" width="245" height="18">
+                    <printWhenExpression><![CDATA[new Boolean(!$F{vaziateHayat}.equals( "فوت شده" ))]]></printWhenExpression>
+                </reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{vaziateSalamati}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="0" width="245" height="18">
+					<printWhenExpression><![CDATA[new Boolean($F{vaziateHayat}.equals( "فوت شده" ))]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ellateFout}+" - "+$F{sharheEllateFout}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="0" width="126" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{senneDarHayat}+$F{senneDarZamaneFout}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

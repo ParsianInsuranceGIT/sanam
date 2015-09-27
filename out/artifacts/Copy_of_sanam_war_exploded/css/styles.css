@@ -1,0 +1,324 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:center;
+
+}
+#mainNamayande{
+    margin:0;
+    padding:0;
+    text-align:center;
+    background-color: #99ccff;
+}
+#main{
+    width:1100px;
+    margin:0 auto;
+}
+#main_header{
+    margin:10px auto 0 auto;
+    border:1px solid #A5A8B8;
+    padding: 5px 10px 10px;
+    height:28px;    
+}
+#main_content {
+    margin:10px auto 0 auto;
+    border:1px solid #A5A8B8;
+    padding: 5px;
+    direction:rtl;
+}
+#main_footer{
+    padding:5px;
+    font-family:9px;
+    color:#666666;
+}
+/*-------------------------------------------------------------------------------*/
+#main_header input{
+    float:left;
+    margin-left:10px;
+}
+/*-------------------------------------------------------------------------------*/
+h1, p, fieldset, label, legend, input, select, textarea, table, tr, td, div, ul, li, a:link {
+    font-family: Tahoma, B Titr, Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+}
+a:link {text-decoration:none; color: #0044ff;}
+a:visited {color: green;}
+a img{border:0;}
+input,select{
+    padding:5px;
+}
+
+input[type=submit],input[type=button]{
+    cursor:pointer;
+    padding:4px 5px;
+}input[type=submit]:hover,input[type=button]:hover{
+    border: 1px solid #79b7e7; background: #d0e5f5 url(../css/redmond/images/ui-bg_glass_75_d0e5f5_1x400.png) 50% 50% repeat-x; /*font-weight: bold;*/ color: #1d5987;
+}
+
+select{width: 155px;direction:rtl;}
+input[type=text],input[type=password]{width: 144px;direction:rtl;}
+option{margin:2px 0;}
+textarea{padding:5px;}
+
+.ui-jqgrid input, .ui-jqgrid select{
+    padding:0;
+    width:auto;
+}
+
+.inputList{
+    direction:rtl;
+    /*width:90%;*/
+    margin-left:auto;
+    margin-right:auto;
+    /*border-spacing:5px;*/
+}.inputList input, .inputList select, .inputList textarea{
+    float:left;
+}.inputList input, .inputList select{
+    text-align:center;
+}
+.inputCol{
+    width:50%;
+}
+.content .inputList{
+    width:90%;
+}
+
+.div_inputList{
+    float:right;
+    width:50%;
+    padding:3px 0px;
+}
+.div_inputList input{
+    float:left;
+}
+/*--------------------------------------------------------------------------------------------*/
+div.pageTitle{
+    font-family:B Titr, tahome;
+    direction:rtl;
+    text-align:center;
+    font-size:22px;
+    color:#0260A0;
+    padding:5px;
+}
+div.topComment{
+    padding:10px 4px;
+    color:#0000ff;
+}
+
+p.heading{
+    padding:7px;
+    direction:rtl;
+    text-align:right;
+}
+
+.expandableTitleBar .heading {
+    margin: 10px 2px;
+    cursor: pointer;
+    position: relative;
+}
+.expandableTitleBar .content {
+    padding: 2px 10px;
+}
+
+.actionMessage, .successMessage{
+    font-family:tahoma;
+    font-size:11px;
+    color:darkblue;
+    text-align:center;
+    direction:rtl;
+}
+.failureMessage, .errorMessage{
+    font-family:tahoma;font-size:11px;color:#ff0000;text-align:right;direction:rtl;
+}
+
+/*--------------------------------------------------------------------------------------------*/
+.dblRadio{
+    direction: ltr;
+    margin-left :40px;
+    font-size:7pt;
+    float:left;
+}
+.dblRadio .ui-state-default, .dblRadio .ui-widget-content .ui-state-default, .dblRadio .ui-widget-header .ui-state-default {
+    border: 1px solid #c5dbec;
+    color: #ccc;
+    background: #f5f8f9 url(redmond/images/ui-bg_inset-hard_100_f5f8f9_1x100.png) 50% 50% repeat-x;
+    min-width:40px;
+    padding: 2px 5px;
+}.dblRadio .ui-state-default:hover, .dblRadio .ui-widget-content .ui-state-default:hover, .dblRadio .ui-widget-header .ui-state-default:hover {
+    border: 1px solid #79b7e7;
+    background: none;
+    color: #e35108;
+    background: #dfeffc url(redmond/images/ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x;
+}
+.dblRadio .ui-state-active, .dblRadio .ui-widget-content .ui-state-active, .dblRadio .ui-widget-header .ui-state-active {
+    border: 1px solid #79b7e7;
+    background: none;
+    color: #e35108;
+    background: #dfeffc url(redmond/images/ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x;
+}
+/*--------------------------------------------------------------------------------------------*/
+.grid, .nonGrid{
+    text-align:right;
+    margin:5px auto;
+    direction:rtl;
+}
+.nonGrid input, .nonGrid select, .nonGrid textarea{
+    float:left;
+    text-align: center;
+}
+.grid th {
+    background-color: #377db3;
+    color:#f0f8ff;
+    font-weight:bold;
+    text-align:center;
+    height:30px;
+    padding:5px;
+}
+.grid td {
+    background-color:#efefef;
+    height:30px;
+    padding:0px 10px;
+}
+.grid td label{
+    vertical-align:middle;
+}
+.grid .odd td {
+    background-color:#FfFfEf;
+}
+
+.jGrid{
+    margin:5px auto;
+    text-align:center;
+    direction:rtl;
+}
+.jGrid th {
+    border: 1px solid #c5dbec; background: #dfeffc url(../css/redmond/images/ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x; font-weight: 600; color: #2e6e9e;padding:2px 0;margin:2px auto;
+}
+.jGrid td {
+    border: 1px solid #a6c9e2; background: #fcfdfd url(../css/redmond/images/ui-bg_inset-hard_100_fcfdfd_1x100.png) 50% bottom repeat-x; color: #222222;padding:3px 0;margin:2px auto;
+}
+/*-------------------------------------------------------------------------------------------------------------------*/
+.nohelp, span.noThing{
+    float:left;
+    margin:2px 7px;
+    width:11px;
+}
+.help, .comment{
+    float:left;
+    margin:2px 4px;
+    cursor:pointer;
+}
+.edit_btn, .delete_btn{
+    float:left;
+    margin:2px 0px;
+    cursor:pointer;
+    display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat;
+    width: 16px; height: 16px;
+    background-image: url(../css/redmond/images/ui-icons_469bdd_256x240.png);
+}.edit_btn:hover, .delete_btn:hover{
+    background-image: url(../css/redmond/images/ui-icons_217bc0_256x240.png);
+}
+.edit_btn{
+    background-position: -64px -112px;
+}
+.delete_btn{
+    background-position: -176px -96px;
+}
+.filer_btn{
+    cursor:pointer;
+    display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat;
+    width: 16px; height: 16px;
+    background-image: url(../img/filter.gif);
+}
+.datePkr_btn{float:left;margin:2px 4px;width:16px;height:20px;cursor:pointer;}
+
+/*-------------------------------------------------------------------------------*/
+.main-login-div{
+    border: 0px gray solid;
+    width: 350px;
+    margin:30px auto;
+}
+
+td.ui-widget-content, th {
+    text-align: center;
+    padding: 3px;
+}
+.transittable td{
+    padding-bottom:4px;
+}
+
+
+/*stripped table*/
+.mystrippedtable .odd{
+    background-color: #BEDFF7;
+}.mystrippedtable .odd td{
+    padding:5px 10px;
+    text-align: right;
+}
+.mystrippedtable .headline td{
+    padding:5px 3px;
+}
+.mystrippedtable .headline1 td{
+    padding:5px 3px;
+}
+.mystrippedtable .even{
+    background-color: #FCE5B8;
+}
+.mystrippedtable .headline{
+    background-color: black;
+    color: white;
+}
+.mystrippedtable .headline1{
+    background-color: #666666;
+    color: white;
+}
+.mystrippedtable .even td{
+    padding:5px 10px;
+    text-align: right;
+}
+
+/*different tabs*/
+.mutedtab{
+    background: #FDB417 !important;
+}
+.mutedtab:hover{
+    background: #FCE5B8 !important;
+}
+.mutedtabactive{
+    background: #FCE5B8 !important;
+    color: #0033CC !important;
+}
+span.excel{
+    background-image: url("/img/ico_file_excel.png");
+    background-repeat: no-repeat;
+}
+
+span.csv {
+    background-image: url("/img/ico_file_csv.png");
+    margin-left: 10px;
+    background-repeat: no-repeat;
+}
+span.export{
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 4px 1px 20px;
+}
+
+.pagelinks a{
+ color: blue !important;
+}
+.remove-this{
+    background-image: url("/img/delete.png");
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-top: 6px;
+}
+
+.ui-icon-city-selector
+{
+    background-image:url('/img/globe.png');
+}
+
+.staticTitleBar, .expandableTitleBar{
+    overflow-x:auto;
+}

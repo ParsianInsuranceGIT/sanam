@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ghest_parsian_row" pageWidth="595" pageHeight="487" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_CH" mode="Opaque" forecolor="#000000" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="shomareMoshtari" class="java.lang.String"/>
+	<field name="shomareBimename" class="java.lang.String"/>
+	<field name="nameBimeGozar" class="java.lang.String"/>
+	<field name="nameBimeShode" class="java.lang.String"/>
+	<field name="mahalleSodour" class="java.lang.String"/>
+	<field name="nameNamayande" class="java.lang.String"/>
+	<field name="kodeNamayande" class="java.lang.String"/>
+	<field name="nahveyePardakht" class="java.lang.String"/>
+	<field name="sarresidDate" class="java.lang.String"/>
+	<field name="shomareSal" class="java.lang.Integer"/>
+	<field name="shomareGhest" class="java.lang.Integer"/>
+	<field name="shomareVam" class="java.lang.String"/>
+	<field name="hashieString" class="java.lang.String"/>
+	<field name="credebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="bimename" class="com.bitarts.parsian.model.bimename.Bimename"/>
+	<detail>
+		<band height="487">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="487"/>
+				<textField>
+					<reportElement x="46" y="74" width="173" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getShomareMoshtari()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="330" y="117" width="104" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getAmount()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="29" y="117" width="245" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[com.bitarts.common.util.StringUtil.convertMeghdareAdadiBeHorofi($F{credebit}.getAmount())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="379" y="151" width="165" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{shomareVam}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="193" y="151" width="104" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nameBimeGozar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="47" y="151" width="104" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nameBimeShode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="434" y="169" width="110" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{mahalleSodour}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="250" width="60" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getCreatedTime()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="230" width="59" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getCreatedDate()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="176" y="169" width="203" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nameNamayande}+" - "+$F{kodeNamayande}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="47" y="169" width="104" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nahveyePardakht}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="52" y="194" width="104" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[((Integer)$F{shomareGhest}).toString()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="384" y="194" width="165" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{sarresidDate}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="198" y="194" width="104" height="16"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[((Integer)$F{shomareSal}).toString()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="574" y="55" width="21" height="96"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bimename}.getHashieString($V{REPORT_COUNT})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

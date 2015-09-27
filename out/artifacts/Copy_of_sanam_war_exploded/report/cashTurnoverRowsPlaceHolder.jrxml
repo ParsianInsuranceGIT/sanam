@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cashTurnoverRowsPlaceHolder" pageWidth="555" pageHeight="756" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="khateSanadList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="totalKhateSanadAmount" class="java.lang.Long"/>
+	<field name="CredebitTypeFa" class="java.lang.String"/>
+	<field name="TypeFa" class="java.lang.String"/>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="0" y="18" width="555" height="36"/>
+				<dataSourceExpression><![CDATA[$F{khateSanadList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/cashTurnoverRows.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="281" y="0" width="275" height="18"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TypeFa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="283" height="18"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="2.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$F{CredebitTypeFa}+")"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="29">
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="80" height="18"/>
+				<box>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{totalKhateSanadAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="-1" width="69" height="20"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[جمـع:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="80" y="0" width="475" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

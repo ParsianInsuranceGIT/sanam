@@ -1,0 +1,134 @@
+.staticTitleBar, .expandableTitleBar {
+    overflow-x: auto;
+}
+
+.staticTitleBar .heading {
+    width: 100%;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    position: relative;
+}
+
+.staticTitleBar .content {
+    margin-right: 20px;
+    padding: 10px;
+    overflow-x: auto;
+    border-right: 1px solid #4297D7;
+    border-left: 1px solid #4297D7;
+    border-bottom: 1px solid #4297D7;
+}
+
+.tableHeaders {
+    background-color: #377db3;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.tableHeaders td {
+    padding: 5px;
+    text-align: center;
+}
+
+.tdHeader {
+    background-color: #377db3;
+    color: #f0f8ff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cityTags {
+    direction: ltr;
+}
+
+/*tab ui*/
+:focus {
+    outline: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+#tabcontainer {
+    width: 960px;
+    margin: 0px auto;
+}
+
+#tabcontainer #tabs {
+    position: relative;
+    float: right;
+    margin-top: 10px;
+    width: 140px;
+    height: 1%;
+    z-index: 11;
+}
+
+.tabsbtn {
+    border: 1px solid #4297d7;
+    background: #5c9ccc url(/css/redmond/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x;
+    color: #ffffff;
+    font-weight: normal;
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    display: inline-block;
+    border-right: 1px solid #4297D7;
+    border-left: 1px solid #4297D7;
+    border-bottom: 1px solid #4297D7;
+}
+
+.specTabsbtn {
+    border: 1px solid green;
+    background: green url(/css/redmond/images/ui-bg_gloss-wave_55_green_500x100.png) 50% 50% repeat-x;
+    color: green;
+    font-weight: normal;
+    border-right: 1px solid green;
+    border-left: 1px solid green;
+    border-bottom: 1px solid green;
+}
+
+#tabcontainer #tabs a {
+    color: #FFFFFF;
+    width: 119px;
+    display: block;
+    cursor: pointer;
+    padding: 5px 10px 0px 10px;
+    margin: 0px 0px 2px 0px;
+    font-size: 11px;
+    white-space: nowrap;
+    font-family: B Titr, tahoma;
+    /*font-weight:bold;*/
+    height: 26px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tabcontainer #tabs a.activesubmit {
+    border-left: #fff 1px solid;
+    background: none;
+    color: #0033CC;
+    cursor: default;
+}
+
+#tabcontainer #tabs a:hover {
+    background: none;
+    color: #0033CC;
+}
+
+#tabcontainer #tabformcontent {
+    position: relative;
+    float: right;
+    padding: 25px 10px 6px 10px;
+    /*margin:0px -1px 0px 0px;*/
+    margin: 0px 0px 0px 0px;
+    border: 1px solid #4297D7;
+    position: relative;
+    min-height: 810px;
+    width: 790px;
+    overflow-x: auto;
+    z-index: 10;
+    direction: rtl;
+}

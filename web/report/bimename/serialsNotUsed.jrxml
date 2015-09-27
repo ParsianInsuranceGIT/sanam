@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bimenameChappi" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_CH" mode="Opaque" forecolor="#000000" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="fromSerial" class="java.lang.Long"/>
+	<field name="toSerial" class="java.lang.Long"/>
+	<field name="totalCount" class="java.lang.Long"/>
+	<field name="fSerials" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="lSerials" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="counts" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="1"/>
+	</title>
+	<pageHeader>
+		<band height="83" splitType="Stretch">
+			<frame>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="10" y="12" width="571" height="65" isPrintWhenDetailOverflows="true" backcolor="#FF3366"/>
+				<box>
+					<topPen lineWidth="3.0" lineStyle="Double"/>
+					<leftPen lineWidth="3.0" lineStyle="Double"/>
+					<bottomPen lineWidth="3.0" lineStyle="Double"/>
+					<rightPen lineWidth="3.0" lineStyle="Double"/>
+				</box>
+				<staticText>
+					<reportElement x="133" y="10" width="299" height="24"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[لیست سریال های استفاده نشده]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="490" y="47" width="62" height="10"/>
+					<textElement/>
+					<text><![CDATA[از شماره سریال :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="408" y="47" width="82" height="10"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$F{fromSerial}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="319" y="47" width="62" height="10"/>
+					<textElement/>
+					<text><![CDATA[تا شماره سریال :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="239" y="47" width="80" height="10"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$F{toSerial}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="92" y="47" width="109" height="10"/>
+					<textElement/>
+					<text><![CDATA[مجموع سریال های استفاده نشده :]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="12" y="47" width="80" height="10"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Long"><![CDATA[$F{totalCount}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="153">
+			<staticText>
+				<reportElement style="table_CH" x="343" y="8" width="100" height="11" backcolor="#FFCC33"/>
+				<textElement/>
+				<text><![CDATA[از شماره سریال]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="243" y="8" width="100" height="11" backcolor="#FFCC33"/>
+				<textElement/>
+				<text><![CDATA[تا شماره سریال]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="143" y="8" width="100" height="11" backcolor="#FFCC33"/>
+				<textElement/>
+				<text><![CDATA[تعداد]]></text>
+			</staticText>
+			<subreport>
+				<reportElement mode="Transparent" x="342" y="19" width="100" height="13"/>
+				<dataSourceExpression><![CDATA[$F{fSerials}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/bimename/serialsNotUsed_fSerials.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement mode="Transparent" x="242" y="19" width="100" height="13"/>
+				<dataSourceExpression><![CDATA[$F{lSerials}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/bimename/serialsNotUsed_lSerials.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement mode="Transparent" x="142" y="19" width="100" height="13"/>
+				<dataSourceExpression><![CDATA[$F{counts}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/bimename/serialsNotUsed_counts.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+	<summary>
+		<band/>
+	</summary>
+	<noData>
+		<band/>
+	</noData>
+</jasperReport>

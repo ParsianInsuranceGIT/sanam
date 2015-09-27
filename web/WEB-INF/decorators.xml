@@ -1,0 +1,15 @@
+<decorators defaultdir="/decorator">
+    <excludes>
+        <!--<pattern>/images/*</pattern>-->
+        <!--<pattern>/index.html</pattern>-->
+    </excludes>
+
+    <decorator name="layout" page="layout.jsp">
+        <pattern>/jsp/*/page_*.jsp*</pattern>
+        <pattern>/jsp/*/*/page_*.jsp*</pattern>
+        <pattern>/jsp/constants/*.jsp*</pattern>
+        <pattern>/jsp/page_changePassword.jsp</pattern>
+        <pattern>/jsp/page_downloads.jsp</pattern>
+    </decorator>
+
+</decorators>

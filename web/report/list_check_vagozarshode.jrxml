@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taghirKod" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Thu Jul 07 01:52:56 IRST 2011"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/Job/Parsian/web/report/"]]></defaultValueExpression>
+	</parameter>
+	<field name="credebitList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="sumOfPardakht" class="java.lang.Double"/>
+	<field name="vagozari" class="com.bitarts.parsian.model.asnadeSodor.Vagozari"/>
+	<pageHeader>
+		<band height="95">
+			<frame>
+				<reportElement  x="0" y="0" width="802" height="95"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement  x="289" y="10" width="254" height="26"/>
+					<textElement>
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[لیست چکهای واگذار شده]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  x="671" y="52" width="105" height="26"/>
+					<textElement>
+						<font size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شماره داخلی فایل]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  x="151" y="52" width="97" height="26"/>
+					<textElement>
+						<font size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تاریخ ایجاد فایل]]></text>
+				</staticText>
+				<staticText>
+					<reportElement  style="normal" x="66" y="22" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ساعت اخذ گزارش :]]></text>
+				</staticText>
+				<textField>
+					<reportElement  x="7" y="2" width="59" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[DateUtil.getCurrentDate()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement  x="7" y="22" width="60" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[DateUtil.getCurrentTime()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="66" y="2" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ اخذ گزارش :]]></text>
+				</staticText>
+				<textField>
+					<reportElement  x="517" y="55" width="133" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vagozari}.getShomare()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement  x="10" y="55" width="133" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vagozari}.getCreateDate()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+	    <band height="38">
+
+					<staticText>
+    					<reportElement  x="750" y="10" width="52" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[ردیف]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="605" y="10" width="66" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[سری حرفی]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="393" y="10" width="86" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[شماره حساب]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="317" y="10" width="76" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[نام بانک متعهد]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="248" y="10" width="69" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[شعبه متعهد]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="175" y="10" width="73" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[تاریخ سر رسید]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="543" y="10" width="62" height="28"/>
+    					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[سری عددی]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="479" y="10" width="64" height="28"/>
+    					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[سریال چک]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="112" y="10" width="63" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[مبلغ]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="1" y="10" width="111" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[شناسه پرداخت]]></text>
+    				</staticText>
+    				<staticText>
+    					<reportElement  x="671" y="10" width="79" height="28"/>
+    					<box>
+    						<pen lineWidth="0.5"/>
+    						<topPen lineWidth="0.5"/>
+    						<leftPen lineWidth="0.5"/>
+    						<bottomPen lineWidth="0.5"/>
+    						<rightPen lineWidth="0.5"/>
+    					</box>
+    					<textElement>
+    						<font size="14" isBold="true"/>
+    					</textElement>
+    					<text><![CDATA[شماره اعتبار]]></text>
+    				</staticText>
+
+    	</band>
+	</columnHeader>
+	<detail>
+		<band height="32">
+			<frame>
+				<reportElement  x="0" y="0" width="802" height="30"/>
+				<subreport>
+					<reportElement  x="1" y="0" width="801" height="30" isPrintWhenDetailOverflows="true"/>
+					<dataSourceExpression><![CDATA[$F{credebitList}]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{realPath} + "report/list_check_vagozarshode_subReport.jasper"]]></subreportExpression>
+				</subreport>
+
+
+			</frame>
+		</band>
+	</detail>
+
+	<summary>
+		<band height="31">
+			<staticText>
+				<reportElement  style="table_TD" mode="Transparent" x="175" y="8" width="73" height="20"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مجموع]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement  style="table_TD" mode="Transparent" x="66" y="8" width="109" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sumOfPardakht}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

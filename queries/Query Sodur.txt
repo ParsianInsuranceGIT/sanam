@@ -1,0 +1,70 @@
+select np.bimename_shomare,np.bimename_tarikhshorou,np.bimename_tarikhengheza,np.bimename_tarikhsodur,np.kodenamayandekargozar,
+       np.HAGH_BIME_PARDAKHTI,np.NAHVE_PARDAKHT_HAGH_BIME,np.SARMAYE_PAYE_FOT,
+       np.name,np.name_khanevadegi,np.KODE_MELLI_SHENASAYI,       
+       np.zinaf_name,np.zinaf_name_khanev,np.zinaf_kode_meli,
+       np.HAGH_BIME_AMRAZ,np.HAGH_BIME_HADESE,np.HAGH_BIME_MOAFIAT,np.HAGH_BIME_NAGHS,np.SALEBIMEI,
+       tbl_namayande.kodenamayandekargozar as vahedeSodur,0 as sarmaye_hayat
+from
+(
+  (select ep.bimename_shomare,ep.bimename_tarikhshorou,ep.bimename_tarikhengheza,ep.bimename_tarikhsodur,
+          ep.HAGH_BIME_PARDAKHTI,ep.NAHVE_PARDAKHT_HAGH_BIME,ep.SARMAYE_PAYE_FOT,
+          ep.name,ep.name_khanevadegi,ep.KODE_MELLI_SHENASAYI,
+          ep.zinaf_name,ep.zinaf_name_khanev,ep.zinaf_kode_meli,
+          ep.HAGH_BIME_AMRAZ,ep.HAGH_BIME_HADESE,ep.HAGH_BIME_MOAFIAT,ep.HAGH_BIME_NAGHS,ep.SALEBIMEI,
+          tbl_namayande.kodenamayandekargozar, tbl_namayande.VAHEDSODUR_ID      
+  from
+  (
+    (select sb.bimename_shomare,sb.bimename_tarikhshorou,sb.bimename_tarikhengheza,sb.bimename_tarikhsodur,sb.namayande_id,
+            sb.name,sb.name_khanevadegi,sb.KODE_MELLI_SHENASAYI,
+            sb.zinaf_name,sb.zinaf_name_khanev,sb.zinaf_kode_meli,
+            sb.HAGH_BIME_AMRAZ,sb.HAGH_BIME_HADESE,sb.HAGH_BIME_MOAFIAT,sb.HAGH_BIME_NAGHS,sb.SALEBIMEI,
+            tbl_estelam.HAGH_BIME_PARDAKHTI,tbl_estelam.NAHVE_PARDAKHT_HAGH_BIME,tbl_estelam.SARMAYE_PAYE_FOT
+     from       
+     (
+        (select bp.bimename_shomare,bp.bimename_tarikhshorou,bp.bimename_tarikhengheza,bp.bimename_tarikhsodur,bp.namayande_id,
+                bp.estelam_id,bp.BIMEGOZAR_ID,
+                bp.EKASB_NAME as zinaf_name,bp.NAME_KHANEV as zinaf_name_khanev,bp.KODE_MELLI as zinaf_kode_meli,
+                bp.HAGH_BIME_AMRAZ,bp.HAGH_BIME_HADESE,bp.HAGH_BIME_MOAFIAT,bp.HAGH_BIME_NAGHS,bp.SALEBIMEI,
+                tbl_shakhs.name,tbl_shakhs.name_khanevadegi,tbl_shakhs.KODE_MELLI_SHENASAYI
+        from
+        (
+          (select pe.bimename_shomare,pe.bimename_tarikhshorou,pe.bimename_tarikhengheza,pe.bimename_tarikhsodur,
+                  pe.namayande_id,pe.estelam_id,pe.BIMEGOZAR_ID,pe.EKASB_NAME,pe.NAME_KHANEV,pe.KODE_MELLI,
+                  pe.HAGH_BIME_AMRAZ,pe.HAGH_BIME_HADESE,pe.HAGH_BIME_MOAFIAT,pe.HAGH_BIME_NAGHS,pe.SALEBIMEI,
+                  tbl_bimegozar.shakhs_id
+          from
+          (
+            (select bg.bimename_shomare,bg.bimename_tarikhshorou,bg.bimename_tarikhengheza,bg.bimename_tarikhsodur,
+                    bg.namayande_id,bg.estelam_id,bg.BIMEGOZAR_ID,
+                    bg.HAGH_BIME_AMRAZ,bg.HAGH_BIME_HADESE,bg.HAGH_BIME_MOAFIAT,bg.HAGH_BIME_NAGHS,bg.SALEBIMEI,
+                    tbl_estefade_konandegan.EKASB_NAME,tbl_estefade_konandegan.NAME_KHANEV,tbl_estefade_konandegan.KODE_MELLI
+            from
+            (
+              (select pb.bimename_shomare,pb.bimename_tarikhshorou,pb.bimename_tarikhengheza,pb.bimename_tarikhsodur,
+                     pb.namayande_id,pb.estelam_id,pb.BIMEGOZAR_ID,pb.id,
+                     ghestbandi.HAGH_BIME_AMRAZ,ghestbandi.HAGH_BIME_HADESE,ghestbandi.HAGH_BIME_MOAFIAT,ghestbandi.HAGH_BIME_NAGHS,ghestbandi.SALEBIMEI
+              from
+              (
+                (select tbl_bimename.bimename_shomare,tbl_bimename.bimename_tarikhshorou,tbl_bimename.bimename_tarikhengheza,tbl_bimename.bimename_tarikhsodur,
+                        tbl_pishnehad.namayande_id,tbl_pishnehad.estelam_id,tbl_pishnehad.BIMEGOZAR_ID,tbl_pishnehad.id,tbl_bimename.bimename_id
+                from tbl_bimename
+                inner join tbl_pishnehad on tbl_pishnehad.id=tbl_bimename.pishnehad_id) pb              
+              )
+              left join 
+                       (select tg.* from tbl_ghestbandi tg
+                        inner join
+                                  (select tbl_ghestbandi.bimename_id, max(tbl_ghestbandi.salebimei) as mx from tbl_ghestbandi
+                                   group by tbl_ghestbandi.bimename_id )groupedtg on tg.bimename_id=groupedtg.bimename_id and tg.salebimei=groupedtg.mx) ghestbandi 
+              on ghestbandi.bimename_id=pb.bimename_id) bg
+            )
+            left join tbl_estefade_konandegan on bg.id=tbl_estefade_konandegan.PISHNEHAD_ID) pe
+          )
+          left join tbl_bimegozar on tbl_bimegozar.id=pe.bimegozar_id) bp        
+        )
+        left join tbl_shakhs on tbl_shakhs.shakhs_id=bp.shakhs_id) sb
+     )
+     left Join tbl_estelam on tbl_estelam.estelam_id=sb.estelam_id) ep
+  )     
+     inner Join tbl_namayande on tbl_namayande.id=ep.namayande_id) np  
+)
+left Join tbl_namayande on np.VAHEDSODUR_ID=tbl_namayande.id;

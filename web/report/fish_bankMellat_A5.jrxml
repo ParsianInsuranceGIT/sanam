@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taghirKod" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Thu Jul 07 01:52:56 IRST 2011"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<subDataset name="dataset1"/>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/Job/Parsian/web/report/"]]></defaultValueExpression>
+	</parameter>
+	<field name="rcptName" class="java.lang.String"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="shomareMoshtari" class="java.lang.String"/>
+	<field name="createdDate" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="bankName" class="java.lang.String"/>
+	<detail>
+		<band height="381">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="381"/>
+				<staticText>
+					<reportElement x="455" y="85" width="97" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[خواهشمند است مبلغ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="416" y="85" width="39" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[به عدد]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="178" y="85" width="27" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ریال]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="508" y="118" width="44" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[به حروف (]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="147" y="118" width="131" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[) را دریافت و به شماره حساب]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="178" y="75" width="277" height="38"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="440" y="153" width="112" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[به نام : شرکت بیمه پارسیان]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="371" y="153" width="63" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[منظور فرمایید.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="481" y="186" width="71" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نام واریز کننده :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="209" y="186" width="172" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شماره ملی : ----------- کد شناسه :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="186" width="96" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تلفن : ----------]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="132" y="218" width="420" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نشانی واریز کننده : ---------------------------------------------------------]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="440" y="296" width="112" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[امضاء واریز کننده :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="11" y="296" width="136" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[مهر و امضاء دریافت کننده وجه]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="157" y="259" width="283" height="107"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="0" y="218" width="132" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[کد پستی : ------------]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="381" y="186" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{rcptName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="96" y="186" width="113" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{shomareMoshtari}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="230" y="85" width="186" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="278" y="118" width="230" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{description}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="42" y="118" width="105" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{bankName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="229" y="12" width="122" height="25" backcolor="#FFC800"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شعبه : -------------]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="413" y="32" width="100" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{createdDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="473" y="4" width="74" height="25" backcolor="#FFC800"/>
+					<textElement textAlignment="Right">
+						<font size="18" isBold="true"/>
+					</textElement>
+					<text><![CDATA[بانک ملت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="513" y="32" width="34" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تاریخ :]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="0" width="555" height="381"/>
+				</rectangle>
+				<image>
+					<reportElement x="2" y="2" width="102" height="78"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/mellat.jpg"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

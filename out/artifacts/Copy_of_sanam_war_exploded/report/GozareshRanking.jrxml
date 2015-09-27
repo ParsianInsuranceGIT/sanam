@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshRanking" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="281"/>
+	<property name="ireport.y" value="47"/>
+	<property name="ireport.callouts" value="##Thu Jul 07 01:52:56 IRST 2011"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<subDataset name="dataset1"/>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/Job/Parsian/web/report/"]]></defaultValueExpression>
+	</parameter>
+	<field name="rankReportList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="searchBarText" class="java.lang.String"/>
+	<field name="miangin" class="java.lang.String"/>
+	<field name="charak1" class="java.lang.String"/>
+	<field name="charak3" class="java.lang.String"/>
+	<field name="tedadZirCharak1" class="java.lang.String"/>
+	<field name="tedadBalaCharak3" class="java.lang.String"/>
+	<pageHeader>
+		<band height="133">
+			<frame>
+				<reportElement x="0" y="0" width="802" height="133"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<image>
+					<reportElement x="750" y="40" width="52" height="63"/>
+					<imageExpression><![CDATA[$P{realPath}+"report/img/f3.jpg"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="10" y="30" width="59" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[DateUtil.getCurrentDate()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="69" y="30" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="69" y="50" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ساعت :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="10" y="50" width="60" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[DateUtil.getCurrentTime()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="89" y="68" width="29" height="20"/>
+					<box bottomPadding="2"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="118" y="68" width="25" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[صفحه]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="79" y="68" width="10" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[از]]></text>
+				</staticText>
+				<textField evaluationTime="Auto">
+					<reportElement x="50" y="68" width="29" height="20"/>
+					<box bottomPadding="2"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="143" y="60" width="541" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="684" y="0" width="56" height="133"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[شرکت سهامی بیمه پارسیان]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="353" y="17" width="100" height="33"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[گزارش رتبه بندی]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="143" y="61" width="541" height="46"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{searchBarText}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="309">
+			<frame>
+				<reportElement x="0" y="0" width="802" height="308"/>
+				<staticText>
+					<reportElement x="773" y="0" width="29" height="153"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ردیف]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="725" y="0" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[استان]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="725" y="51" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[شهر]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="725" y="102" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[واحد صدور پدر]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="677" y="102" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[کد واحد صدور]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="677" y="51" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[واحد صدور]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="677" y="0" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[کد واحد صدور پدر]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="581" y="0" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تعداد بیمه نامه های صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="581" y="102" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تعداد بیمه نامه های فسخ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="629" y="102" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تعداد نماینده/بازاریاب]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="629" y="51" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[کد نماینده]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="629" y="0" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نام نماینده]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="581" y="51" width="48" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه بیمه نامه های صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="466" y="0" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[کل حق بیمه صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="466" y="102" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه وصولي از صادره همان ماه بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="526" y="102" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق بیمه صادره سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="406" y="51" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه وصولي از صادره همان ماه بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="348" y="0" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه وصولي سال اول بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="526" y="0" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه بیمه نامه های فسخ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="526" y="51" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق بیمه صادره سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="406" y="102" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي از صادره همان ماه بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="348" y="51" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي سال اول بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="406" y="0" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي از صادره همان ماه بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="348" y="102" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه وصولي سال اول بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="466" y="51" width="60" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق بیمه صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="290" y="51" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كل حق‌بيمه وصولي بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="51" width="69" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرمايه فوت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="177" y="0" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه برگشتي سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="122" y="0" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[مبلغ برگشتي به بيمه‌گذار]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="122" y="51" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه معوق سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="122" y="102" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه معوق سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="177" y="51" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كل حق‌بيمه برگشتي]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="290" y="102" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي بر اساس تاريخ پرداخت]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="69" y="102" width="53" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نسبت حق‌بيمه برگشتي به حق‌بيمه صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="232" y="102" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حق‌بيمه برگشتي سال اول]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="232" y="51" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="290" y="0" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه وصولي سال اول بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="102" width="69" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ارزش بازخريدي]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="69" y="51" width="53" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه معوق]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="69" y="0" width="53" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كل حق‌بيمه معوق]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="69" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[نسبت حق‌بيمه معوق به حق‌بيمه صادره]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="232" y="0" width="58" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[كل حق‌بيمه وصولي بر اساس تاريخ سند]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="177" y="102" width="55" height="51"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[سرانه حق‌بيمه برگشتي]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</detail>
+	<summary>
+		<band height="110">
+			<frame>
+				<reportElement x="0" y="0" width="802" height="110"/>
+				<staticText>
+					<reportElement x="684" y="0" width="118" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[میانگین:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="684" y="20" width="118" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[چارک اول:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="684" y="40" width="118" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[چارک سوم:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="684" y="60" width="118" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تعداد زیر چارک اول:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="684" y="80" width="118" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تعداد بالای جارک سوم:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="584" y="0" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{miangin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="584" y="20" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{charak1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="584" y="40" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{charak3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="584" y="60" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tedadZirCharak1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="584" y="80" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tedadBalaCharak3}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mohasebateRiazi_row" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<field name="sen" class="java.lang.Short"/>
+	<field name="saal" class="java.lang.Short"/>
+	<field name="tarikheShoro" class="java.lang.String"/>
+	<field name="tarikheKhatame" class="java.lang.String"/>
+	<field name="nahvePardakhteHagheBime" class="java.lang.String"/>
+	<field name="sarmaayeFotBehHarEllat" class="java.lang.Double"/>
+	<field name="sarmaayeFotDarAsarHaadeseh" class="java.lang.Double"/>
+	<field name="sarmaayePusheshEzaafiAmraazKhaas" class="java.lang.Double"/>
+	<field name="majmuHaghBimePusheshHaayeEzaafi" class="java.lang.Double"/>
+	<field name="maaliyaatBarArzeshAfzude" class="java.lang.Double"/>
+	<field name="majmuHaghBimePardaakhtiSaal" class="java.lang.Double"/>
+	<field name="majmuKolMabaaleghPardaakhti" class="java.lang.Double"/>
+	<field name="arzeshBazKharidBaaSudTazmini15Darsad" class="java.lang.Double"/>
+	<field name="pishbiniArzeshBazKharidBaaSud20Darsad" class="java.lang.Double"/>
+	<field name="pishbiniArzeshBazKharidBaaSud22Darsad" class="java.lang.Double"/>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="0" y="0" width="45" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{pishbiniArzeshBazKharidBaaSud22Darsad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="45" y="0" width="44" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{pishbiniArzeshBazKharidBaaSud20Darsad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="89" y="0" width="47" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{arzeshBazKharidBaaSudTazmini15Darsad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="136" y="0" width="47" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{majmuKolMabaaleghPardaakhti}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="183" y="0" width="39" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{majmuHaghBimePardaakhtiSaal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="222" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{maaliyaatBarArzeshAfzude}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="259" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{majmuHaghBimePusheshHaayeEzaafi}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="296" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sarmaayePusheshEzaafiAmraazKhaas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="333" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sarmaayeFotDarAsarHaadeseh}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" x="370" y="0" width="40" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{sarmaayeFotBehHarEllat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="410" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nahvePardakhteHagheBime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="447" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tarikheKhatame}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="484" y="0" width="37" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tarikheShoro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="521" y="0" width="17" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Short"><![CDATA[$F{sen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="538" y="0" width="17" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Short"><![CDATA[$F{saal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

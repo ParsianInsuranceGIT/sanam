@@ -1,0 +1,5 @@
+select gb.bimename_id, count(*) from tbl_credebit c1 join tbl_credebit c2 on c1.shomare_moshtari = c2.shomare_moshtari
+ join tbl_ghest g on g.id = c1.ghest_id
+ join tbl_ghestbandi gb on g.ghestbandi_id = gb.id
+ where length(c1.shomare_moshtari)=17
+and c1.id != c2.id group by gb.bimename_id order by gb.bimename_id desc;

@@ -1,0 +1,43 @@
+update tbl_credebit cr 
+set cr.date_fish=cr.created_date
+where cr.authority_id is not null
+-------------------------------------
+--update tbl_credebit cr 
+--set cr.time_fish=cr.created_time
+--where cr.authority_id is not null
+--------------------------------------------------------------------------------
+--update tbl_credebit cr 
+--set cr.time_fish= (select f.time from tbl_daryafte_fish f where f.id=cr.daryafte_fish_id)
+--where cr.daryafte_fish_id is not null
+-------------------------------------
+--update tbl_credebit cr 
+--set cr.date_fish= (select f.tarikh from tbl_daryafte_fish f where f.id=cr.daryafte_fish_id)
+--where cr.daryafte_fish_id is not null
+-------------------------------------
+--update tbl_credebit cr 
+--set cr.AUTHORITY_ID= (select f.shomaresanadbank from tbl_daryafte_fish f where f.id=cr.daryafte_fish_id)
+--where cr.daryafte_fish_id is not null
+--------------------------------------------------------------------------------
+--update tbl_credebit cr
+--set cr.date_fish = (select f.fish_tarikh from tbl_fish f where f.credebit_id=cr.id)
+--where cr.CREDEBIT_TYPE='DARYAFTE_ELECTRONICI' and cr.authority_id is null
+-------------------------------------
+--update tbl_credebit cr
+--set cr.time_fish = (select f.fish_time from tbl_fish f where f.credebit_id=cr.id)
+--where cr.CREDEBIT_TYPE='DARYAFTE_ELECTRONICI' and cr.authority_id is null
+-------------------------------------
+--update tbl_credebit cr
+--set cr.AUTHORITY_ID = (select f.fish_shomare from tbl_fish f where f.credebit_id=cr.id)
+--where cr.CREDEBIT_TYPE='DARYAFTE_ELECTRONICI' and cr.authority_id is null
+--------------------------------------------------------------------------------
+--update tbl_credebit cr
+--set cr.time_fish = (select f.fish_time from tbl_fish f where f.credebit_id=cr.id)
+--where cr.CREDEBIT_TYPE='DARYAFTE_ELECTRONICI' and cr.authority_id is null
+-------------------------------------
+--update tbl_credebit cr
+--set cr.AUTHORITY_ID = (select f.fish_shomare from tbl_fish f where f.credebit_id=cr.id)
+--where cr.CREDEBIT_TYPE='DARYAFTE_ELECTRONICI' and cr.authority_id is null
+--------------------------------------------------------------------------------
+--update tbl_credebit
+--set date_fish=created_date
+--where authority_id is null and date_fish is null and time_fish is null and credebit_type='DARYAFTE_ELECTRONICI'

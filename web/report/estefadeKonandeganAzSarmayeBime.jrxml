@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="estefadeKonandeganAzSarmayeBime" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<field name="vaziateFotVaHayat" class="java.lang.String"/>
+	<field name="nesbatBabimeShode" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="nameKhanevadegi" class="java.lang.String"/>
+	<field name="kodeMelli" class="java.lang.String"/>
+	<field name="shomareSabt" class="java.lang.String"/>
+	<field name="tarikhTavallod" class="java.lang.String"/>
+	<field name="tarikhSabt" class="java.lang.String"/>
+	<field name="mahalleTavallod" class="java.lang.String"/>
+	<field name="mahalleSabt" class="java.lang.String"/>
+	<field name="darsadeSahm" class="java.lang.String"/>
+	<field name="olaviat" class="java.lang.String"/>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="normal" x="386" y="0" width="74" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nesbatBabimeShode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="318" y="0" width="68" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{name}+" "+$F{nameKhanevadegi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="229" y="0" width="89" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kodeMelli}+$F{shomareSabt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="147" y="0" width="82" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{tarikhTavallod}+$F{tarikhSabt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="67" y="0" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{mahalleTavallod}+$F{mahalleSabt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="25" y="0" width="42" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{darsadeSahm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="0" y="0" width="25" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{olaviat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="normal" x="460" y="0" width="52" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{vaziateFotVaHayat}.equals("hayat")?"حیات":"فوت"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

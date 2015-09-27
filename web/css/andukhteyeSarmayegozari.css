@@ -1,0 +1,47 @@
+*{
+    font-family:tahoma;
+}
+p { padding: 5px; text-align:right;}
+
+
+fieldset{
+    direction:rtl;
+    width:944px !important;
+}
+.staticTitleBar{
+    width: 944px;
+}
+legend{
+    font-family:B Titr, times new roman, tahoma;
+    font-size:14px;
+    padding:10px 0;
+    color:#0260A0;
+}
+
+.staticTitleBar .heading{
+/*width: 100%;*/
+    margin-right:2px ;
+    margin-left:2px ;
+    margin-top:2px ;
+    margin-bottom:0px ;
+    cursor: pointer;
+    position: relative;
+}
+.staticTitleBar .content{
+/*margin-right:20px;*/
+    padding:10px;
+    overflow-x:auto;
+/*border-right: 1px solid #4297D7;*/
+/*border-left: 1px solid #4297D7;*/
+/*border-bottom: 1px solid #4297D7;*/
+
+
+}
+
+.resultDets{
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+

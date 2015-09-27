@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="xlsTest" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="50" bottomMargin="50">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="5" width="55" height="15" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[STOCKROOM_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="55" y="5" width="205" height="15" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement/>
+				<text><![CDATA[STOCKROOM_NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="260" y="5" width="255" height="15" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement/>
+				<text><![CDATA[STOCKROOM_DESC]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch"/>
+	</detail>
+</jasperReport>

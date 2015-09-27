@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshMablagh_subreport" pageWidth="822" pageHeight="572" orientation="Landscape" columnWidth="822" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<field name="ostan" class="com.bitarts.parsian.model.constantItems.City"/>
+	<field name="shahr" class="com.bitarts.parsian.model.constantItems.City"/>
+	<field name="vahedSodurPedar" class="com.bitarts.parsian.model.Namayande"/>
+	<field name="vahedSodur" class="com.bitarts.parsian.model.Namayande"/>
+	<field name="namNamayande" class="com.bitarts.parsian.model.Namayande"/>
+	<field name="tedadNamayande" class="java.lang.String"/>
+	<field name="tedadBimenameSadere" class="java.lang.String"/>
+	<field name="saraneBimenameSadere" class="java.lang.String"/>
+	<field name="tedadBimenameFaskh" class="java.lang.String"/>
+	<field name="sareneBimenameFaskh" class="java.lang.String"/>
+	<field name="haghBimeSadere1" class="java.lang.String"/>
+	<field name="saraneHaghBimeSadere1" class="java.lang.String"/>
+	<field name="kolHaghBimeSadere" class="java.lang.String"/>
+	<field name="saraneHaghBimeSadere" class="java.lang.String"/>
+	<field name="haghBimeVosuliAzSadereByPardakht" class="java.lang.String"/>
+	<field name="saraneHaghBimeVosuliAzSadereByPardakht" class="java.lang.String"/>
+	<field name="haghBimeVosuliAzSadereBySanad" class="java.lang.String"/>
+	<field name="saraneHaghBimeVosuliAzSadereBySand" class="java.lang.String"/>
+	<field name="haghBimeVosuliSal1ByPardakht" class="java.lang.String"/>
+	<field name="saraneHaghBimeVosuliSal1ByPardakh" class="java.lang.String"/>
+	<field name="haghBimeVosuliSal1BySanad" class="java.lang.String"/>
+	<field name="saraneHaghBimeVosuliSal1BySanad" class="java.lang.String"/>
+	<field name="kolHaghBimeVosuliByPardakht" class="java.lang.String"/>
+	<field name="saraneKolHaghBimeVosuliByPardakht" class="java.lang.String"/>
+	<field name="kolHaghBimeVosuliBySanad" class="java.lang.String"/>
+	<field name="saraneKolHaghBimeVosuliBySanad" class="java.lang.String"/>
+	<field name="haghBimeBargashtiSal1" class="java.lang.String"/>
+	<field name="saraneHaghBimeBargashtiSal1" class="java.lang.String"/>
+	<field name="kolHaghBimeBargashti" class="java.lang.String"/>
+	<field name="saraneKolHaghBimeBargashti" class="java.lang.String"/>
+	<field name="mablaghBargashtiBimeGozar" class="java.lang.String"/>
+	<field name="haghBimeMoavagheSal1" class="java.lang.String"/>
+	<field name="saraneHaghBimeMoavagheSal1" class="java.lang.String"/>
+	<field name="haghBimeMoavaghe" class="java.lang.String"/>
+	<field name="saraneHaghBimeMoavaghe" class="java.lang.String"/>
+	<field name="nesbatHaghBimeBargashtiSadere" class="java.lang.String"/>
+	<field name="nesbatHaghBimeMoavagheSadere" class="java.lang.String"/>
+	<field name="sarmayeFot" class="java.lang.String"/>
+	<field name="arzeshBazKharidi" class="java.lang.String"/>
+	<detail>
+		<band height="153">
+			<textField>
+				<reportElement x="677" y="51" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vahedSodur}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="0" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kolHaghBimeSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="102" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeVosuliAzSadereBySand}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeVosuliSal1ByPardakht}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeVosuliSal1BySanad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="51" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeVosuliAzSadereBySanad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="526" y="0" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sareneBimenameFaskh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="102" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneKolHaghBimeVosuliByPardakht}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="102" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneKolHaghBimeBargashti}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="102" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeVosuliSal1BySanad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="51" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="51" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeVosuliSal1ByPardakh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="725" y="102" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vahedSodurPedar}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="677" y="102" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vahedSodur}.getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="102" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tedadBimenameFaskh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="69" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nesbatHaghBimeMoavagheSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kolHaghBimeVosuliBySanad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="0" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeVosuliAzSadereByPardakht}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="0" width="53" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeMoavaghe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="725" y="51" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shahr}.getCityName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="725" y="0" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ostan}.getCityName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="773" y="0" width="29" height="153"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="0" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tedadBimenameSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="102" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tedadNamayande}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="0" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeBargashtiSal1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="0" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mablaghBargashtiBimeGozar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="677" y="0" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vahedSodurPedar}.getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="51" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeMoavagheSal1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="51" width="69" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sarmayeFot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="102" width="69" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{arzeshBazKharidi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="0" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namNamayande}.getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="51" width="53" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeMoavaghe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="51" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kolHaghBimeVosuliByPardakht}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="102" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeMoavagheSal1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="102" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeBargashtiSal1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="102" width="53" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nesbatHaghBimeBargashtiSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="102" width="60" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeVosuliAzSadereByPardakht}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="526" y="102" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneHaghBimeSadere1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="581" y="51" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneBimenameSadere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="629" y="51" width="48" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namNamayande}.getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="526" y="51" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{haghBimeSadere1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="51" width="58" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saraneKolHaghBimeVosuliBySanad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="51" width="55" height="51"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kolHaghBimeBargashti}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

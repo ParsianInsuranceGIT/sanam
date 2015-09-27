@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cashTurnover" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="93"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="totalCredit" class="java.lang.Long"/>
+	<field name="totalDebit" class="java.lang.Long"/>
+	<field name="totalCreditWithoutBargashti" class="java.lang.Long"/>
+	<field name="fromDate" class="java.lang.String"/>
+	<field name="toDate" class="java.lang.String"/>
+	<field name="cashTurnoverRowsVMList" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement mode="Transparent" x="2" y="50" width="550" height="505" forecolor="#CCCCCC" backcolor="#FFFFFF"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/fff.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<frame>
+				<reportElement x="1" y="0" width="554" height="79"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="3.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.5" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="2.5" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<image>
+					<reportElement x="487" y="0" width="52" height="60"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/f3.jpg"]]></imageExpression>
+				</image>
+				<line>
+					<reportElement x="426" y="66" width="116" height="1"/>
+				</line>
+				<staticText>
+					<reportElement style="normal" mode="Transparent" x="438" y="45" width="47" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="11" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[(سهامی عام)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="14" width="59" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{fromDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="59" y="14" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[از تاریخ صدور سند:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="59" y="34" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[تا تاریخ صدور سند:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="34" width="60" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{toDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="168" y="23" width="216" height="31"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<text><![CDATA[گزارش عملکرد صندوق]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58">
+			<staticText>
+				<reportElement style="table_CH" x="0" y="7" width="59" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مبلغ سند خورده]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="59" y="7" width="56" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[تاریخ سررسید]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="481" y="7" width="49" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[کد نمایندگی]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="296" y="7" width="116" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره بیمه نامه]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="412" y="7" width="69" height="36" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[بیمه گذار]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="196" y="7" width="100" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره سند]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="530" y="7" width="25" height="36" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ردیف]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="296" y="25" width="116" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره مشتری]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="196" y="25" width="100" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره واگذاری چک]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="59" y="25" width="56" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[وضعیت چک]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="0" y="25" width="59" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[نوع حق بیمه]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="481" y="25" width="49" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[کد بازاریاب]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="115" y="25" width="81" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره فیش]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="115" y="7" width="81" height="18" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[شماره چک]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<subreport>
+				<reportElement mode="Transparent" x="0" y="2" width="555" height="18"/>
+				<subreportParameter name="realPath">
+					<subreportParameterExpression><![CDATA[$P{realPath}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$F{cashTurnoverRowsVMList}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/cashTurnoverRowsPlaceHolder.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="73">
+			<staticText>
+				<reportElement style="table_CH" x="408" y="7" width="144" height="17" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[جمع اعتبارات با الحاقیه بازگشتی:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="427" y="23" width="125" height="17" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[جمع اعتبارات : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_CH" x="427" y="38" width="125" height="17" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[جمع بدهی :]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="300" y="7" width="108" height="17"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{totalCredit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="300" y="25" width="108" height="17"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{totalCreditWithoutBargashti}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="300" y="43" width="108" height="17"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{totalDebit}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="303" y="2" width="252" height="1"/>
+			</line>
+		</band>
+	</lastPageFooter>
+</jasperReport>

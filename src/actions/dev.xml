@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="dev" extends="struts-default" namespace="/dev">
+        <result-types>
+            <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+            <result-type name="myStream" default="false" class="com.bitarts.parsian.action.DynamicStreamResult"/>
+        </result-types>
+        <action name="testNextShomareSanad" class="com.bitarts.parsian.action.CredebitAction" method="dev_testNextShomareSanad">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_deleteSanad" class="com.bitarts.parsian.action.CredebitAction" method="dev_deleteSanad">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="viewEtBd" class="com.bitarts.parsian.action.CredebitAction" method="dev_sanadZani">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_FindSanad" class="com.bitarts.parsian.action.CredebitAction" method="dev_FindSanad">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="regSanad" class="com.bitarts.parsian.action.CredebitAction" method="dev_sanadZaniII">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_fixBimename" class="com.bitarts.parsian.action.DevAction"
+                method="fixInvalidBimenames">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_taghsitManualTable" class="com.bitarts.parsian.action.DevAction" method="taghsitManualTable">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_sabteSanadACH" class="com.bitarts.parsian.action.CredebitAction" method="dev_sabteSanadACH">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="testURLPath" class="com.bitarts.parsian.action.CredebitAction"
+                method="dev_testURLPath">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="dev_nextShenaseCredebit" class="com.bitarts.parsian.action.DevAction"
+                method="getNextShenaseCredebit">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="fixDuplicateGhestbandi" class="com.bitarts.parsian.action.DevAction"
+                method="fixDuplicateGhestbandi">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="fixDuplicateCodeMoshtari" class="com.bitarts.parsian.action.DevAction"
+                method="fixDuplicateCodeMoshtari">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="fixDuplicateCodeMoshtari_BankInfo" class="com.bitarts.parsian.action.DevAction"
+                method="fixDuplicateCodeMoshtari_BankInfo">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="createEtebarAzMahalleTablighat" class="com.bitarts.parsian.action.DevAction"
+                method="createEtebarAzMahalleTablighat">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+    </package>
+</struts>

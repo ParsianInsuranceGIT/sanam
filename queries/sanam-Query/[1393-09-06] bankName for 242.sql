@@ -1,0 +1,1 @@
+update tbl_credebit c set c.bank_name = 'ãáÊ - æä˜ (4757575763)' where c.format = '242';

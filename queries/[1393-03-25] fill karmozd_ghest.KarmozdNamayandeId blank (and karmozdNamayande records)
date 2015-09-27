@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+select * from tbl_karmozd_ghest kg1 where kg1.karmozd_namayande_id is null and kg1.namayandeid is not null; 
+
+select distinct k.* 
+from tbl_karmozd_ghest kg 
+join tbl_karmozd k on k.karmozd_id=kg.karmozd_id
+where kg.karmozd_namayande_id is null and kg.namayandeid is not null;
+
+
+
+select distinct kg.namayandeid, sum(kg.karmozd_amount) from tbl_karmozd_ghest kg 
+where kg.karmozd_namayande_id is null and kg.namayandeid is not null 
+and 
+kg.karmozd_id=8852098 
+--kg.karmozd_id=10327461
+--kg.karmozd_id=7947039
+--kg.karmozd_id=19092867
+--kg.karmozd_id=9966129
+--kg.karmozd_id=7299396
+--kg.karmozd_id=7240334
+group by kg.namayandeid
+;
+
+insert into tbl_karmozd_namayande(id,namayande_id,karmozd_id,STATE,amount)
+    select HIBERNATE_SEQUENCE.nextval,namayandeid,karmozd_id,stt,sumation from
+    (select distinct kg.namayandeid,kg.karmozd_id,'ELAM_BE_MALI_SHODE' as stt, sum(kg.karmozd_amount) as  sumation
+    from tbl_karmozd_ghest kg 
+    where kg.karmozd_namayande_id is null and kg.namayandeid is not null 
+    and 
+    kg.karmozd_id=8852098
+--kg.karmozd_id=10327461
+--kg.karmozd_id=7947039
+--kg.karmozd_id=19092867
+--kg.karmozd_id=9966129
+--kg.karmozd_id=7299396
+--kg.karmozd_id=7240334   
+    group by kg.namayandeid, kg.karmozd_id, 'ELAM_BE_MALI')
+    ;
+    
+update tbl_karmozd_ghest kg
+set kg.karmozd_namayande_id=(
+select kn.id
+from tbl_karmozd_ghest kg1 
+join tbl_karmozd k on k.karmozd_id=kg1.karmozd_id
+join tbl_karmozd_namayande kn on kn.karmozd_id=k.karmozd_id
+where kg1.id=kg.id and kg1.namayandeid=kn.namayande_id)
+where kg.karmozd_namayande_id is null and kg.namayandeid is not null;
+-------------------------------------------------------------------------------

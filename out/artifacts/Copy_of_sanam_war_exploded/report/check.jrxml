@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="check" pageWidth="595" pageHeight="300" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_CH" mode="Opaque" forecolor="#000000" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="check" class="com.bitarts.parsian.model.check.Check"/>
+	<detail>
+		<band height="300">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="300"/>
+				<textField>
+					<reportElement x="454" y="48" width="79" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{check}.getTarikh()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="437" y="90" width="79" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/Tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["#"+$F{check}.getAmountTajamoi()+"#"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="90" width="150" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="16" isBold="true" pdfFontName="net/sf/jasperreports/fonts/farsi/Tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["#"+$F{check}.getAmountTajamoi()+"#"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="137" width="446" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/Tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["#"+StringUtil.convertMeghdareAdadiBeHorofi($F{check}.getAmountTajamoi())+"#"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="187" width="446" height="20"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{check}.getDarVajhe()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement mode="Opaque" x="70" y="157" width="446" height="20" forecolor="#CCCCCC" backcolor="#FFFFFF"/>
+					<box leftPadding="3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Tahoma" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/Tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["#"+StringUtil.convertMeghdareAdadiBeHorofi($F{check}.getAmountTajamoi())+"#"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

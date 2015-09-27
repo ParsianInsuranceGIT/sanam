@@ -1,0 +1,24 @@
+update tbl_credebit q
+set q.SUBSYSTEM_IDENTIFIER = (
+                                select b.shomare
+                                from (
+                                        select tbl_bimename.bimename_shomare as shomare, ghestbandi.credebitId as credId
+                                        from tbl_bimename
+                                        inner join 
+                                        (
+                                            select tbl_ghestbandi.bimename_id as bimename_Id, ghest.credebit_Id as credebitId
+                                            from tbl_ghestbandi
+                                            inner join 
+                                            (
+                                                select tbl_ghest.ghestbandi_id as ghestbandi_Id, tbl_credebit.id as credebit_Id 
+                                                from tbl_credebit
+                                                inner join tbl_ghest
+                                                on tbl_ghest.id=tbl_credebit.ghest_id 
+                                            )ghest
+                                            on tbl_ghestbandi.id=ghest.ghestbandi_Id
+                                        )ghestbandi
+                                        on tbl_bimename.bimename_id=ghestbandi.bimename_Id
+                                     ) b
+                                where q.id=b.credId 
+                             );
+							 

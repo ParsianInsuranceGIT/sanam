@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Copy of sanam:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Copy_of_sanam_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Copy of sanam" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jquery.jqGrid-4.0.0" />
+          <element id="library" level="project" name="jquery.jqGrid-4.0.01" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Copy of sanam/web/Web" />
+    </root>
+  </artifact>
+</component>

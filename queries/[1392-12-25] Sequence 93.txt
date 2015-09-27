@@ -1,0 +1,43 @@
+create or replace
+function GET_SEQUENCE(Input_Signature in NUMBER, -- 1-SeqName 2-SeqName,NamayandeId 3-SeqName,BimenameId 4-SeqName,NamayandeId,year
+                                        P_Seq_Name     in VARCHAR2, 
+                                        Namayande_Id in Number,
+                                        Bimename_Id  in Number,
+                                        year_ in VARCHAR2) return VARCHAR2 is
+  Seq_No   varchar2(50);
+  New_Seq  varchar2(50);
+  Seq_Id   number;
+  Seq_Len  number;
+begin
+  begin
+    if Input_Signature = 1 then
+      Select t.seq_count, t.id into Seq_No, Seq_Id from tbl_sequence t 
+             where t.seq_name = P_Seq_Name FOR UPDATE;
+    elsif Input_Signature = 2 then
+      Select t.seq_count, t.id into Seq_No, Seq_Id from tbl_sequence t 
+             where t.seq_name = P_Seq_Name and t.seq_namayandeh = Namayande_Id FOR UPDATE;
+    elsif Input_Signature = 3 then
+      Select t.seq_count, t.id into Seq_No, Seq_Id from tbl_sequence t 
+             where t.seq_name = P_Seq_Name and t.seq_bimename_elhaghie = Bimename_Id FOR UPDATE;
+    elsif Input_Signature = 4 then
+      Select t.seq_count, t.id into Seq_No, Seq_Id from tbl_sequence t 
+             where t.seq_name = P_Seq_Name and t.seq_bimename_elhaghie = Bimename_Id and t.year = year_ FOR UPDATE;
+    else -- Error
+      return 'ERR2-Invalid Input Signature';
+    end if;
+  exception when no_data_found then
+    return 'ERR1-Cannot find the sequence requested';
+  end;
+  
+  Seq_Len := length(Seq_No);
+  New_Seq := to_char(to_number(Seq_No) + 1);
+  New_Seq := lpad(New_Seq, Seq_Len, '0');
+  
+  Update Tbl_Sequence t set t.seq_count = New_Seq where t.id = Seq_Id;
+  
+  commit;
+  return Seq_No;  
+  exception when others then
+    ROLLBACK;
+    return 'ERR3-Unknown error-' || SQLERRM;
+end GET_SEQUENCE;

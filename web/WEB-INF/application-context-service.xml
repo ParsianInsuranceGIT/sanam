@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:ws="http://jax-ws.dev.java.net/spring/core"
+       xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://jax-ws.dev.java.net/spring/core http://jax-ws.dev.java.net/spring/core.xsd
+       http://jax-ws.dev.java.net/spring/servlet http://jax-ws.dev.java.net/spring/servlet.xsd">
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:com/bitarts/parsian/config/appConfig.properties</value>
+        </property>
+    </bean>
+
+    <bean id="facadeMonitoringAdvisor" class="net.bull.javamelody.MonitoringSpringAdvisor">
+        <property name="pointcut">
+            <bean class="net.bull.javamelody.MonitoredWithInterfacePointcut">
+                <property name="interfaceName" value="com.bitarts.parsian.service.IBaseService" />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="shakhsService" class="com.bitarts.parsian.service.implementation.ShakhsService">
+        <property name="shakhsDAO" ref="shakhsDAO"/>
+    </bean>
+    <bean id="transitionLogService" class="com.bitarts.parsian.service.implementation.TransitionLogService">
+        <property name="transitionLogDAO" ref="transitionLogDAO"/>
+    </bean>
+    <bean id="loginService" class="com.bitarts.parsian.service.implementation.LoginService">
+        <property name="loginDAO" ref="loginDAO"/>
+    </bean>
+    <bean id="darkhastService" class="com.bitarts.parsian.service.implementation.DarkhastService">
+        <property name="bimenameDAO" ref="bimenameDAO"/>
+        <property name="stateDAO" ref="stateDAO"/>
+        <property name="transitionDAO" ref="transitionDAO"/>
+        <property name="transitionLogService" ref="transitionLogService"/>
+        <property name="sequenceService" ref="sequenceService"/>
+        <property name="pishnehadService" ref="pishnehadService"/>
+        <property name="userDAO" ref="userDAO"/>
+        <property name="khesaratService" ref="khesaratService"/>
+        <property name="asnadeSodorService" ref="asnadeSodorService"/>
+        <property name="shakhsService" ref="shakhsService"/>
+        <property name="logService" ref="logService"/>
+    </bean>
+    <bean id="pishnehadService" class="com.bitarts.parsian.service.implementation.PishnehadService">
+        <property name="bimeGozarDAO" ref="bimeGozarDAO"/>
+        <property name="bimeShodeDAO" ref="bimeShodeDAO"/>
+        <property name="foroshandeDAO" ref="foroshandeDAO"/>
+        <property name="pishnehadDAO" ref="pishnehadDAO"/>
+        <property name="savabegheBimeiDAO" ref="savabegheBimeiDAO"/>
+        <property name="soalateOmomiAzBimeShodeDAO" ref="soalateOmomiAzBimeShodeDAO"/>
+        <property name="vaziateSalamatiBimeShodeDAO" ref="vaziateSalamatiBimeShodeDAO"/>
+        <property name="vaziateSalamatiKhanevadeyeBimeShodeDAO" ref="vaziateSalamatiKhanevadeyeBimeShodeDAO"/>
+        <property name="estefadeKonandeganAzSarmayeBimeDAO" ref="estefadeKonandeganAzSarmayeBimeDAO"/>
+        <property name="stateDAO" ref="stateDAO"/>
+        <property name="shakhsDAO" ref="shakhsDAO"/>
+        <property name="transitionDAO" ref="transitionDAO"/>
+        <property name="transitionLogService" ref="transitionLogService"/>
+        <property name="loginService" ref="loginService"/>
+        <property name="constantsService" ref="constantsService"/>
+        <property name="gharardadService" ref="gharardadService"/>
+        <property name="constantItemsService" ref="constantItemsService"/>
+        <property name="logService" ref="logService"/>
+        <property name="addressDAO" ref="addressDAO"/>
+        <property name="bimenameDAO" ref="bimenameDAO"/>
+        <property name="estelamDAO" ref="estelamDAO"/>
+        <property name="userDAO" ref="userDAO"/>
+        <property name="sequenceService" ref="sequenceService"/>
+    </bean>
+    <bean id="bitartsWebService" class="com.bitarts.parsian.service.implementation.BitartsWebService">
+        <property name="asnadeSodorService" ref="asnadeSodorService"/>
+        <property name="sequenceService" ref="sequenceService"/>
+        <property name="namayandeService" ref="namayandeService"/>
+        <property name="loginService" ref="loginService"/>
+        <property name="pishnehadService" ref="pishnehadService"/>
+    </bean>
+    <bean id="addressService" class="com.bitarts.parsian.service.implementation.AddressService">
+        <property name="addressDAO" ref="addressDAO"/>
+    </bean>
+    <bean id="estelamService" class="com.bitarts.parsian.service.implementation.EstelamService">
+        <property name="estelamDAO" ref="estelamDAO"/>
+    </bean>
+    <bean id="clinicService" class="com.bitarts.parsian.service.implementation.ClinicService">
+        <property name="clinicDAO" ref="clinicDAO"/>
+        <property name="azmayeshDAO" ref="azmayeshDAO"/>
+    </bean>
+    <bean id="namayandeService" class="com.bitarts.parsian.service.implementation.NamayandeService">
+        <property name="namayandeDAO" ref="namayandeDAO"/>
+    </bean>
+    <bean id="userService" class="com.bitarts.parsian.service.implementation.UserService">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+    <bean id="constantItemsService" class="com.bitarts.parsian.service.implementation.ConstantItemsService">
+        <property name="constantItemsDAO" ref="constantItemsDAO"/>
+        <property name="stateDAO" ref="stateDAO"/>
+    </bean>
+    <bean id="asnadeSodorService" class="com.bitarts.parsian.service.implementation.AsnadeSodorService">
+        <property name="asnadeSodorDAO" ref="asnadeSodorDAO"/>
+        <property name="sequenceService" ref="sequenceService"/>
+        <property name="pishnehadService" ref="pishnehadService"/>
+        <property name="constantsService" ref="constantsService"/>
+        <property name="namayandeService" ref="namayandeService"/>
+        <property name="karmozdService" ref="karmozdService"/>
+        <property name="loginService" ref="loginService"/>
+        <property name="checkDAO" ref="checkDAO"/>
+    </bean>
+    <bean id="logService" class="com.bitarts.parsian.service.implementation.LogService">
+        <property name="constantItemsService" ref="constantItemsService"/>
+        <property name="logDAO" ref="logDAO"/>
+    </bean>
+    <bean id="myUserDetailsService" class="com.bitarts.parsian.service.implementation.UserDetailsServiceImpl">
+    <property name="loginDAO" ref="loginDAO"/>
+</bean>
+    <!--<bean id="customUsernamePasswordAuthenticationFilter" class="com.bitarts.parsian.service.implementation.customUsernamePasswordAuthenticator">-->
+        <!--&lt;!&ndash;<property name="loginDAO" ref="loginDAO"/>&ndash;&gt;-->
+    <!--</bean>-->
+
+    <bean id="sequenceService" class="com.bitarts.parsian.service.implementation.SequenceService">
+        <property name="sequenceDAO" ref="sequenceDAO"/>
+        <property name="namayandeDAO" ref="namayandeDAO"/>
+    </bean>
+    <bean id="checkService" class="com.bitarts.parsian.service.implementation.CheckService">
+        <property name="checkDAO" ref="checkDAO"/>
+    </bean>
+    <bean id="elhaghieService" class="com.bitarts.parsian.service.implementation.ElhaghieService">
+        <property name="elhaghieDAO" ref="elhaghieDAO"/>
+        <property name="bimenameDAO" ref="bimenameDAO"/>
+        <property name="stateDAO" ref="stateDAO"/>
+    </bean>
+    <bean id="logMosharekatService" class="com.bitarts.parsian.service.implementation.LogMosharekatService">
+        <property name="logMosharekatDao" ref="logMosharekatDao"/>
+    </bean>
+    <bean id="karmozdService" class="com.bitarts.parsian.service.karmozd.KarmozdService">
+        <property name="karmozdDAO" ref="karmozdDAO"/>
+        <property name="asnadeSodorService" ref="asnadeSodorService"/>
+        <property name="queryService" ref="queryService"/>
+        <property name="sequenceService" ref="sequenceService"/>
+        <property name="namayandeService" ref="namayandeService"/>
+    </bean>
+    <bean id="queryService" class="com.bitarts.parsian.service.implementation.QueryService">
+        <property name="asnadeSodorDAO" ref="asnadeSodorDAO"/>
+    </bean>
+    <bean id="constantsService" class="com.bitarts.parsian.service.implementation.ConstantsService">
+        <property name="constantsDAO" ref="constantsDAO"/>
+    </bean>
+    <bean id="khesaratService" class="com.bitarts.parsian.service.implementation.KhesaratService">
+        <property name="transitionLogService" ref="transitionLogService"/>
+        <property name="transitionDAO" ref="transitionDAO"/>
+        <property name="khesaratDao" ref="khesaratDao"/>
+    </bean>
+    <bean id="gharardadService" class="com.bitarts.parsian.service.implementation.GharardadService">
+        <property name="gharardadDAO" ref="ghararDAO"/>
+    </bean>
+    <bean id="logGhestService" class="com.bitarts.parsian.service.implementation.LogGhestService">
+        <property name="logGhestDAO" ref="logGhestDAO"/>
+    </bean>
+    <bean id="fileService" class="com.bitarts.parsian.service.FileService">
+
+    </bean>
+    <bean id="uploadedFileService" class="com.bitarts.parsian.service.implementation.UploadedFileService">
+        <property name="uploadedFileDAO" ref="uploadedFileDAO"/>
+    </bean>
+
+    <!-- Allow any bean to be exposed as an mbean.  Just use @ManagedResource and @ManagedAttribute -->
+    <!--<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter">-->
+        <!--<property name="assembler" ref="exporterAssembler"/>-->
+        <!--<property name="namingStrategy" ref="namingStrategy"/>-->
+        <!--<property name="autodetect" value="true"/>-->
+        <!--<property name="registrationBehaviorName" value="REGISTRATION_IGNORE_EXISTING"/>-->
+        <!--<property name="beans">-->
+            <!--<map>-->
+                <!--<entry key="Hibernate:name=statistics" value-ref="hibernateStatistics"/>-->
+            <!--</map>-->
+        <!--</property>-->
+        <!--&lt;!&ndash;<property name="server" value="mbeanServer"/>&ndash;&gt;-->
+    <!--</bean>-->
+    <bean id="attributeSource" class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource"/>
+    <bean id="namingStrategy" class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+        <property name="attributeSource" ref="attributeSource"/>
+    </bean>
+    <bean id="exporterAssembler" class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+        <property name="attributeSource" ref="attributeSource"/>
+    </bean>
+    <!--<bean id="hibernateStatistics" class="org.hibernate.jmx.StatisticsService">-->
+        <!--<property name="statisticsEnabled" value="true"/>-->
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+    <!--</bean>-->
+    <!-- only needed explicitly because ehcache needs it to register itself -->
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+      <property name="locateExistingServerIfPossible" value="true"/>
+    </bean>
+    <!-- ehcache needs to register itself, we can't just give the bean to jmx ourselves -->
+    <!--<bean id="ehCacheMBeanRegistration" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+        <!--<property name="staticMethod" value="net.sf.ehcache.management.ManagementService.registerMBeans"/>-->
+        <!--<property name="arguments">-->
+            <!--<list>-->
+                <!--<ref bean="innerCacheManager"/>-->
+                <!--<ref bean="mbeanServer"/>-->
+                <!--<value>true</value>-->
+                <!--<value>true</value>-->
+                <!--<value>true</value>-->
+                <!--<value>true</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--<bean id="cacheManager" class="net.sf.ehcache.management.CacheManager">-->
+        <!--<constructor-arg ref="innerCacheManager"/>-->
+    <!--</bean>-->
+    <!--<bean id="innerCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">-->
+        <!--<property name="configLocation" value="classpath:ehcache.xml"/>-->
+        <!--<property name="shared" value="true"/>-->
+    <!--</bean>-->
+
+
+
+    <!-- the transactional advice -->
+    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <property name="transactionManager" ref="txManager"/>
+    </bean>
+
+    <wss:binding url="/services/BitartsWebService">
+        <wss:service>
+            <ws:service bean="#bitartsWebService" />
+        </wss:service>
+    </wss:binding>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+
+    <!-- the transactional advice -->
+    <aop:config>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.bitarts.parsian.service.ILogMosharekatService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IAddressService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.ILogGhestService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IConstantsService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IKhesaratService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IElhaghieService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IGharardadService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.bitarts.parsian.service.karmozd.IKarmozdService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IClinicService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.INamayandeService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IUserService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IEstelamService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.ILoginService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IDarkhastService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IPishnehadService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IShakhsService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.bitarts.parsian.service.ITransitionLogService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.bitarts.parsian.service.IConstantItemsService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice"
+                     pointcut="execution(* com.bitarts.parsian.service.IAsnadeSodorService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.ILogService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.ISequenceService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IDarkhastService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.IUploadedFileService.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.bitarts.parsian.service.ICheckService.*(..))"/>
+    </aop:config>
+
+
+</beans>

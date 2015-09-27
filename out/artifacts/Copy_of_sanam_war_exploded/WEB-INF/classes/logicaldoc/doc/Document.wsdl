@@ -1,0 +1,760 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="DocumentServiceImplService" targetNamespace="http://document.webservice.logicaldoc.com/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://document.webservice.logicaldoc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://document.webservice.logicaldoc.com/" version="1.0" xmlns:tns="http://document.webservice.logicaldoc.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="checkin" type="tns:checkin" />
+<xs:element name="checkinResponse" type="tns:checkinResponse" />
+<xs:element name="checkout" type="tns:checkout" />
+<xs:element name="checkoutResponse" type="tns:checkoutResponse" />
+<xs:element name="create" type="tns:create" />
+<xs:element name="createAlias" type="tns:createAlias" />
+<xs:element name="createAliasResponse" type="tns:createAliasResponse" />
+<xs:element name="createResponse" type="tns:createResponse" />
+<xs:element name="delete" type="tns:delete" />
+<xs:element name="deleteResponse" type="tns:deleteResponse" />
+<xs:element name="getContent" type="tns:getContent" />
+<xs:element name="getContentResponse" type="tns:getContentResponse" />
+<xs:element name="getDocument" type="tns:getDocument" />
+<xs:element name="getDocumentResponse" type="tns:getDocumentResponse" />
+<xs:element name="getDocuments" type="tns:getDocuments" />
+<xs:element name="getDocumentsResponse" type="tns:getDocumentsResponse" />
+<xs:element name="getRecentDocuments" type="tns:getRecentDocuments" />
+<xs:element name="getRecentDocumentsResponse" type="tns:getRecentDocumentsResponse" />
+<xs:element name="getVersions" type="tns:getVersions" />
+<xs:element name="getVersionsResponse" type="tns:getVersionsResponse" />
+<xs:element name="isReadable" type="tns:isReadable" />
+<xs:element name="isReadableResponse" type="tns:isReadableResponse" />
+<xs:element name="list" type="tns:list" />
+<xs:element name="listResponse" type="tns:listResponse" />
+<xs:element name="lock" type="tns:lock" />
+<xs:element name="lockResponse" type="tns:lockResponse" />
+<xs:element name="move" type="tns:move" />
+<xs:element name="moveResponse" type="tns:moveResponse" />
+<xs:element name="rename" type="tns:rename" />
+<xs:element name="renameResponse" type="tns:renameResponse" />
+<xs:element name="restore" type="tns:restore" />
+<xs:element name="restoreResponse" type="tns:restoreResponse" />
+<xs:element name="sendEmail" type="tns:sendEmail" />
+<xs:element name="sendEmailResponse" type="tns:sendEmailResponse" />
+<xs:element name="unlock" type="tns:unlock" />
+<xs:element name="unlockResponse" type="tns:unlockResponse" />
+<xs:element name="update" type="tns:update" />
+<xs:element name="updateResponse" type="tns:updateResponse" />
+<xs:complexType name="getDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="docIds" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDocumentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="documents" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="comment" type="xs:string" />
+      <xs:element minOccurs="0" name="coverage" type="xs:string" />
+      <xs:element minOccurs="0" name="creation" type="xs:string" />
+      <xs:element minOccurs="0" name="creator" type="xs:string" />
+      <xs:element name="creatorId" type="xs:long" />
+      <xs:element minOccurs="0" name="customId" type="xs:string" />
+      <xs:element minOccurs="0" name="date" type="xs:string" />
+      <xs:element name="dateCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="deleteUserId" type="xs:long" />
+      <xs:element minOccurs="0" name="digest" type="xs:string" />
+      <xs:element minOccurs="0" name="docRef" type="xs:long" />
+      <xs:element name="docType" type="xs:int" />
+      <xs:element minOccurs="0" name="exportId" type="xs:long" />
+      <xs:element minOccurs="0" name="exportName" type="xs:string" />
+      <xs:element name="exportStatus" type="xs:int" />
+      <xs:element minOccurs="0" name="exportVersion" type="xs:string" />
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="extendedAttributes" nillable="true" type="tns:wsAttribute" />
+      <xs:element minOccurs="0" name="fileName" type="xs:string" />
+      <xs:element name="fileSize" type="xs:long" />
+      <xs:element minOccurs="0" name="fileVersion" type="xs:string" />
+      <xs:element minOccurs="0" name="folderId" type="xs:long" />
+      <xs:element minOccurs="0" name="icon" type="xs:string" />
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="immutable" type="xs:int" />
+      <xs:element name="indexed" type="xs:int" />
+      <xs:element minOccurs="0" name="language" type="xs:string" />
+      <xs:element minOccurs="0" name="lastModified" type="xs:string" />
+      <xs:element name="lengthCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="lockUserId" type="xs:long" />
+      <xs:element minOccurs="0" name="object" type="xs:string" />
+      <xs:element minOccurs="0" name="path" type="xs:string" />
+      <xs:element minOccurs="0" name="publisher" type="xs:string" />
+      <xs:element name="publisherId" type="xs:long" />
+      <xs:element minOccurs="0" name="rating" type="xs:int" />
+      <xs:element minOccurs="0" name="recipient" type="xs:string" />
+      <xs:element minOccurs="0" name="score" type="xs:int" />
+      <xs:element name="signed" type="xs:int" />
+      <xs:element name="size" type="xs:long" />
+      <xs:element minOccurs="0" name="source" type="xs:string" />
+      <xs:element minOccurs="0" name="sourceAuthor" type="xs:string" />
+      <xs:element minOccurs="0" name="sourceDate" type="xs:string" />
+      <xs:element minOccurs="0" name="sourceId" type="xs:string" />
+      <xs:element minOccurs="0" name="sourceType" type="xs:string" />
+      <xs:element name="status" type="xs:int" />
+      <xs:element minOccurs="0" name="summary" type="xs:string" />
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="tags" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="templateId" type="xs:long" />
+      <xs:element minOccurs="0" name="title" type="xs:string" />
+      <xs:element minOccurs="0" name="type" type="xs:string" />
+      <xs:element minOccurs="0" name="version" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsAttribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="dateValue" type="xs:string" />
+      <xs:element minOccurs="0" name="doubleValue" type="xs:double" />
+      <xs:element minOccurs="0" name="intValue" type="xs:long" />
+      <xs:element minOccurs="0" name="label" type="xs:string" />
+      <xs:element name="mandatory" type="xs:int" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element name="position" type="xs:int" />
+      <xs:element minOccurs="0" name="stringValue" type="xs:string" />
+      <xs:element name="type" type="xs:int" />
+      <xs:element minOccurs="0" name="value" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="rename">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="renameResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="restore">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="restoreResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="unlock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="unlockResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="sendEmail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="docIds" type="xs:long" />
+      <xs:element minOccurs="0" name="recipients" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:string" />
+      <xs:element minOccurs="0" name="arg4" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sendEmailResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="checkout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkoutResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="getContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getContentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isReadable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isReadableResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getVersions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getVersionsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createAlias">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createAliasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRecentDocuments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element minOccurs="0" name="maxHits" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRecentDocumentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="move">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="moveResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="lock">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="lockResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="list">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element minOccurs="0" name="document" type="tns:wsDocument" />
+      <xs:element minOccurs="0" name="content" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="delete">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="update">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element minOccurs="0" name="document" type="tns:wsDocument" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="checkin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="docId" type="xs:long" />
+      <xs:element minOccurs="0" name="comment" type="xs:string" />
+      <xs:element minOccurs="0" name="filename" type="xs:string" />
+      <xs:element name="release" type="xs:boolean" />
+      <xs:element minOccurs="0" name="content" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="checkinResponse">
+    <xs:sequence />
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="unlock">
+    <wsdl:part element="tns:unlock" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getContent">
+    <wsdl:part element="tns:getContent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkinResponse">
+    <wsdl:part element="tns:checkinResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isReadableResponse">
+    <wsdl:part element="tns:isReadableResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lock">
+    <wsdl:part element="tns:lock" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="list">
+    <wsdl:part element="tns:list" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRecentDocumentsResponse">
+    <wsdl:part element="tns:getRecentDocumentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkin">
+    <wsdl:part element="tns:checkin" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentsResponse">
+    <wsdl:part element="tns:getDocumentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocuments">
+    <wsdl:part element="tns:getDocuments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEmailResponse">
+    <wsdl:part element="tns:sendEmailResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="restore">
+    <wsdl:part element="tns:restore" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listResponse">
+    <wsdl:part element="tns:listResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendEmail">
+    <wsdl:part element="tns:sendEmail" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moveResponse">
+    <wsdl:part element="tns:moveResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isReadable">
+    <wsdl:part element="tns:isReadable" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAlias">
+    <wsdl:part element="tns:createAlias" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkoutResponse">
+    <wsdl:part element="tns:checkoutResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="checkout">
+    <wsdl:part element="tns:checkout" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part element="tns:update" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getContentResponse">
+    <wsdl:part element="tns:getContentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentResponse">
+    <wsdl:part element="tns:getDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersionsResponse">
+    <wsdl:part element="tns:getVersionsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lockResponse">
+    <wsdl:part element="tns:lockResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rename">
+    <wsdl:part element="tns:rename" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersions">
+    <wsdl:part element="tns:getVersions" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRecentDocuments">
+    <wsdl:part element="tns:getRecentDocuments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="restoreResponse">
+    <wsdl:part element="tns:restoreResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocument">
+    <wsdl:part element="tns:getDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="unlockResponse">
+    <wsdl:part element="tns:unlockResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part element="tns:updateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part element="tns:createResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createAliasResponse">
+    <wsdl:part element="tns:createAliasResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="renameResponse">
+    <wsdl:part element="tns:renameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="move">
+    <wsdl:part element="tns:move" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DocumentService">
+    <wsdl:operation name="getDocuments">
+      <wsdl:input message="tns:getDocuments" name="getDocuments">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentsResponse" name="getDocumentsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <wsdl:input message="tns:rename" name="rename">
+    </wsdl:input>
+      <wsdl:output message="tns:renameResponse" name="renameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="restore">
+      <wsdl:input message="tns:restore" name="restore">
+    </wsdl:input>
+      <wsdl:output message="tns:restoreResponse" name="restoreResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlock">
+      <wsdl:input message="tns:unlock" name="unlock">
+    </wsdl:input>
+      <wsdl:output message="tns:unlockResponse" name="unlockResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <wsdl:input message="tns:sendEmail" name="sendEmail">
+    </wsdl:input>
+      <wsdl:output message="tns:sendEmailResponse" name="sendEmailResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkout">
+      <wsdl:input message="tns:checkout" name="checkout">
+    </wsdl:input>
+      <wsdl:output message="tns:checkoutResponse" name="checkoutResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getContent">
+      <wsdl:input message="tns:getContent" name="getContent">
+    </wsdl:input>
+      <wsdl:output message="tns:getContentResponse" name="getContentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isReadable">
+      <wsdl:input message="tns:isReadable" name="isReadable">
+    </wsdl:input>
+      <wsdl:output message="tns:isReadableResponse" name="isReadableResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersions">
+      <wsdl:input message="tns:getVersions" name="getVersions">
+    </wsdl:input>
+      <wsdl:output message="tns:getVersionsResponse" name="getVersionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <wsdl:input message="tns:getDocument" name="getDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentResponse" name="getDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createAlias">
+      <wsdl:input message="tns:createAlias" name="createAlias">
+    </wsdl:input>
+      <wsdl:output message="tns:createAliasResponse" name="createAliasResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRecentDocuments">
+      <wsdl:input message="tns:getRecentDocuments" name="getRecentDocuments">
+    </wsdl:input>
+      <wsdl:output message="tns:getRecentDocumentsResponse" name="getRecentDocumentsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="move">
+      <wsdl:input message="tns:move" name="move">
+    </wsdl:input>
+      <wsdl:output message="tns:moveResponse" name="moveResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lock">
+      <wsdl:input message="tns:lock" name="lock">
+    </wsdl:input>
+      <wsdl:output message="tns:lockResponse" name="lockResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input message="tns:list" name="list">
+    </wsdl:input>
+      <wsdl:output message="tns:listResponse" name="listResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create">
+    </wsdl:input>
+      <wsdl:output message="tns:createResponse" name="createResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input message="tns:update" name="update">
+    </wsdl:input>
+      <wsdl:output message="tns:updateResponse" name="updateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkin">
+      <wsdl:input message="tns:checkin" name="checkin">
+    </wsdl:input>
+      <wsdl:output message="tns:checkinResponse" name="checkinResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentServiceImplServiceSoapBinding" type="tns:DocumentService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDocuments">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocuments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="rename">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="renameResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="restore">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="restore">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="restoreResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="unlock">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="unlock">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="unlockResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkout">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="checkout">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkoutResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendEmail">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendEmail">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendEmailResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getContent">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isReadable">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isReadable">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isReadableResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVersions">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getVersions">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getVersionsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createAlias">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createAlias">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createAliasResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRecentDocuments">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRecentDocuments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRecentDocumentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="lock">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="lock">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="lockResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="move">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="move">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="moveResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="create">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="list">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="delete">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="update">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkin">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="checkin">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="checkinResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentServiceImplService">
+    <wsdl:port binding="tns:DocumentServiceImplServiceSoapBinding" name="DocumentServiceImplPort">
+      <soap:address location="http://172.16.0.158:8080/logicaldoc/services/Document" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

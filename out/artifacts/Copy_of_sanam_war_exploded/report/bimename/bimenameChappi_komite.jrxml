@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bimenameChappi" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="88"/>
+	<property name="ireport.y" value="807"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_CH" mode="Opaque" forecolor="#000000" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="pishnehad" class="com.bitarts.parsian.model.pishnahad.Pishnehad"/>
+	<field name="pishnehad.estelam" class="com.bitarts.parsian.model.estelam.Estelam"/>
+	<field name="pishnehad.namayande.kodeNamayandeKargozar" class="java.lang.String"/>
+	<field name="pishnehad.estefadeKonandeganAzSarmayeBime" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="haghBimeHadese" class="java.lang.String"/>
+	<field name="haghBimeAmraz" class="java.lang.String"/>
+	<field name="haghBimeMoafiat" class="java.lang.String"/>
+	<field name="haghBimeNaghsOzv" class="java.lang.String"/>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="50"/>
+				<box>
+					<pen lineStyle="Double"/>
+					<topPen lineWidth="0.0" lineStyle="Double"/>
+					<leftPen lineWidth="0.0" lineStyle="Double"/>
+					<bottomPen lineStyle="Double"/>
+					<rightPen lineWidth="0.0" lineStyle="Double"/>
+				</box>
+				<image>
+					<reportElement x="438" y="6" width="46" height="37"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/komite.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement style="normal" mode="Transparent" x="160" y="9" width="275" height="28" backcolor="#FFC800"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="18" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[بيمه نامه عمر و سرمايه گذاري]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="29" y="21" width="112" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" isBold="true" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimename().getSerialPrint().getShomareSerial().toString()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="42">
+			<textField>
+				<reportElement x="274" y="0" width="78" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="10" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getCreatedDate()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="59">
+			<textField>
+				<reportElement x="224" y="3" width="90" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimename().getTarikhSodour()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="369" y="26" width="130" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[عمر و سرمایه گذاری]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="67" y="27" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getOptions().toUpperCase().equals("CODE_MOVAGHAT")?"111120":$F{pishnehad}.getNamayande().getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="4" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getOptions().toUpperCase().equals("CODE_MOVAGHAT")?"نمایندگی موقت":$F{pishnehad}.getNamayande().getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="2" width="130" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimename().getShomare()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="55">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="52"/>
+				<box>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textField>
+					<reportElement x="348" y="1" width="151" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getPishvand()+" "+$F{pishnehad}.getBimeGozar().getShakhs().getName()+" "+$F{pishnehad}.getBimeGozar().getShakhs().getNameKhanevadegi()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="210" y="1" width="88" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getKodeMelliShenasayi()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="1" width="90" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getType().equals("HAGHIGHI")?$F{pishnehad}.getAddressBimeGozar().getKodePostiManzel():$F{pishnehad}.getAddressBimeGozar().getKodePostiMahallekar()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="208" y="23" width="256" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getType().equals("HAGHIGHI")?$F{pishnehad}.getAddressBimeGozar().getNeshaniManzel():$F{pishnehad}.getAddressBimeGozar().getNeshaniMahalleKar()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="107" y="23" width="51" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getType().equals("HAGHIGHI")?$F{pishnehad}.getAddressBimeGozar().getCodeTelephoneManzel()+$F{pishnehad}.getAddressBimeGozar().getTelephoneManzel():$F{pishnehad}.getAddressBimeGozar().getCodeTelephoneMahalleKar()+$F{pishnehad}.getAddressBimeGozar().getTelephoneMahalleKar()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="45" y="23" width="51" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getAddressBimeGozar().getTelephoneHamrah()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="473" y="23" width="26" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getType().equals("HAGHIGHI")?$F{pishnehad}.getAddressBimeGozar().getShahrManzel().getCityName():$F{pishnehad}.getAddressBimeGozar().getShahrMahalleKar().getCityName()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="64">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="64"/>
+				<textField>
+					<reportElement x="348" y="1" width="151" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getPishvand()+" "+$F{pishnehad}.getBimeShode().getShakhs().getName()+" "+$F{pishnehad}.getBimeShode().getShakhs().getNameKhanevadegi()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="1" width="92" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getNamePedar()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="1" width="88" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getTarikheTavallod()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="348" y="24" width="151" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getShomareShenasnameh()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="24" width="92" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getMahalleSodoreShenasnameh().getCityName()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="24" width="88" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getKodeMelliShenasayi()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="208" y="43" width="252" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getAddressBimeShode().getNeshaniManzel()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="81" y="43" width="51" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getAddressBimeShode().getCodeTelephoneManzel()+$F{pishnehad}.getAddressBimeShode().getTelephoneManzel()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="19" y="44" width="51" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getAddressBimeShode().getTelephoneHamrah()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="473" y="44" width="26" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getAddressBimeShode().getShahrManzel().getCityName()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="83">
+			<frame>
+				<reportElement x="0" y="3" width="595" height="80"/>
+				<staticText>
+					<reportElement x="298" y="1" width="238" height="20"/>
+					<box rightPadding="2"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[الف : پرداخت سرمایه بیمه در صورت فوت بیمه شده در خلال مدت بیمه نامه به مبلغ ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="178" y="2" width="41" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ریال به حروف]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="222" y="35" width="309" height="20"/>
+					<box rightPadding="2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="10" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ب : پرداخت اندوخته سرمایه گذاری در صورت حیات بیمه شده در پایان مدت بیمه نامه]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="72" y="0" width="106" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[StringUtil.convertMeghdareAdadiBeHorofi($F{pishnehad.estelam}.getSarmaye_paye_fot())]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="216" y="2" width="82" height="18"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getSarmaye_paye_fot()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="31" y="0" width="41" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ریال با افزایش]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="264" y="15" width="260" height="20"/>
+					<box rightPadding="2"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[درصد در هر سال بیمه ای به اضافه اندوخته سرمایه گذاری بیمه نامه تا زمان فوت بیمه شده]]></text>
+				</staticText>
+			</frame>
+			<textField>
+				<reportElement x="12" y="3" width="17" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getNerkh_afzayesh_salaneh_sarmaye_fot()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="139">
+			<frame>
+				<reportElement x="0" y="3" width="595" height="136"/>
+				<frame>
+					<reportElement x="0" y="0" width="595" height="20"/>
+					<staticText>
+						<reportElement style="table_CH" x="31" y="0" width="37" height="13" backcolor="#FFFFFF"/>
+						<textElement/>
+						<text><![CDATA[درصد سهم]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="68" y="0" width="50" height="13" backcolor="#FFFFFF"/>
+						<textElement/>
+						<text><![CDATA[نسبت با بیمه شده]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="118" y="0" width="16" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[اولویت]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="134" y="0" width="40" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[محل صدور]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="174" y="0" width="45" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[تاریخ تولد/ثبت]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="219" y="0" width="53" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[شماره شناسنامه/ثبت]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="272" y="0" width="52" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[نام پدر]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="324" y="0" width="106" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[نام]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="430" y="0" width="83" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[وضعیت بیمه شده]]></text>
+					</staticText>
+					<staticText>
+						<reportElement style="table_CH" x="513" y="0" width="23" height="13" backcolor="#FFFFFF"/>
+						<textElement verticalAlignment="Middle"/>
+						<text><![CDATA[ردیف]]></text>
+					</staticText>
+				</frame>
+				<subreport>
+					<reportElement mode="Transparent" x="31" y="13" width="506" height="123"/>
+					<dataSourceExpression><![CDATA[$F{pishnehad.estefadeKonandeganAzSarmayeBime}]]></dataSourceExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{realPath} + "report/bimename_estefadeKonandeganAzSarmayeBime.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+		<band height="78">
+			<frame>
+				<reportElement x="0" y="3" width="595" height="75"/>
+				<staticText>
+					<reportElement style="table_CH" x="513" y="2" width="23" height="13" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[ردیف]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="179" y="2" width="145" height="13" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[سرمایه (ریال)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="324" y="2" width="189" height="13" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[نوع پوشش]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="34" y="2" width="145" height="13" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle"/>
+					<text><![CDATA[حق بیمه (ریال)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="324" y="15" width="189" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_fot_dar_asar_haadese().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[فوت در اثر حادثه]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="513" y="15" width="23" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_fot_dar_asar_haadese().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[1]]></text>
+				</staticText>
+				<textField>
+					<reportElement style="table_CH" x="179" y="15" width="145" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_fot_dar_asar_haadese().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="8" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getSarmaye_paye_fot_dar_asar_hadese()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table_CH" x="179" y="28" width="146" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_naghs_ozv().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="8" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getSarmaye_pooshesh_naghs_ozv()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="table_CH" x="324" y="28" width="189" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_naghs_ozv().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[نقص عضو يا از كار افتادگي دائم ناشي از حادثه]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="table_CH" x="513" y="28" width="23" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_naghs_ozv().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[2]]></text>
+				</staticText>
+				<textField pattern="">
+					<reportElement style="table_CH" x="34" y="15" width="145" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_fot_dar_asar_haadese().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="8" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{haghBimeHadese}]]></textFieldExpression>
+				</textField>
+				<textField pattern="">
+					<reportElement style="table_CH" x="34" y="28" width="145" height="13">
+						<printWhenExpression><![CDATA[new Boolean($F{pishnehad.estelam}.getPooshesh_naghs_ozv().toString().equalsIgnoreCase("yes"))]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="8" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{haghBimeNaghsOzv}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="83">
+			<frame>
+				<reportElement x="0" y="3" width="595" height="72"/>
+				<staticText>
+					<reportElement x="31" y="1" width="483" height="61"/>
+					<box topPadding="0" leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[الف)حداقل نرخ سود تصمین شده اعطايي به اين بيمه نامه در 5 سال اول معادل 18% و در 5 سال دوم برابر با  15% به صورت سالانه و روزشمار مي باشد. در پايان 10 سال، نرخ سود، مطابق اعلام و تحت نظارت بيمه مركزي ايران اعمال خواهد شد. ب) در صورت كسب سود مازاد بر سود تضميني از سرمايه گذاري اندوخته بيمه گذاران از محل صندوق کم ريسک، 85% از اين سود، به صورت مشاركت در منافع، در پايان سال مالي شركت، به اندوخته سرمايه گذاري بيمه نامه منظور خواهد شد. ج)دريافت وام،سود مشاركت در منافع و برداشت از اندوخته، مطابق مقررات بيمه اي و منوط به پرداخت كامل و به موقع اقساط حق بيمه ها مي باشد. د)پرداخت سود و محاسبه اندوخته به صورت روز شمار بوده و به حق بيمه هاي وصول شده زودتر از سررسيد، سود تشويقي اعطا خواهد شد ه)فوت در اثر زلزله جزء پوششهاي اضافي  مي باشد.]]></text>
+				</staticText>
+			</frame>
+		</band>
+		<band height="50">
+			<frame>
+				<reportElement x="0" y="0" width="595" height="48"/>
+				<textField>
+					<reportElement x="398" y="6" width="66" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getModat_bimename()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="372" y="28" width="79" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimename().getTarikhShorou()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="118" y="28" width="77" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad}.getBimename().getTarikhEngheza()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+		<band height="117">
+			<frame>
+				<reportElement x="0" y="3" width="595" height="30"/>
+				<textField>
+					<reportElement x="244" y="10" width="66" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("mah")?"ماهانه":
+($F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("6mah")?"شش ماهه":
+($F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("3mah")?"سه ماهه":"سالانه"
+))]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="10" width="122" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pishnehad.estelam}.getHagh_bime_pardakhti()]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="374" y="10" width="86" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="9" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[new Double(Double.parseDouble(StringUtil.removeNoneDigits($F{pishnehad.estelam}.getHagh_bime_pardakhti()))*($F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("mah")? 12.0:
+($F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("6mah")? 6.0:
+($F{pishnehad.estelam}.getNahve_pardakht_hagh_bime().toString().equalsIgnoreCase("3mah")? 4.0 : 1.0
+))))]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="29" y="83" width="535" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[با ابلاغ قانون مالیات بر ارزش افزوده، 5% حق بیمه پوشش های بیمه ای و هزینه های بیمه نامه به عنوان مالیات بر ارزش افزوده به انضمام حق بیمه وصولی از بیمه گذاران دریافت می گردد.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="95" width="300" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[بيمه گذار محترم به منظور آگاهي از اطلاعات بيمه نامه خود و همچنين پرداخت اينترنتي اقساط حق بيمه به ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="95" width="140" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" pdfFontName="net/sf/jasperreports/fonts/farsi/Tahoma.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[http://lifecrm.parsianinsurance.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="95" width="43" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="9" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[مراجعه نماييد.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-24" y="27" width="223" height="66"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/emza.gif"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+</jasperReport>

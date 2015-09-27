@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+
+<beans>
+    <bean id="addressDAO" class="com.bitarts.parsian.dao.AddressDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="loginDAO" class="com.bitarts.parsian.dao.LoginDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bimeGozarDAO" class="com.bitarts.parsian.dao.BimeGozarDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bimeShodeDAO" class="com.bitarts.parsian.dao.BimeShodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="foroshandeDAO" class="com.bitarts.parsian.dao.ForoshandeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="pishnehadDAO" class="com.bitarts.parsian.dao.PishnehadDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="savabegheBimeiDAO" class="com.bitarts.parsian.dao.SavabegheBimeiDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="shakhsDAO" class="com.bitarts.parsian.dao.ShakhsDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="soalateOmomiAzBimeShodeDAO" class="com.bitarts.parsian.dao.SoalateOmomiAzBimeShodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="vaziateSalamatiBimeShodeDAO" class="com.bitarts.parsian.dao.VaziateSalamatiBimeShodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="vaziateSalamatiKhanevadeyeBimeShodeDAO"
+          class="com.bitarts.parsian.dao.VaziateSalamatiKhanevadeyeBimeShodeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="estefadeKonandeganAzSarmayeBimeDAO" class="com.bitarts.parsian.dao.EstefadeKonandeganAzSarmayeBimeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="stateDAO" class="com.bitarts.parsian.dao.StateDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="estelamDAO" class="com.bitarts.parsian.dao.EstelamDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="clinicDAO" class="com.bitarts.parsian.dao.ClinicDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="namayandeDAO" class="com.bitarts.parsian.dao.NamayandeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userDAO" class="com.bitarts.parsian.dao.UserDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transitionLogDAO" class="com.bitarts.parsian.dao.TransitionLogDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transitionDAO" class="com.bitarts.parsian.dao.TransitionDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="azmayeshDAO" class="com.bitarts.parsian.dao.AzmayeshDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="constantItemsDAO" class="com.bitarts.parsian.dao.ConstantItemsDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="asnadeSodorDAO" class="com.bitarts.parsian.dao.AsnadeSodorDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="logDAO" class="com.bitarts.parsian.dao.LogDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bimenameDAO" class="com.bitarts.parsian.dao.BimenameDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="sequenceDAO" class="com.bitarts.parsian.dao.SequenceDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="checkDAO" class="com.bitarts.parsian.dao.CheckDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="elhaghieDAO" class="com.bitarts.parsian.dao.ElhaghieDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="logMosharekatDao" class="com.bitarts.parsian.dao.LogMosharekatDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="karmozdDAO" class="com.bitarts.parsian.dao.KarmozdDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="constantsDAO" class="com.bitarts.parsian.dao.ConstantsDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="khesaratDao" class="com.bitarts.parsian.dao.KhesaratDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="ghararDAO" class="com.bitarts.parsian.dao.GharardadDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="logGhestDAO" class="com.bitarts.parsian.dao.LogGhestDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="uploadedFileDAO" class="com.bitarts.parsian.dao.UploadedFileDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>

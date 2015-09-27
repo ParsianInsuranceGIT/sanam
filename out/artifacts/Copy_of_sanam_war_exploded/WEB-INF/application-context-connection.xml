@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="dataSource" class = "com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+
+        <!--Convert test db -->
+<!--        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.123:1521:cnvrtdb"/>
+        <property name="user" value="lifeuser"/>
+        <property name="password" value="afV8zjHEcPjfccCyXBtqTQ=="/>-->
+        <!--<property name="password" value="12345"/>-->
+
+        <!--Convert 130 db -->
+<!--        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.130:1521:life"/>
+        <property name="user" value="lifeuser"/>
+        <property name="password" value="afV8zjHEcPjfccCyXBtqTQ=="/>-->
+        <!--<property name="password" value="12345"/>-->
+
+        <!--parsian test db -->
+<!--&lt;!&ndash;        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.63:1521:lifetest"/>-->
+        <!--<property name="user" value="lifeuser"/>-->
+        <!--<property name="password" value="afV8zjHEcPjfccCyXBtqTQ=="/>&ndash;&gt;-->
+        <!--&lt;!&ndash;<property name="password" value="12345"/>&ndash;&gt;-->
+
+        <!--D/P Amoozesh db-->
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.118:1521:traindb" />-->
+        <!--<property name="user" value="lifeuser" />-->
+        <!--<property name="password" value="afV8zjHEcPjfccCyXBtqTQ=="/>-->
+        <!--<property name="password" value="12345" />-->
+
+        <!--sanam test db-->
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.63:1521:lifetest"/>-->
+        <!--<property name="user" value="testuser"/>-->
+        <!--<property name="password" value="afV8zjHEcPjfccCyXBtqTQ=="/>-->
+        <!--<property name="password" value="12345"/>-->
+
+        <!--&lt;!&ndash;life main&ndash;&gt;-->
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.44:1521:life" />-->
+        <!--<property name="user" value="lifeuser" />-->
+        <!--<property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />-->
+
+         <!--&lt;!&ndash;sanam test&ndash;&gt;-->
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.63:1521:lifetest" />-->
+        <!--<property name="user" value="testuser" />-->
+        <!--<property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />-->
+
+        <!--&lt;!&ndash;Sanam main&ndash;&gt;-->
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.131:1521:sanamdb" />
+        <property name="user" value="sanam" />
+        <property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />
+
+
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.109:1521:reportdb" />-->
+        <!--<property name="user" value="sanam" />-->
+        <!--<property name="password" value="afV8zjHEcPjfccCyXBtqTQ==" />-->
+        <!--Convert 130-->
+        <!--&lt;!&ndash;life&ndash;&gt;-->
+
+
+
+        <property name="acquireIncrement" value="1" />
+        <property name="minPoolSize" value="5" />
+        <property name="maxPoolSize" value="100" />
+        <property name="maxStatements" value="0" />
+    </bean>
+
+    <bean id="sessionFactory" class="com.bitarts.common.hibernate.ExtendedAnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+                <prop key="hibernate.timeout">6000</prop>
+                <prop key="hibernate.connection.defaultNChar">true</prop>
+                <prop key="hibernate.max_statement">0</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</prop>-->
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.cache.use_structured_entries">false</prop>
+                <prop key="hibernate.cache.generate_statistics">false</prop>
+                <prop key="hibernate.generate_statistics">false</prop>
+            </props>
+        </property>
+        <property name="annotatedPackages" value="com.bitarts.parsian.model"/>
+    </bean>
+</beans>

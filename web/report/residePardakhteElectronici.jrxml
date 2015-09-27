@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taghirKod" pageWidth="595" pageHeight="421" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="161"/>
+	<property name="ireport.y" value="203"/>
+	<property name="ireport.callouts" value="##Thu Jul 07 01:52:56 IRST 2011"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<subDataset name="dataset1"/>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/Job/Parsian/web/report/"]]></defaultValueExpression>
+	</parameter>
+	<field name="sanad" class="com.bitarts.parsian.model.asnadeSodor.Sanad"/>
+	<field name="credebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="bedehi" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="credebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="sanad.shomare" class="java.lang.String"/>
+	<field name="sanad.createdDate" class="java.lang.String"/>
+	<field name="credebit.authorityId" class="java.lang.String"/>
+	<field name="credebit.createdDate" class="java.lang.String"/>
+	<field name="credebit.createdTime" class="java.lang.String"/>
+	<field name="credebit.amount" class="java.lang.String"/>
+	<field name="credebit.namayande.name" class="java.lang.String"/>
+	<field name="credebit.description" class="java.lang.String"/>
+	<field name="omr" class="java.lang.Boolean"/>
+	<title>
+		<band height="98" splitType="Stretch">
+			<frame>
+				<reportElement x="1" y="0" width="554" height="79"/>
+				<box>
+					<pen lineStyle="Solid"/>
+					<topPen lineWidth="3.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="3.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="3.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<image>
+					<reportElement x="487" y="3" width="52" height="60"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/f3.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement style="normal" mode="Transparent" x="438" y="48" width="47" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="11" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[(سهامی عام)]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="14" width="59" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[DateUtil.getCurrentDate()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="59" y="14" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ اخذ گزارش :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="59" y="34" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" isBold="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ساعت اخذ گزارش :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="34" width="60" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[DateUtil.getCurrentTime()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="normal" mode="Transparent" x="170" y="24" width="236" height="36" backcolor="#FFC800"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="18" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[رسید پرداخت الکترونیکی حق بیمه]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="268" splitType="Stretch">
+			<line>
+				<reportElement x="118" y="25" width="1" height="19"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="348" y="25" width="64" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[شناسه پرداخت:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="264" y="25" width="84" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?$F{bedehi}.getShomareMoshtari():$F{credebit.shenaseCredebit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="64" y="25" width="50" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[تاریخ سند:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="25" width="92" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sanad}!=null?$F{sanad.shomare}:""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="25" width="60" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sanad}!=null?$F{sanad.createdDate}:""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="416" y="24" width="132" height="20"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[نام دارنده حساب: بیمه پارسیان]]></text>
+			</staticText>
+			<line>
+				<reportElement x="263" y="26" width="1" height="19"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="212" y="26" width="47" height="19"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[شماره سند:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="415" y="25" width="1" height="19"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="469" y="95" width="60" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[کد رهگیری:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="115" width="60" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[تاریخ پرداخت:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="94" width="60" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[ساعت پرداخت:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="94" width="109" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[مبلغ واریزی به عدد (ریال):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="114" width="42" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[به حروف:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="381" y="94" width="88" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit.authorityId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="115" width="55" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit.createdDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="26" y="94" width="55" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit.createdTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="94" width="120" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit.amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="114" width="186" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit.description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="180" width="122" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?$F{bedehi}.getGhest().getGhestBandi().getBimename().getPishnehad().getBimeGozar().getShakhs().getFullName():$F{credebit.namayande.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="180" width="47" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?"بیمه گذار: ":""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="180" width="146" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?$F{bedehi}.getGhest().getGhestBandi().getBimename().getShomare():" "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="173" y="180" width="91" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?"شماره بیمه نامه: ":" "]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="24" width="543" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="380" y="94" width="1" height="40"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="143" y="93" width="1" height="42"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="23" y="134" width="511" height="1"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="23" y="93" width="511" height="1"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="533" y="93" width="1" height="41"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="22" y="93" width="1" height="42"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="433" y="73" width="100" height="20"/>
+				<textElement>
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[مشخصات پرداخت:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="23" y="114" width="510" height="1"/>
+				<graphicElement>
+					<pen lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="381" y="115" width="88" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?$F{bedehi}.getSarresidDate():$F{credebit.namayande.name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="115" width="60" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{omr}.booleanValue()?"سررسید:":":واحد پرداخت کننده"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="44" width="543" height="1" forecolor="#CCCCCC"/>
+				<graphicElement>
+					<pen lineStyle="Solid" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="5" y="25" width="1" height="20"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="548" y="25" width="1" height="20"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

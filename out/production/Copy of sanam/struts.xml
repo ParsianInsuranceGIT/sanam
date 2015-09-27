@@ -1,0 +1,2888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.multipart.maxSize" value="96668347"/>
+    <constant name="struts.custom.i18n.resources" value="com.bitarts.parsian.i18n.messages_fa"/>
+    <constant name="struts.action.excludePattern" value=".*BitartsWebService.*"/>
+    <package name="test" extends="struts-default">
+        <result-types>
+            <result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult"/>
+            <result-type name="myStream" default="false" class="com.bitarts.parsian.action.DynamicStreamResult"/>
+        </result-types>
+
+        <interceptors>
+            <!--<interceptor name="conversationScope" class="com.googlecode.scopeplugin.ScopeInterceptor"/>-->
+            <interceptor name="URIcheckingInterceptor" class="com.bitarts.parsian.interceptor.URIcheckingInterceptor"/>
+            <interceptor name="parameterFilter" class="com.opensymphony.xwork2.interceptor.ParameterFilterInterceptor"/>
+            <interceptor name="monitoring" class="net.bull.javamelody.StrutsInterceptor"/>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="monitoring"/>
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="store">
+                    <param name="operationMode">AUTOMATIC</param>
+                </interceptor-ref>
+                <!--<interceptor-ref name="conversationScope"/>-->
+                <interceptor-ref name="URIcheckingInterceptor"/>
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="debugging"/>
+                <!--<interceptor-ref name="scopedModelDriven"/>-->
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params">
+                    <param name="excludeParams">
+                        dojo\..*,^struts\..*,_.*,d-\d+?-.*,^\d+(f?\d+)?$
+                    </param>
+                </interceptor-ref>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">input,back,cancel,browse,login</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">input,back,cancel,browse,login</param>
+                </interceptor-ref>
+                <!--<interceptor-ref name="defaultStack"/>-->
+            </interceptor-stack>
+
+            <!--<interceptor name="encodingInterceptor" class="com.bitarts.common.util.EncodingInterceptor"/>-->
+            <!--<interceptor-stack name="encodingStack">-->
+            <!--<interceptor-ref name="encodingInterceptor"/>-->
+            <!--<interceptor-ref name="defaultStack"/>-->
+            <!--</interceptor-stack>-->
+
+            <!--<interceptor name="redirectMessageInterceptor" class="com.fiveamsolutions.nci.commons.web.struts2.interceptor.RedirectMessageInterceptor"/>-->
+            <!--<interceptor-stack name="myRedirectAction">-->
+            <!--</interceptor-stack>-->
+        </interceptors>
+        <default-interceptor-ref name="myStack"></default-interceptor-ref>
+        <global-results>
+            <result name="login">jsp/user/page_login.jsp</result>
+        </global-results>
+        <!--<default-interceptor-ref name="encodingStack"></default-interceptor-ref>-->
+        <!-- action for downloading file-->
+        <action name="downloadFile" method="downloadFile" class="com.bitarts.parsian.action.LoginAction">
+            <result name="success" type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">filename="${fileName}"</param>
+                <!--<param name="bufferSize">${bufferSize}</param>-->
+                <param name="bufferSize">2048</param>
+            </result>
+            <result name="error">/jsp/error.jsp</result>
+        </action>
+        <action name="forgetPassword" class="com.bitarts.parsian.action.LoginAction" method="forgetPassword">
+            <result name="error">/jsp/user/page_forgetPassword.jsp</result>
+            <result name="success">/jsp/user/page_sendNewPassword.jsp</result>
+        </action>
+        <action name="validationShomareShabaAjax" class="com.bitarts.parsian.action.KhesaratAction" method="validationShomareShabaAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="validationCheckAjax" class="com.bitarts.parsian.action.KhesaratAction" method="validationCheckAjax">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="checkTarikhAsar" class="com.bitarts.parsian.action.DarkhastAction" method="checkTarikhAsar">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">viewTrueFalse</param>
+            </result>
+        </action>
+        <action name="sendNewPassword" class="com.bitarts.parsian.action.LoginAction" method="sendNewPassword">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="checkNesbat" class="com.bitarts.parsian.action.ShakhsAction" method="checkNesbat">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="jostejuMoshakhasaat" class="com.bitarts.parsian.action.ShakhsAction" method="search">
+            <result name="success">jsp/josteju/resultJosteju.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="isBimeShodeValid" class="com.bitarts.parsian.action.ShakhsAction" method="isValid">
+            <result name="success">jsp/josteju/resultShakhsValid.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchNamayandegiDialog" class="com.bitarts.parsian.action.NamayandeAction" method="searchDialog">
+            <result name="success">jsp/josteju/resultSearchNamayandegi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchNamayandegiAllDialog" class="com.bitarts.parsian.action.NamayandeAction" method="searchAllDialog">
+            <result name="success">jsp/josteju/resultSearchNamayandegi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchBazaryabSanamDialog" class="com.bitarts.parsian.action.NamayandeAction" method="searchBazSanDialog">
+            <result name="success">jsp/josteju/resultSearchBazaryabSanam.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="jostejuHoghughiMoshakhasaat" class="com.bitarts.parsian.action.ShakhsAction"
+                method="searchHoghughi">
+            <result name="success">jsp/josteju/resultHoghughiJosteju.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="registerPishnahadeBimeOmreEnferadi" class="com.bitarts.parsian.action.PishnahadAction"
+                method="save">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="registerPishnahadeBimeOmreEnferadiForBazaryab" class="com.bitarts.parsian.action.PishnahadAction"
+                method="save">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="innerRegisterPishnahadeBimeOmreEnferadi" class="com.bitarts.parsian.action.PishnahadAction"
+                method="save">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="successTaghirat" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="darkhasteElhaghie" class="com.bitarts.parsian.action.DarkhastAction" method="darkhasteElhaghie">
+            <result name="success">jsp/pishnahad/page_darkhasteElhaghieResult.jsp</result>
+            <result name="input">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="saveBazkharidEbtalInfo" class="com.bitarts.parsian.action.DarkhastAction" method="saveBazkharidEbtalInfo">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteUndoneElhaghiye" class="com.bitarts.parsian.action.DarkhastAction"
+                method="deleteUndoneElhaghiye">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editElhaghie</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pageLogin">
+            <result>jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadPishnahadeBimeOmreEnferadi" class="com.bitarts.parsian.action.PishnahadAction" method="load">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="loadKhesarat" type="redirectAction">
+                <param name="actionName">showKhesarat</param>
+                <param name="khesarat.id">${khesarat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadDarkhastBimeOmreEnferadi" class="com.bitarts.parsian.action.PishnahadAction" method="load">
+            <result name="success">jsp/pishnahad/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="loadKhesarat" type="redirectAction">
+                <param name="actionName">showKhesarat</param>
+                <param name="khesarat.id">${khesarat.id}</param>
+                <param name="darkhast.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="saveElhaghiyeTaghirat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="saveElhaghiyeTaghirat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loginUser</param>
+                <param name="selectedTab">tabs-4</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="userCheckLogin" class="com.bitarts.parsian.action.LoginAction" method="userCheckLogin">-->
+            <!--<result >/userCheck/page_userCheck.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="userCheckPayment" class="com.bitarts.parsian.action.LoginAction" method="userCheckPayment">-->
+            <!--<result>/userCheck/page_userCheck.jsp</result>-->
+        <!--</action>-->
+        <action name="userCheck">
+            <result>/userCheck/page_lifeIndex.jsp</result>
+        </action>
+        <action name="bimenameCheck" class="com.bitarts.parsian.action.LoginAction" method="bimenameCheck">
+            <result name="success">/index.jsp</result>
+            <result name="error" type="redirect">http://lifemvc.parsianinsurance.ir/lifeinsured</result>
+            <result type="redirectAction" name="success_epayment">
+                <param name="actionName">ePayment</param>
+            </result>
+            <result name="error_epayment" type="redirect">http://lifepayment.parsianinsurance.com/LifePolicy/</result>
+        </action>
+        <action name="registerShakhs" class="com.bitarts.parsian.action.ShakhsAction" method="register">
+            <result name="success">jsp/pishnahad/dialogForm/findShakhsInfo.jsp</result>
+            <result name="error">jsp/pishnahad/dialogForm/faileAddShakhsForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editShakhs" class="com.bitarts.parsian.action.ShakhsAction" method="editShakhs">
+            <result name="success">jsp/pishnahad/dialogForm/editShakhsSuccessfully.jsp</result>
+            <result name="error">jsp/pishnahad/dialogForm/faileAddShakhsForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="findEmzaKonande" class="com.bitarts.parsian.action.LoginAction" method="findEmzaKonande">
+            <result name="success">jsp/pishnahad/dialogForm/findEmzaKonande.jsp</result>
+        </action>
+        <action name="findUsers" class="com.bitarts.parsian.action.LoginAction" method="findUsers">
+            <result name="success">jsp/pishnahad/dialogForm/findEmzaKonande.jsp</result>
+        </action>
+
+        <action name="fillShakhs" class="com.bitarts.parsian.action.ShakhsAction" method="findShakhsInfo">
+            <result name="success">jsp/pishnahad/dialogForm/findShakhsInfo.jsp</result>
+            <result name="error">jsp/pishnahad/failureMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="kartabl_login" class="com.bitarts.parsian.action.KartablAction" method="login">
+            <result name="success">/jsp/user/page_userKartabl.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchCity" class="com.bitarts.parsian.action.PishnahadAction" method="searchCity">
+            <result name="success">jsp/pishnahad/dialogForm/findCity.jsp</result>
+        </action>
+        <action name="index" >
+            <result type="redirect">loginUser</result>
+        </action>
+        <action name="loginUser" class="com.bitarts.parsian.action.LoginAction" method="login">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="userKartabl" type="redirectAction">kartabl_login</result>
+            <result name="pezeshk" type="redirectAction">sabtHazinePezashki</result>
+            <result name="karmozd" type="redirectAction">listAllNamayandeForKarmozd</result>
+            <result name="role_karmozd" type="redirectAction">karmozdPanel</result>
+            <result name="bazar" type="redirectAction">listAllNamayande</result>
+            <result name="operatorMali" type="redirectAction">listAllUser</result>
+            <result name="setMobileNumber" type="redirectAction">preMobileNumber</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+            <result name="role_mali_namayande" type="redirectAction">
+                <param name="actionName">listBedehiNamayande</param>
+                <param name="r">${rndValue}</param>
+                <param name="namespace">fin</param>
+            </result>
+            <result name="karbarmalilogin" type="redirectAction">
+                <param name="actionName">listBedehiNamayande</param>
+                <param name="r">${rndValue}</param>
+                <param name="namespace">fin</param>
+            </result>
+            <result name="customUrl" type="redirect">${actionUrl}</result>
+        </action>
+        <action name="sodureJamieKhas" class="com.bitarts.parsian.action.sodureJami.SodureJamieKhasAction" method="ijadePishnehadateKhas">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="sodoureBimenameh" class="com.bitarts.parsian.action.LoginAction" method="sodoureBimenameh">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="list">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="validateKaptcha" class="com.bitarts.parsian.action.LoginAction" method="validateKaptcha">
+            <result name="success">jsp/user/resultTrueKaptcha.jsp</result>
+            <result name="error">jsp/user/resultFalseKaptcha.jsp</result>
+        </action>
+
+        <action name="resultTab1" class="com.bitarts.parsian.action.LoginAction" method="resultTab1">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab1.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab9" class="com.bitarts.parsian.action.LoginAction" method="resultTab9">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab9.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab2" class="com.bitarts.parsian.action.LoginAction" method="resultTab2">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab2.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab3" class="com.bitarts.parsian.action.LoginAction" method="resultTab3">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab3.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab4" class="com.bitarts.parsian.action.LoginAction" method="resultTab4">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab4.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab8" class="com.bitarts.parsian.action.LoginAction" method="resultTab8">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab8.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab5" class="com.bitarts.parsian.action.LoginAction" method="resultTab5">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab5.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab6" class="com.bitarts.parsian.action.LoginAction" method="resultTab6">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab6.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="resultTab7" class="com.bitarts.parsian.action.LoginAction" method="resultTab7">
+            <result name="success">jsp/fehrestePishnahad/resultFehrestepishnahad_tab7.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="retrieve" class="com.bitarts.parsian.action.LoginAction" method="retrieve">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForPishnehads" class="com.bitarts.parsian.action.LoginAction" method="searchForPishnehads">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForElhaghie" class="com.bitarts.parsian.action.LoginAction" method="searchForElhaghie">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForGharardads" class="com.bitarts.parsian.action.LoginAction" method="searchForGharardads">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForPishnehadsToView" class="com.bitarts.parsian.action.LoginAction"
+                method="searchForPishnehadsToView">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteFish" class="com.bitarts.parsian.action.PishnahadAction" method="deleteFish">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+        </action>
+
+        <action name="assignKarshenas" class="com.bitarts.parsian.action.LoginAction" method="assignKarshenas">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="assignKarshenasToSomePishnehad" class="com.bitarts.parsian.action.LoginAction" method="assignKarshenasToSomePishnehad">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="transitionSomePishnehad" class="com.bitarts.parsian.action.LoginAction" method="transitionSomePishnehad">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="updateKarshenas" class="com.bitarts.parsian.action.LoginAction" method="updateKarshenas">
+            <result name="success">jsp/pishnahad/successMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="getOrderIdForShenase" class="com.bitarts.parsian.action.LoginAction"
+                method="getOrderIdForShenase">
+            <result name="success">jsp/pishnahad/subForm/resultShenaseId.jsp</result>
+
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="assignKarshenasToDarkhast" class="com.bitarts.parsian.action.DarkhastAction"
+                method="assignKarshenas">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="havaleKhesarataction" class="com.bitarts.parsian.action.DarkhastAction"
+                method="havaleKhesarataction">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="assignKarshenasKhesarat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="assignKarshenasKhesarat">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showForm" class="com.bitarts.parsian.action.PishnahadAction" method="load">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editShowForm" class="com.bitarts.parsian.action.PishnahadAction" method="load">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editShowFormReadOnly" class="com.bitarts.parsian.action.PishnahadAction" method="loadReadOnly">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="stayOnDarkhastPlace" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhast.id}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editShowFormKhesaratReadOnly" class="com.bitarts.parsian.action.KhesaratAction" method="editShowFormKhesaratReadOnly">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadDetailsOfGhest" class="com.bitarts.parsian.action.PishnahadAction" method="loadDetailsOfGhest">
+            <result name="success">jsp/user/ghestDetails.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="editElhaghie" class="com.bitarts.parsian.action.PishnahadAction" method="loadForElhaghie">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editDarkhastForm" class="com.bitarts.parsian.action.DarkhastAction" method="loadDarkhast">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editDarkhastTaghirForm" class="com.bitarts.parsian.action.DarkhastAction"
+                method="loadDarkhastTaghirat">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editDarkhastFormReadOnly" class="com.bitarts.parsian.action.DarkhastAction" method="loadDarkhastReadOnly">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editDarkhastTaghirFormReadOnly" class="com.bitarts.parsian.action.DarkhastAction"
+                method="loadDarkhastTaghiratReadOnly">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeInnerTransition" class="com.bitarts.parsian.action.LoginAction" method="makeInnerTransition">
+            <result name="SUCCESS_forGharardad" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${pishnehad.gharardad.id}</param>
+                <param name="selectedMenu">2</param>
+            </result>
+            <result name="stayOnSamePlace" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="showBimename" type="redirectAction">
+                <param name="actionName">editShowFormReadOnly</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteMoarefiname" class="com.bitarts.parsian.action.LoginAction" method="deleteMoarefiname">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeDarkhastTransition" class="com.bitarts.parsian.action.DarkhastAction"
+                method="makeDarkhastTransition">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="stayOnSamePlace" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="stayOnDarkhastPlace" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="sodurVamSuccess">${sodurVamSuccess}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeDarkhastTaghiratTransition" class="com.bitarts.parsian.action.DarkhastAction"
+                method="makeDarkhastTaghiratTransition">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loginUser</param>
+                <param name="selectedTab">tabs-4</param>
+            </result>
+            <result name="stayOnSamePlace" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="stayOnDarkhastPlace" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeDarkhastKhesaratTaghiratTransition" class="com.bitarts.parsian.action.DarkhastAction"
+                method="makeDarkhastKhesaratTaghiratTransition">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loginUser</param>
+                <param name="selectedTab">tabs-4</param>
+            </result>
+            <result name="stayOnSamePlace" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sodooreElhaghie" class="com.bitarts.parsian.action.DarkhastAction"
+                method="sodooreElhaghie">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editShowFormReadOnly</param>
+                <param name="pishnehad.id">${piishnehadId}</param>
+            </result>
+            <result name="stayOnSamePlace" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="stayOnSamePlaceKhesarat" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="havaleKhesarat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="havaleKhesarat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeTransition" class="com.bitarts.parsian.action.LoginAction" method="makeTransition">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="pezeshksabtnazar">jsp/transitionForms/page_pezeshkhNazaraat.jsp</result>
+            <result name="uploadpishpardakht">jsp/transitionForms/page_uploadPishPardakht.jsp</result>
+            <result name="erjabekarshenas">jsp/transitionForms/page_raeisNazaraat.jsp</result>
+            <result name="tabdilbebimenamehmovaghat">jsp/transitionForms/page_bimeName.jsp</result>
+            <result name="soduremoarefiname">jsp/transitionForms/page_sodoureMoarefiname.jsp</result>
+            <result name="takhsisbekarshenas">jsp/transitionForms/page_takhsisBeKarshenas.jsp</result>
+            <result name="sabteshomarehesab">jsp/transitionForms/page_sabteShomareHesab.jsp</result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtBaFish" class="com.bitarts.parsian.action.PishnahadAction" method="pardakhtBaFish">
+            <result name="nosession">jsp/user/page_login.jsp</result>
+            <result name="success">jsp/transitionForms/page_pardakhtBaFish.jsp</result>
+        </action>
+        <action name="ePaymentMakeFinal" class="com.bitarts.parsian.action.LoginAction" method="ePaymentMakeFinal">
+            <result name="success">jsp/user/page_paymentFinal.jsp</result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">ePayment</param>
+            </result>
+        </action>
+        <action name="ePayment" class="com.bitarts.parsian.action.LoginAction" method="ePayment">
+            <result name="success">jsp/user/page_payment.jsp</result>
+        </action>
+        <action name="debitSearch" class="com.bitarts.parsian.action.LoginAction" method="debitSearch">
+            <result name="success" >jsp/user/page_paymentResult.jsp</result>
+        </action>
+        <action name="paymentDebit" class="com.bitarts.parsian.action.LoginAction" method="paymentDebit">
+            <result name="success" type="redirect">${epaymentHost}/pecpaymentgateway?au=${authorityId}</result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">ePayment</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtInterneti" class="com.bitarts.parsian.action.LoginAction" method="pardakhtInterneti">
+            <result name="success" type="redirect">${epaymentHost}/pecpaymentgateway?au=${authorityId}</result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxlyCheckForValidBahremandi" class="com.bitarts.parsian.action.DarkhastAction"
+                method="ajaxlyCheckForValidBahremandi">
+            <result name="success">jsp/bimename/subForm/resultCheckForValidBahremandi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxlyCheckJaraemeVaam" class="com.bitarts.parsian.action.DarkhastAction"
+                method="ajaxlyCheckJaraemeVaam">
+            <result name="success">jsp/bimename/subForm/resultCheckJaraemeVaam.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadDeafultBazaryab" class="com.bitarts.parsian.action.DarkhastAction" method="loadDeafultBazaryab">
+            <result name="success">jsp/pishnahad/subForm/loadDeafultBazaryabSuccessFully.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareForMohasebeMosharekat" class="com.bitarts.parsian.action.CredebitAction"
+                method="prepareForMohasebeMosharekat">
+            <result name="success">/jsp/management/page_soudeMosharekat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxlySetPrintedForPishnehad" class="com.bitarts.parsian.action.PishnahadAction"
+                method="ajaxlySetPrintedForPishnehad">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareToMakeRequest" class="com.bitarts.parsian.action.DarkhastAction"
+                method="prepareToMakeRequest">
+            <result name="success">/jsp/bimename/page_bahremandiAzManafe.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareToMakeRequest2" class="com.bitarts.parsian.action.DarkhastAction"
+                method="prepareToMakeRequest2">
+            <result name="success">/jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteBardashtAzAndukhte" class="com.bitarts.parsian.action.DarkhastAction"
+                method="sabteBardashtAzAndukhte">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+                <param name="timeToElamMali">${timeToElamMali}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="calcVam" class="com.bitarts.parsian.action.DarkhastAction" method="calcVam">
+            <result name="success">/jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="input">/jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtShenasedar" class="com.bitarts.parsian.action.LoginAction" method="pardakhtShenasedaar">
+            <!--<interceptor-ref name="myRedirectAction"/>-->
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtInternetiMakeFinal" class="com.bitarts.parsian.action.LoginAction"
+                method="pardakhtInternetiMakeFinal">
+            <!--<result name="success" type="redirectAction">-->
+                <!--<param name="actionName">loadPishnahadeBimeOmreEnferadi</param>-->
+                <!--<param name="pishnehad.id">${pishnehad.id}</param>-->
+            <!--</result>-->
+            <result name="success">jsp/user/page_paymentFinal.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="enserafBazgashtBeBimeOmr" class="com.bitarts.parsian.action.LoginAction"
+                method="enserafBazgashtBeBimeOmr">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtBaFishMakeFinal" class="com.bitarts.parsian.action.LoginAction"
+                method="pardakhtBaFishMakeFinal">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <!--<result name="error">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>-->
+
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteNazarePezeshk" class="com.bitarts.parsian.action.LoginAction" method="addNazarPezeshk">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteNazarePezeshk_Taeedie" class="com.bitarts.parsian.action.LoginAction"
+                method="addNazarPezeshk_Taeedie">
+            <result name="success">jsp/pishnahad/successMessageForPishnahad.jsp</result>
+        </action>
+        <action name="saveEzafeNerkheRaees" class="com.bitarts.parsian.action.LoginAction"
+                method="saveEzafeNerkheRaees">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+        </action>
+        <action name="sabteNazarePezeshkDarkhastTaghirat" class="com.bitarts.parsian.action.LoginAction"
+                method="addNazarPezeshkTaghirat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeNazarPezeshkDarkhastTaghirat" class="com.bitarts.parsian.action.LoginAction"
+                method="removeNazarPezeshkTaghirat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeSearchForFish" class="com.bitarts.parsian.action.LoginAction" method="makeSearchForFish">
+            <result name="success">jsp/pishnahad/subForm/resultSearchForFish.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="dateChecker" class="com.bitarts.parsian.action.PishnahadAction" method="dateChecker">
+            <result name="success">jsp/pishnahad/subForm/resultForDate.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="changeTabagheKhatarAjaxly" class="com.bitarts.parsian.action.PishnahadAction"
+                method="changeTabagheKhatarAjaxly">
+            <result name="success">jsp/pishnahad/subForm/resultForDate.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="setTarikhEnghezaAjaxly" class="com.bitarts.parsian.action.PishnahadAction"
+                method="setTarikhEnghezaAjaxly">
+            <result name="success">jsp/pishnahad/subForm/resultForDate.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteDarkhasteBazkharid" class="com.bitarts.parsian.action.DarkhastAction"
+                method="sabteDarkhasteBazkharid">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="input">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteDarkhasteTaghirCode" class="com.bitarts.parsian.action.DarkhastAction" method="sabteDarkhasteTaghirCode">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="input">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxFishUpdate" class="com.bitarts.parsian.action.LoginAction" method="ajaxFishUpdate">
+            <result name="success">jsp/pishnahad/subForm/taeedFishUpdate.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxFishSearch" class="com.bitarts.parsian.action.LoginAction" method="ajaxFishSearch">
+            <result name="success">jsp/pishnahad/subForm/pishFishs.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ajaxFishSanadzani" class="com.bitarts.parsian.action.LoginAction" method="ajaxFishSanadzani">
+            <result name="success">jsp/pishnahad/successMessageForPishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="shakhsTekrari" class="com.bitarts.parsian.action.ShakhsAction" method="shakhsTekrari">
+            <result name="success">jsp/pishnahad/successMessageForPishnahad.jsp</result>
+        </action>
+        <action name="taeedeNazarePezeshk" class="com.bitarts.parsian.action.LoginAction" method="taeedeNazarePezeshk">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pezeshkHazfeNazar" class="com.bitarts.parsian.action.LoginAction" method="removeNazarPezeshk">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="uploadFishMakeFinal" class="com.bitarts.parsian.action.LoginAction" method="uploadFishMakeFinal">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeFileZamime" class="com.bitarts.parsian.action.LoginAction" method="removeFileZamime">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="uploadZamaemDarkhast" class="com.bitarts.parsian.action.DarkhastAction"
+                method="uploadZamaemDarkhast">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="uploadZamaemDarkhastTaghirat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="uploadZamaemDarkhast">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeZamaemDarkhast" class="com.bitarts.parsian.action.DarkhastAction" method="removeFileZamime">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeZamaemDarkhastTaghirat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="removeFileZamime">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastTaghirForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastTaghirat.id">${darkhastTaghirat.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="anjameSharayeteJadid" class="com.bitarts.parsian.action.LoginAction"
+                method="anjameSharayeteJadid">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="elameShomareHesab" class="com.bitarts.parsian.action.LoginAction" method="elameShomareHesab">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <!--<result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>-->
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="elameShomareHesabForEnseraf" class="com.bitarts.parsian.action.LoginAction"
+                method="elameShomareHesabForEnseraf">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loadPishnahadeBimeOmreEnferadi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <!--<result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>-->
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="anjameMohasebatePaye" class="com.bitarts.parsian.action.LoginAction"
+                method="anjameMohasebatePaye">
+            <result name="success">jsp/estelam/resultAndukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="hazfeTaghsit" class="com.bitarts.parsian.action.LoginAction" method="hazfeTaghsit">
+            <!--<result name="success" type="">jsp/pishnahad/subForm/showVaziateGhestBandi.jsp</result>-->
+            <result name="success" type="redirectAction">
+                <param name="actionName">showVaziateGhestBandi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="showAlarmForReverseSanad">jsp/pishnahad/subForm/showAlarmForReverseSanad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="anjameTaghsit" class="com.bitarts.parsian.action.LoginAction" method="anjameTaghsit">
+            <result name="success">jsp/pishnahad/subForm/ghestha.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="tayideGhestbandi" class="com.bitarts.parsian.action.LoginAction" method="tayideGhestbandi">
+            <!--<result name="success">jsp/pishnahad/subForm/showVaziateGhestBandi.jsp</result>-->
+            <result name="success" type="redirectAction">
+                <param name="actionName">showVaziateGhestBandi</param>
+                <param name="pishnehad.id">${pishnehad.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="viewCredebits" class="com.bitarts.parsian.action.CredebitAction" method="viewCredebits">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_resultDaryaftPardakht.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="logmeout" class="com.bitarts.parsian.action.LoginAction" method="logMeOut">
+            <result name="success">/jsp/user/page_login.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="saveEzafeNerkhAjaxly" class="com.bitarts.parsian.action.LoginAction"
+                method="saveEzafeNerkhAjaxly">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="saveSaleAsarAjaxly" class="com.bitarts.parsian.action.DarkhastAction"
+                method="saveSaleAsarAjaxly">
+            <result name="success">/jsp/ajaxCheck.jsp</result>
+        </action>
+        <action name="prepareForEstelam" class="com.bitarts.parsian.action.EstelamAction" method="prepareForEstelam">
+            <result name="success">jsp/estelam/page_andukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="calculateEstelamAction" class="com.bitarts.parsian.action.EstelamAction" method="calculate">
+            <result name="success">jsp/estelam/resultAndukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name = "calculateEstelamMultiple" class="com.bitarts.parsian.action.EstelamAction" method="calculateMultiple">
+            <result name ="success">/jsp/estelamMultiple/result_andukhteye_sarmayegozari.jsp</result>
+            <result name ="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="calculatePishnahadAjaxly" class="com.bitarts.parsian.action.EstelamAction" method="calculate">
+            <result name="success">jsp/estelam/resultAndukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="mohaasebeMostamari" class="com.bitarts.parsian.action.EstelamAction" method="mohaasebeMostamari">
+            <result name="success">jsp/mostamari/resultMostamari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="beginMohaasebeMostamari" class="com.bitarts.parsian.action.EstelamAction"
+                method="beginMohaasebeMostamari">
+            <result name="success">jsp/mostamari/page_mostamari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="calculateForFormeMiani" class="com.bitarts.parsian.action.EstelamAction"
+                method="calculateForFormeMiani">
+            <result name="success">jsp/estelam/resultFormMiani.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="calculateReverseEstelamAction" class="com.bitarts.parsian.action.EstelamAction"
+                method="reverseCalculate">
+            <result name="success">jsp/estelamReverse/resultAndukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="saveEstelamAction" class="com.bitarts.parsian.action.PishnahadAction" method="saveEstelam">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="saveNazar" class="com.bitarts.parsian.action.EstelamAction" method="saveNazar">
+        </action>
+        <action name="viewNazarat" class="com.bitarts.parsian.action.EstelamAction" method="viewNazarat">
+            <result name="success">/jsp/estelam/page_nazarat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editClinic" class="com.bitarts.parsian.action.ClinicAction" method="update">
+            <result name="success">jsp/management/page_editClinic.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeClinic" class="com.bitarts.parsian.action.ClinicAction" method="removeClinic">
+            <result name="success">jsp/management/page_listOfClinics.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="registerMoshakhasatClinic" class="com.bitarts.parsian.action.ClinicAction" method="save">
+            <result name="success">jsp/management/page_mainManagementPage.jsp</result>
+            <result name="input">jsp/management/page_sabtMoshakhasatClinic.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="updateMoshakhasatClinic" class="com.bitarts.parsian.action.ClinicAction"
+                method="finilizeClinicUpdate">
+            <result name="success">jsp/management/page_listOfClinics.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchUsersToPrepareToAddEmzakonande" class="com.bitarts.parsian.action.UserAction" method="listAllUser">
+            <result name="success">jsp/management/page_searchUserToAddEmzaKonandeForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeEmzaKonande" class="com.bitarts.parsian.action.ClinicAction" method="removeEmzaKonande">
+            <result name="success">jsp/management/page_listOfEmzaKonandegan.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtEmzaKonande" class="com.bitarts.parsian.action.ClinicAction" method="sabtEmzaKonande">
+            <result name="success" type="redirectAction">showEmzaKonandegan</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareAddEmzakonande" class="com.bitarts.parsian.action.ClinicAction"
+                method="prepareAddEmzakonande">
+            <result name="success">jsp/management/page_sabtEmzaKonandeForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareEditEmzaKonande" class="com.bitarts.parsian.action.ClinicAction"
+                method="prepareEditEmzaKonande">
+            <result name="success">jsp/management/page_sabtEmzaKonandeForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showEmzaKonandegan" class="com.bitarts.parsian.action.ClinicAction" method="showEmzaKonandegan">
+            <result name="success">jsp/management/page_listOfEmzaKonandegan.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="moshahedeClinics" class="com.bitarts.parsian.action.ClinicAction" method="showAll">
+            <result name="success">jsp/management/page_listOfClinics.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addAzemayeshToAll" class="com.bitarts.parsian.action.ClinicAction" method="addAzemayeshToAll">
+            <result name="success">jsp/ajaxCheck.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addAzemayeshToSomeClinics" class="com.bitarts.parsian.action.ClinicAction" method="addAzemayeshToSomeClinics">
+            <result name="success" type="redirectAction">moshahedeClinics</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="findAzmayeshat" class="com.bitarts.parsian.action.ClinicAction" method="findAzmayeshat">
+            <result name="success">jsp/management/page_listOfAzmayeshat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="addAzmayesh" class="com.bitarts.parsian.action.ClinicAction" method="addAzmayesh">-->
+        <!--<result name="success">jsp/management/page_listOfAzmayeshat.jsp</result>-->
+        <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="submitAzmayesh" class="com.bitarts.parsian.action.ClinicAction" method="submitAzmayesh">
+            <result name="success">jsp/management/page_listOfAzmayeshat.jsp</result>
+            <result name="error">jsp/management/page_azmayeshAddition.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeAzmayesh" class="com.bitarts.parsian.action.ClinicAction" method="removeAzmayesh">
+            <result name="success">jsp/management/page_listOfAzmayeshat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showUpload">
+            <result>jsp/management/page_mainManagementPage.jsp</result>
+        </action>
+        <action name="doUpload" class="com.bitarts.parsian.action.StrutsFileUpload" method="execute">
+            <result name="success">jsp/management/page_listOfBankInfo.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="doUploadForExcel" class="com.bitarts.parsian.action.StrutsFileUpload" method="readExcel">
+            <result name="success">jsp/management/page_listOfBankInfo.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="doUploadForKarmozdTadilat" class="com.bitarts.parsian.action.StrutsFileUpload" method="doUploadForKarmozdTadilat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">viewKarmozdProject</param>
+                <param name="karmozd.id">${karmozd.id}</param>
+                <param name="selectedTab">tab-2</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForThisNewShomareMoshtari" class="com.bitarts.parsian.action.LoginAction"
+                method="searchForThisNewShomareMoshtari">
+            <result name="success">jsp/pishnahad/subForm/checkShenaseMoshtari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showVaziateGhestBandi" class="com.bitarts.parsian.action.LoginAction"
+                method="anjameMohasebatePayeForVaziateGhestBandi">
+            <result name="success">jsp/pishnahad/subForm/showVaziateGhestBandi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="finalizeUpload" class="com.bitarts.parsian.action.StrutsFileUpload" method="doTaeedVosoul">
+            <result name="success">/jsp/daryaftPardakht/page_resultSanads.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showTransitionLog" class="com.bitarts.parsian.action.TransitionLogAction"
+                method="showTransitionLog">
+            <result name="success">jsp/management/page_transitionLog.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showDarkhastBazkharidTransitionLog" class="com.bitarts.parsian.action.TransitionLogAction"
+                method="showDarkhastBazkharidTransitionLog">
+            <result name="success">jsp/management/page_transitionLog.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showDarkhastTaghirTransitionLog" class="com.bitarts.parsian.action.TransitionLogAction"
+                method="showDarkhastTaghirTransitionLog">
+            <result name="success">jsp/management/page_transitionLog.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editAzmayesh" class="com.bitarts.parsian.action.ClinicAction" method="editAzmayesh">
+            <!--<result name="success">jsp/management/page_azmayeshEdition.jsp</result>-->
+            <result name="success">jsp/management/page_azmayeshAddition.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editAzmayeshType" class="com.bitarts.parsian.action.ClinicAction" method="editAzmayeshType">
+            <result name="success">jsp/management/page_editAzmayeshType.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editAzmayeshName" class="com.bitarts.parsian.action.ClinicAction" method="editAzmayeshName">
+            <result name="success">jsp/management/page_editAzmayeshName.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="doEditAzmayeshType" class="com.bitarts.parsian.action.ClinicAction" method="doEditAzmayeshType">
+            <result name="success">jsp/management/page_listOfAzmayeshTypes.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="doEditAzmayeshName" class="com.bitarts.parsian.action.ClinicAction" method="doEditAzmayeshName">
+            <result name="success">jsp/management/page_listOfAzmayeshNames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="doEditAzmayesh" class="com.bitarts.parsian.action.ClinicAction" method="doEditAzmayesh">
+            <result name="success">jsp/management/page_listOfAzmayeshat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addAzmayeshType" class="com.bitarts.parsian.action.ClinicAction" method="addAzmayeshType">
+            <result name="success">jsp/management/page_mainManagementPage.jsp</result>
+            <result name="input">jsp/management/page_sabtAzmayeshType.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeAzmayeshType" class="com.bitarts.parsian.action.ClinicAction" method="removeAzmayeshType">
+            <result name="success">jsp/management/page_listOfAzmayeshTypes.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="removeAzmayeshName" class="com.bitarts.parsian.action.ClinicAction" method="removeAzmayeshName">
+            <result name="success">jsp/management/page_listOfAzmayeshNames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addAzmayeshName" class="com.bitarts.parsian.action.ClinicAction" method="addAzmayeshName">
+            <result name="success">jsp/management/page_mainManagementPage.jsp</result>
+            <result name="input">jsp/management/page_sabtAzmayeshName.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareForSabtNameAzmayesh" class="com.bitarts.parsian.action.ClinicAction"
+                method="prepareForSabtNameAzmayesh">
+            <result name="success">jsp/management/page_sabtAzmayeshName.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllAzmayeshTypes" class="com.bitarts.parsian.action.ClinicAction"
+                method="listAllAzmayeshTypes">
+            <result name="success">jsp/management/page_listOfAzmayeshTypes.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllAzmayeshNames" class="com.bitarts.parsian.action.ClinicAction"
+                method="listAllAzmayeshNames">
+            <result name="success">jsp/management/page_listOfAzmayeshNames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllTarhs" class="com.bitarts.parsian.action.ConstantsAction"
+                method="listAllTarhs">
+            <result name="success">jsp/management/page_listOfTarhs.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addTarhPrepare" class="com.bitarts.parsian.action.ConstantsAction"
+                method="addTarhPrepare">
+            <result name="success">jsp/management/page_addTarh.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addTarh" class="com.bitarts.parsian.action.ConstantsAction"
+                method="addTarh">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllTarhs</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareAzmayeshAddition" class="com.bitarts.parsian.action.ClinicAction"
+                method="prepareAzmayeshAddition">
+            <result name="success">jsp/management/page_azmayeshAddition.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="azmayeshTypeFetcher" class="com.bitarts.parsian.action.ClinicAction" method="fetchAzmayeshType">
+            <result name="success">jsp/management/page_azmayeshAddition.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addPezeshkNazar" class="com.bitarts.parsian.action.LoginAction" method="addNazarPezeshk">
+            <result name="success">jsp/transitionForms/page_pezeshkhNazaraat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addRaeisNazar" class="com.bitarts.parsian.action.LoginAction" method="addNazarRaeis">
+            <result name="success" type="redirectAction">
+                <param name="actionName">makeFinalTransition</param>
+                <param name="logmessage">${logmessage}</param>
+                <param name="transitionId">${transitionId}</param>
+                <param name="pishnehadId">${pishnehadId}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtAzmayeshType" class="com.bitarts.parsian.action.ClinicAction" method="sabtAzmayeshType">
+            <result name="success">jsp/management/page_sabtAzmayeshType.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteShomareHesab" class="com.bitarts.parsian.action.LoginAction" method="sabteShomareHesab">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="ajaxlyValidationInsertNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="ajaxlyValidationInsertNamayande">
+            <result name="success">jsp/management/page_validationSabtNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="sabtNamyande" class="com.bitarts.parsian.action.NamayandeAction" method="sabtNamyande">
+            <result name="success">jsp/management/page_sabtNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="addNamayande">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllNamayande</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="editNamayande">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllNamayande</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="deleteNamayande">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllNamayande</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteCity" class="com.bitarts.parsian.action.CityAction" method="deleteCity">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllCities</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="listAllNamayande">
+            <result name="success">jsp/management/page_listNamayande.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllSerial" class="com.bitarts.parsian.action.SerialsAction" method="listAllSerial">
+            <result name="success">jsp/management/page_listSerial.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="serialsEstefadeNashode" class="com.bitarts.parsian.action.SerialsAction" method="serialsEstefadeNashode">
+            <param name="sourceFilePath">report/bimename/serialsNotUsed.jrxml</param>
+            <param name="destFileDIR">report/bimename/</param>
+            <result name="success" type="jasper">
+                <param name="location">report/bimename/serialsNotUsed.pdf</param>
+                <param name="dataSource">sequentialSerial</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editDasteSerials" class="com.bitarts.parsian.action.SerialsAction" method="editDasteSerials">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllSerial</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ebtalSerials" class="com.bitarts.parsian.action.SerialsAction" method="ebtalSerials">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllSerial</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtSerials" class="com.bitarts.parsian.action.SerialsAction" method="sabteSerials">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllSerial</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtCity" class="com.bitarts.parsian.action.CityAction" method="sabtCity">
+            <result name="success">jsp/management/page_sabtCity.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addCity" class="com.bitarts.parsian.action.CityAction" method="addCity">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllCities</param>
+            </result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteBank" class="com.bitarts.parsian.action.BankAction" method="deleteBank">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllBanks</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtBank" class="com.bitarts.parsian.action.BankAction" method="sabtBank">
+            <result name="success">jsp/management/page_sabtBank.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addBank" class="com.bitarts.parsian.action.BankAction" method="addBank">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllBanks</param>
+            </result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllBanks" class="com.bitarts.parsian.action.BankAction" method="listAllBanks">
+            <result name="success">jsp/management/page_listBanks.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteSemat" class="com.bitarts.parsian.action.SematAction" method="deleteSemat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllSemats</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtSemat" class="com.bitarts.parsian.action.SematAction" method="sabtSemat">
+            <result name="success">jsp/management/page_sabtSemat.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addSemat" class="com.bitarts.parsian.action.SematAction" method="addSemat">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllSemats</param>
+            </result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllSemats" class="com.bitarts.parsian.action.SematAction" method="listAllSemats">
+            <result name="success">jsp/management/page_listSemats.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllCities" class="com.bitarts.parsian.action.CityAction" method="listAllCities">
+            <result name="success">jsp/management/page_listCities.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllNamayandeForKarmozd" class="com.bitarts.parsian.action.NamayandeAction"
+                method="listAllNamayandeForKarmozd">
+            <result name="success">jsp/management/page_listNamayandeForKarmozd.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="detailsKarmozd" class="com.bitarts.parsian.action.NamayandeAction" method="detailsKarmozd">
+            <result name="success">jsp/management/detailsKarmozdePardakhtiTbl.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="addSenior" class="com.bitarts.parsian.action.NamayandeAction" method="addSenior">
+            <result name="success" type="redirectAction">
+                <param name="actionName">karmozdPanel</param>
+                <param name="selectedTab">tabs-13</param>
+            </result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addSeniorSubset" class="com.bitarts.parsian.action.NamayandeAction" method="addSeniorSubset">
+            <result name="success" type="redirectAction">
+                <param name="actionName">karmozdPanel</param>
+                <param name="selectedTab">tabs-13</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadNamaSubset" class="com.bitarts.parsian.action.NamayandeAction" method="loadNamaSubset">
+            <result name="success">jsp/fehrestePishnahad/viewArshadOfNamayandeAjaxly.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="viewSubset" class="com.bitarts.parsian.action.NamayandeAction" method="viewSubset">
+            <result name="success">jsp/fehrestePishnahad/viewSubsetsAjaxly.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="karmozdPanel" class="com.bitarts.parsian.action.NamayandeAction" method="karmozdPanel">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addToBlackList" class="com.bitarts.parsian.action.NamayandeAction" method="addToBlackList">
+        <result name="success" type="redirectAction">
+                <param name="actionName">karmozdPanel</param>
+        </result>
+        <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="createProjectKarmozd" class="com.bitarts.parsian.action.NamayandeAction" method="createProjectKarmozd">
+            <!--<result name="success" >jsp/management/page_karmozdPanel.jsp</result>-->
+            <result name="success" type="redirectAction">
+                <param name="actionName">karmozdPanel</param>
+            </result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtKarmozdStage1" class="com.bitarts.parsian.action.NamayandeAction"
+                method="pardakhtKarmozdStage1">
+            <result name="success">jsp/management/page_pardakhtKarmozd.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="karmozdPayment" class="com.bitarts.parsian.action.NamayandeAction" method="karmozdPayment">
+            <!--<result name="success">jsp/management/page_viewKarmozdProject.jsp</result>-->
+            <result type="redirectAction" name="success">
+                <param name="actionName">karmozdPanel</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchKarmozdNamayande" class="com.bitarts.parsian.action.NamayandeAction" method="searchKarmozdNamayande">
+            <result name="success">jsp/management/page_viewKarmozdProject.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="searchKarmozdGhest" class="com.bitarts.parsian.action.NamayandeAction" method="searchKarmozdGhest">
+            <result name="success">jsp/management/page_viewKarmozdProject.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="viewKarmozdProject" class="com.bitarts.parsian.action.NamayandeAction" method="viewKarmozdProject">
+            <result name="success">jsp/management/page_viewKarmozdProject.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeViewForNamayande" class="com.bitarts.parsian.action.NamayandeAction"
+                method="makeViewForNamayande">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">viewTrueFalse</param>
+            </result>
+        </action>
+        <action name="checkAccidentDateAjaxly" class="com.bitarts.parsian.action.DarkhastAction" method="checkAccidentDateAjaxly">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">viewTrueFalse</param>
+            </result>
+        </action>
+        <action name="changeStatusKN" class="com.bitarts.parsian.action.NamayandeAction" method="changeStatusKN">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">viewTrueFalse</param>
+            </result>
+        </action>
+        <action name="pardakhtKarmozdStage2" class="com.bitarts.parsian.action.NamayandeAction"
+                method="pardakhtKarmozdStage2">
+            <result name="success">jsp/management/page_pardakhtKarmozd.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="joziatPardakhtKarmozd" class="com.bitarts.parsian.action.NamayandeAction"
+                method="joziatPardakhtKarmozd">
+            <result name="success">jsp/management/joziatPardakhtKarmozd.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="sabtUser" class="com.bitarts.parsian.action.UserAction" method="sabtUser">
+            <result name="success">jsp/management/page_sabtUser.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addUser" class="com.bitarts.parsian.action.UserAction" method="addUser">
+            <result name="success">jsp/management/page_sabtUser.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="editUser" class="com.bitarts.parsian.action.UserAction" method="editUser">
+            <result name="success">jsp/management/page_sabtUser.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteUser" class="com.bitarts.parsian.action.UserAction" method="deleteUser">
+            <result name="success" type="redirectAction">
+                <param name="actionName">listAllUser</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="listAllUser" class="com.bitarts.parsian.action.UserAction" method="listAllUser">
+            <result name="success">jsp/management/page_listUser.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchUserToAddEmzaKonande" class="com.bitarts.parsian.action.UserAction" method="listAllUser">
+            <result name="success">jsp/management/page_searchUserToAddEmzaKonandeForm.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="cleanCache" class="com.bitarts.parsian.action.LoginAction" method="cleanCache">
+            <result name="success" type="redirectAction">loginUser</result>
+        </action>
+        <action name="assingToExpert" class="com.bitarts.parsian.action.LoginAction" method="assingToExpert">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sendNaghs" class="com.bitarts.parsian.action.LoginAction" method="sendNaghs">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="redirectToAddNazarPezeshk" class="com.bitarts.parsian.action.ClinicAction"
+                method="redirectToAddNazarPezeshk">
+            <result name="success">jsp/transitionForms/page_addNazarPezeshk.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="redirectToAddNazarRaeis" class="com.bitarts.parsian.action.ClinicAction"
+                method="redirectToAddNazarReis">
+            <result name="success">jsp/transitionForms/page_addNazarRaeis.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="tashimSoudMosharekat" class="com.bitarts.parsian.action.CredebitAction"
+                method="tashimSoudMosharekat">
+            <result name="success">/jsp/management/page_listOfAllBimenames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showMosharekat" class="com.bitarts.parsian.action.CredebitAction"
+                method="showMosharekat">
+            <result name="success">/jsp/management/page_listOfAllBimenames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="tashimSoudMosharekatAllinOne_calc" class="com.bitarts.parsian.action.CredebitAction"
+                method="tashimSoudMosharekatAllinOne_calc">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showMosharekat</param>
+                <param name="mosharekatDarManafe.id">${mosharekatDarManafe.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="mohasebeAndukhteBimenameha" class="com.bitarts.parsian.action.CredebitAction"
+                method="mohasebeAndukhteBimenameha">
+            <result name="success">/jsp/management/page_listOfAllBimenames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="mohasebeMosharekat" class="com.bitarts.parsian.action.CredebitAction" method="mohasebeMosharekat">
+            <result name="success">/jsp/management/page_listOfAllBimenames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteMosharekat" class="com.bitarts.parsian.action.CredebitAction" method="sabteMosharekat">
+            <result name="success">/jsp/management/page_listOfAllBimenames.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabteMosharekatAllinOne_calc" class="com.bitarts.parsian.action.CredebitAction" method="sabteMosharekatAllinOne_calc">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showMosharekat</param>
+                <param name="mosharekatDarManafe.id">${mosharekatDarManafe.id}</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadEstelamLoggedIn" class="com.bitarts.parsian.action.EstelamAction" method="loadEstelam">
+            <result name="success">jsp/estelam/page_andukhteyeSarmayegozari.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="loadSanadZani" class="com.bitarts.parsian.action.SabteSanadAction" method="loadSabteSanad">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_sabteSanadeDasti.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="loadEtebarCredebitListPagiated" class="com.bitarts.parsian.action.SabteSanadAction" method="loadEtebarCredebitListPaginated">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHaPaginated.jsp</result>
+        </action>
+        <action name="loadBedehihaPaginated" class="com.bitarts.parsian.action.SabteSanadAction" method="loadbedehihaPaginated">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHaPaginated.jsp</result>
+        </action>
+        <action name="viewSanadHa" class="com.bitarts.parsian.action.SabteSanadAction" method="loadSanadHa">
+            <result name="success">/jsp/daryaftPardakht/page_viewSanadHa.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="viewKhateSanadHa" class="com.bitarts.parsian.action.SabteSanadAction" method="viewKhateSanadHa">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_viewKhateSanadHa.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="changeVaziatSanad" class="com.bitarts.parsian.action.SabteSanadAction" method="changeVaziateSanad">-->
+            <!--<result name="success" type="redirectAction">-->
+                <!--<param name="actionName">viewKhateSanadHa</param>-->
+            <!--</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="khateSanadsHaOfSanad" class="com.bitarts.parsian.action.SabteSanadAction" method="viewKhateSanadHa">-->
+            <!--<result name="success">/jsp/daryaftPardakht/tbl_ListKhateSanad.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="khateSanadHaBySanadId" class="com.bitarts.parsian.action.SabteSanadAction" method="viewKhateSanadHa">-->
+            <!--<result name="success">/jsp/daryaftPardakht/khateSanadHaPaginated.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="loadCredebitsByFilter" class="com.bitarts.parsian.action.SabteSanadAction"-->
+                <!--method="loadCredebitsByFilter">-->
+            <!--<result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHaPaginated.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="sabteMultiSanad" class="com.bitarts.parsian.action.SabteSanadAction" method="sabteSanad">-->
+            <!--<result name="success">/jsp/daryaftPardakht/page_sabteSanadeDasti.jsp</result>-->
+            <!--<result name="nosession">jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="uploadFileBank">
+            <result>/jsp/management/page_sabtFileTxtAzBank.jsp</result>
+        </action>
+        <action name="sabteCredebiteDasti" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="sabteCredebiteDasti">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/credebitHa.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="wirayeshEtebareCheck" class="com.bitarts.parsian.action.SabteSanadAction" method="wirayeshEtebareCheck">
+            <result name="success" type="redirectAction">
+            <param name="actionName">fin/listEtebarat</param>
+            </result>
+        </action>
+        <action name="loadEtebarat" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="loadEtebarat">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/loadedEtebarat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="loadBedehiha" class="com.bitarts.parsian.action.SabteSanadAction"
+                method="loadBedehiha">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/loadedBedehiha.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sodurMoarefiname" class="com.bitarts.parsian.action.LoginAction" method="sodurMoarefiname">
+            <result name="success">/jsp/pishnahad/subForm/listMoarefinameAjax.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="addMoarefinameForTgrAjaxly" class="com.bitarts.parsian.action.LoginAction" method="addMoarefinameForTgrAjaxly">
+            <result name="success">/jsp/bimename/darkhastTaghirat/subforms/listMoarefiname.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="ebtalMoarefiname" class="com.bitarts.parsian.action.LoginAction" method="ebtalMoarefiname">
+            <result name="success">/jsp/pishnahad/subForm/listMoarefinameAjax.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sodurMoarefinameForTaghirat" class="com.bitarts.parsian.action.LoginAction"
+                method="sodurMoarefinameForTaghirat">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="prepareGozaresheBordroyeSodor" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheBordroyeSodor">
+            <result name="success">jsp/gozareshat/page_bordroyeSodour.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="aghsatVamReport" class="com.bitarts.parsian.action.GozareshAction" method="aghsatVamReport">
+            <result name="success">jsp/gozareshat/page_aghsatVamReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareAghsatVamReport" class="com.bitarts.parsian.action.GozareshAction" method="prepareAghsatVamReport">
+            <result name="success">jsp/gozareshat/page_aghsatVamReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="elhaghieReport" class="com.bitarts.parsian.action.GozareshAction" method="elhaghieReport">
+            <result name="success">jsp/gozareshat/page_elhaghieReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareElhaghieReport" class="com.bitarts.parsian.action.GozareshAction" method="prepareElhaghieReport">
+            <result name="success">jsp/gozareshat/page_elhaghieReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="prepareGozaresheZakhireRiazi" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheZakhireRiazi">
+            <result name="success">jsp/gozareshat/page_bordroyeZakhireRiazi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="batchTaghsitReport" class="com.bitarts.parsian.action.GozareshAction" method="batchTaghsitReport">
+            <result name="success">jsp/management/gozaresh/page_batchTaghsitReport.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="logsDaftarche" class="com.bitarts.parsian.action.GozareshAction" method="logsDaftarche">
+            <result name="success">jsp/management/gozaresh/logDaftarcheAjaxly.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareGozaresheZakhireRiaziTafkikGhest" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheZakhireRiaziTafkikGhest">
+            <result name="success">jsp/gozareshat/page_bordroyeZakhireRiaziTafkikGhest.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheZakhireRiazi" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheZakhireRiazi">
+            <result name="success">jsp/gozareshat/page_bordroyeZakhireRiazi.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheAndukhteSaalAvaal" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheAndukhteSaalAvaal">
+            <result name="success">jsp/gozareshat/page_andukhteSaalAvaal.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheZakhireRiaziTafkikGhest" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheZakhireRiaziTafkikGhest">
+            <result name="success">jsp/gozareshat/page_bordroyeZakhireRiaziTafkikGhest.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareGozaresheAghsatMoavagh" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheAghsatMoavagh">
+            <result name="success">jsp/gozareshat/page_bordroyeAghsatMoavagh.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheAghsatMoavagh" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheAghsatMoavagh">
+            <result name="success">jsp/gozareshat/page_bordroyeAghsatMoavagh.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheBordroyeSodor" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheBordroyeSodor">
+            <result name="success">jsp/gozareshat/page_bordroyeSodour.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareGozaresheSaleRanking" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheSaleRanking">
+            <result name="success">jsp/gozareshat/page_saleRanking.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheSaleRanking" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheSaleRanking">
+            <result name="success">jsp/gozareshat/page_saleRanking.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareGozaresheBordroyeMabaleghPardakhti" class="com.bitarts.parsian.action.GozareshAction"
+                         method="prepareGozaresheBordroyeMabaleghPardakhti">
+        <result name="success">jsp/gozareshat/page_bordroyeMabaleghPardakhti.jsp</result>
+        <result name="nosession">jsp/user/page_login.jsp</result>
+    </action>
+        <action name="makeGozaresheBordroyeMablaghPardakhti" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheBordroyeMablaghPardakhti">
+            <result name="success">jsp/gozareshat/page_bordroyeMabaleghPardakhti.jsp</result>
+        </action>
+
+        <action name="prepareGozaresheBordroyeBazkharidShode" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheBordroyeBazkharidShode">
+            <result name="success">jsp/gozareshat/page_bordroyeBazkharidShode.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheBordroyeBazkharidShode" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheBordroyeBazkharidShode">
+            <result name="success">jsp/gozareshat/page_bordroyeBazkharidShode.jsp</result>
+        </action>
+
+        <action name="prepareGozaresheBordroyeSarresidShode" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareGozaresheBordroyeSarresidShode">
+            <result name="success">jsp/gozareshat/page_bordroyeSarresidShode.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="makeGozaresheBordroyeSarresidShode" class="com.bitarts.parsian.action.GozareshAction"
+                method="makeGozaresheBordroyeSarresidShode">
+            <result name="success">jsp/gozareshat/page_bordroyeSarresidShode.jsp</result>
+        </action>
+
+        <action name="printKholasePishnehad" class="com.bitarts.parsian.action.PrintAction"
+                method="printKholasePishnehad">
+            <param name="sourceFilePath">report/kholasePishnahad.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/kholasePishnahad.pdf</param>
+                <param name="dataSource">pishnehad</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printGozareshRanking" class="com.bitarts.parsian.action.GozareshAction"
+                method="printGozareshRanking">
+            <param name="sourceFilePath">report/GozareshRanking.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/GozareshRanking.pdf</param>
+                <param name="dataSource">rankReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="makeGozaresheBordroyeSodor" class="com.bitarts.parsian.action.PrintAction" method="makeGozaresheBordroyeSodor">-->
+        <!--<param name="sourceFilePath">report/xlsTest.jrxml</param>-->
+        <!--<param name="destFileDIR">content/report/</param>-->
+        <!--<result name="success" type="jasper">-->
+        <!--<param name="location">content/report/xlsTest.xls</param>-->
+        <!--<param name="dataSource">pishnehadReport</param>-->
+        <!--<param name="format">XLS</param>-->
+        <!--<param name="realPath">${realPath}</param>-->
+        <!--</result>-->
+        <!--<result name="error">/jsp/user/page_login.jsp</result>-->
+        <!--&lt;!&ndash;<result name="success">jsp/gozareshat/page_bordroyeSodour.jsp</result>&ndash;&gt;-->
+        <!--&lt;!&ndash;<result name="nosession">jsp/user/page_login.jsp</result>            &ndash;&gt;-->
+        <!--</action>-->
+
+
+        <action name="printPishnehad" class="com.bitarts.parsian.action.PrintAction" method="printPishnehad">
+            <param name="sourceFilePath">report/pishnehad.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/pishnehad.pdf</param>
+                <param name="dataSource">pishnehad</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printMohasebateRiazi" class="com.bitarts.parsian.action.PrintAction"
+                method="printMohasebateRiazi">
+            <param name="sourceFilePath">report/mohasebateRiazi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/mohasebateRiazi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printSoratVaziateMali" class="com.bitarts.parsian.action.PrintAction"
+                method="printSoratVaziateMali">
+            <param name="sourceFilePath">report/soratVaziateMali.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/soratVaziateMali.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printSoartVaziateBimeName" class="com.bitarts.parsian.action.PrintAction"
+                method="printSoartVaziateBimeName">
+            <param name="sourceFilePath">report/printBimeName.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printBimeName.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosuccess">/jsp/page_error.jsp</result>
+        </action>
+        <action name="printDarkhasteElhaghie" class="com.bitarts.parsian.action.PrintAction"
+                method="printDarkhasteElhaghie">
+            <param name="sourceFilePath">report/printDarkhasteElhaghie.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printDarkhasteElhaghie.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printBimename" class="com.bitarts.parsian.action.PrintAction" method="printBimename">
+            <param name="sourceFilePath">report/bimename/bimename.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/bimenameChappi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printBimenameHalateAvalie" class="com.bitarts.parsian.action.PrintAction" method="printBimenameHalateAvalie">
+            <param name="sourceFilePath">report/bimename/bimename.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/bimenameChappi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="printBimenameChappi" class="com.bitarts.parsian.action.PrintAction" method="printBimenameChappi">
+            <param name="sourceFilePath">report/bimename/bimenameChappi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/bimenameChappi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+            <result name="nosuccess" >/jsp/page_error.jsp</result>
+        </action>
+        <action name="print_residePishPardakht" class="com.bitarts.parsian.action.PrintAction"
+                method="residePishPardakht">
+            <param name="sourceFilePath">report/resid/residePishPardakht.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/residePishPardakht.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeResidePardakhteInterneti" class="com.bitarts.parsian.action.PrintAction"
+                method="printeResidePardakhteInterneti">
+            <param name="sourceFilePath">report/residePardakhteElectronici.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/residePardakhteElectronici.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="print_darkhasteMoayenatePezeshki" class="com.bitarts.parsian.action.PrintAction"
+                method="darkhasteMoayenatePezeshki">
+            <param name="sourceFilePath">report/resid/darkhasteMoayenatePezeshki.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/darkhasteMoayenatePezeshki.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printZamimeBimename" class="com.bitarts.parsian.action.PrintAction" method="printZamimeBimename">
+            <param name="sourceFilePath">report/printZamimeBimename.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printZamimeBimename.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printHavaleyeKhesarat" class="com.bitarts.parsian.action.PrintAction"
+                method="printHavaleyeKhesarat">
+            <param name="sourceFilePath">report/darkhast/havaleyeKhesarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/havaleyeKhesarat.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeCheck" class="com.bitarts.parsian.action.PrintAction" method="printeCheck">
+            <param name="sourceFilePath">report/check.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/check.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="printeSanad" class="com.bitarts.parsian.action.PrintAction" method="printeSanad">-->
+            <!--<param name="sourceFilePath">report/sanad.jrxml</param>-->
+            <!--<param name="destFileDIR">content/report/</param>-->
+            <!--<result name="success" type="jasper">-->
+                <!--<param name="location">content/report/sanad.pdf</param>-->
+                <!--<param name="dataSource">pishnehadReport</param>-->
+                <!--<param name="format">PDF</param>-->
+                <!--<param name="realPath">${realPath}</param>-->
+            <!--</result>-->
+            <!--<result name="error">/jsp/user/page_login.jsp</result>-->
+        <!--</action>-->
+        <action name="printeBazkharid" class="com.bitarts.parsian.action.PrintAction" method="printeBazkharid">
+            <param name="sourceFilePath">report/darkhast/bazkharid.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/bazkharid.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeVam" class="com.bitarts.parsian.action.PrintAction" method="printeVam">
+            <param name="sourceFilePath">report/darkhast/vam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/vam.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeTasvieyeVam" class="com.bitarts.parsian.action.PrintAction" method="printeTasvieyeVam">
+            <param name="sourceFilePath">report/darkhast/tasvieyeVam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/tasvieyeVam.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeAdameTatabogheEmza" class="com.bitarts.parsian.action.PrintAction"
+                method="printeAdameTatabogheEmza">
+            <param name="sourceFilePath">report/darkhast/adameTatabogheEmza.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/adameTatabogheEmza.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printMafqudi" class="com.bitarts.parsian.action.PrintAction" method="printMafqudi">
+            <param name="sourceFilePath">report/darkhast/mafqudi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/mafqudi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeDarkhasteSodoreCheckeBazkharidi" class="com.bitarts.parsian.action.PrintAction"
+                method="printeDarkhasteSodoreCheckeBazkharidi">
+            <param name="sourceFilePath">report/darkhast/darkhasteSodoreCheckeBazkharidi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/darkhasteSodoreCheckeBazkharidi.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeHavaleKhesarat" class="com.bitarts.parsian.action.PrintAction"
+                method="printeHavaleKhesarat">
+            <param name="sourceFilePath">report/darkhast/havaleKhesarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/havaleKhesarat.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeAghsat_parsian" class="com.bitarts.parsian.action.PrintAction"
+                method="printeAghsat_parsian">
+            <param name="sourceFilePath">report/ghest/ghest_parsian.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_parsian.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeAghsat_tejarat" class="com.bitarts.parsian.action.PrintAction"
+                method="printeAghsat_tejarat">
+            <param name="sourceFilePath">report/ghest/ghest_tejarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_tejarat.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeBatchAghsatTejarat" class="com.bitarts.parsian.action.PrintAction"
+                method="printeBatchAghsatTejarat">
+            <param name="sourceFilePath">report/ghest/ghest_tejarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_tejarat.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeBatchAghsatParsian" class="com.bitarts.parsian.action.PrintAction"
+                method="printeBatchAghsatParsian">
+            <param name="sourceFilePath">report/ghest/ghest_parsian.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_parsian.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeSharayeteAkhzeVam" class="com.bitarts.parsian.action.PrintAction"
+                method="printeSharayeteAkhzeVam">
+            <param name="sourceFilePath">report/printeSharayeteAkhzeVam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printeSharayeteAkhzeVam.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeSharayeteTasvieyeVam" class="com.bitarts.parsian.action.PrintAction"
+                method="printeSharayeteTasvieyeVam">
+            <param name="sourceFilePath">report/printeSharayeteTasvieyeVam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printeSharayeteTasvieyeVam.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeSharayeteBardashtAzAndokhte" class="com.bitarts.parsian.action.PrintAction"
+                method="printeSharayeteBardashtAzAndokhte">
+            <param name="sourceFilePath">report/printeSharayeteBardashtAzAndokhte.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printeSharayeteBardashtAzAndokhte.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeElamieBestankarBardashtAzAndokhte" class="com.bitarts.parsian.action.PrintAction"
+                method="printeElamieBestankarBardashtAzAndokhte">
+            <param name="sourceFilePath">report/elamieBestankarBardashtAzAndokhte.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elamieBestankarBardashtAzAndokhte.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeElamBeMali" class="com.bitarts.parsian.action.PrintAction" method="printeElamBeMali">
+            <param name="sourceFilePath">report/elamBeMali.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elamBeMali.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeElameShomarehesab" class="com.bitarts.parsian.action.PrintAction"
+                method="printeElameShomarehesab">
+            <param name="sourceFilePath">report/elameShomareHesab.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elameShomareHesab.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printeElameShomarehesab_NameBeMali" class="com.bitarts.parsian.action.PrintAction"
+                method="printeElameShomarehesab_NameBeMali">
+            <param name="sourceFilePath">report/elamBeMali_Enseraf.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elamBeMali_Enseraf.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printGozareshSodur" class="com.bitarts.parsian.action.GozareshAction" method="printGozareshSodur">
+            <param name="sourceFilePath">report/GozareshMablagh.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/GozareshSodur.pdf</param>
+                <param name="dataSource">pes</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="elamBeMaliHavale" class="com.bitarts.parsian.action.KhesaratAction" method="elamBeMaliHavale">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showKhesarat</param>
+                <param name="khesarat.id">${khesarat.id}</param>
+            </result>
+        </action>
+        <action name="printGozareshMabalegh" class="com.bitarts.parsian.action.GozareshAction"
+                method="printGozareshMabalegh">
+            <param name="sourceFilePath">report/GozareshMabaleghPardakhti.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/GozareshMabaleghPardakhti.pdf</param>
+                <param name="dataSource">bimenameForGozareshList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printZakhireRiazi" class="com.bitarts.parsian.action.GozareshAction"
+                method="printZakhireRiazi">
+            <param name="sourceFilePath">report/GozareshRiazi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/GozareshRiazi.pdf</param>
+                <param name="dataSource">zakhireRiazi</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printAghsatMoavagh" class="com.bitarts.parsian.action.GozareshAction"
+                method="printAghsatMoavagh">
+            <param name="sourceFilePath">report/GozareshAghsatMoavagh.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/GozareshAghsatMoavagh.pdf</param>
+                <param name="dataSource">aghsatMoavagh</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printSuratVaziatGhestVam" class="com.bitarts.parsian.action.DarkhastAction"
+                method="printSuratVaziatGhestVam">
+            <param name="sourceFilePath">report/SuratVaziatGhestVam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/SuratVaziatGhestVam.pdf</param>
+                <param name="dataSource">darkhastBazkharid</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printDaftarcheGhestVamParsian" class="com.bitarts.parsian.action.DarkhastAction"
+                method="printDaftarcheGhestVam">
+            <param name="bank">parsian</param>
+            <param name="sourceFilePath">report/ghest_parsian_row_vam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_parsian_row_vam.pdf</param>
+                <param name="dataSource">ghests</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="printDaftarcheGhestVamTejarat" class="com.bitarts.parsian.action.DarkhastAction"
+                method="printDaftarcheGhestVam">
+            <param name="bank">tejarat</param>
+            <param name="sourceFilePath">report/ghest/ghest_vam_tejarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/ghest_vam_tejarat.pdf</param>
+                <param name="dataSource">pishnehadReport</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printSuratVaziatMaliVam" class="com.bitarts.parsian.action.DarkhastAction"
+                method="printSuratVaziatMaliVam">
+            <param name="sourceFilePath">report/SuratVaziatMaliVam.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/SuratVaziatMaliVam.pdf</param>
+                <param name="dataSource">darkhastBazkharid</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="showElhaghie" class="com.bitarts.parsian.action.ElhaghieAction" method="loadElhaghie">
+            <result name="success">/jsp/elhaghie/page_elhaghie.jsp</result>
+            <result name="nosession">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printJoziatBardasht" class="com.bitarts.parsian.action.PrintAction"
+                method="printJoziatBardasht">
+            <param name="sourceFilePath">report/JoziatBardasht.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/JoziatBardasht.pdf</param>
+                <param name="dataSource">darkhastBazkharid</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareConstantsItems" class="com.bitarts.parsian.action.ConstantsAction" method="prepare">
+            <result name="success">/jsp/constants/items.jsp</result>
+        </action>
+        <action name="prepareAddConstant" class="com.bitarts.parsian.action.ConstantsAction" method="prepareAdd">
+            <result name="success">/jsp/constants/itemsAdd.jsp</result>
+        </action>
+        <action name="addConstant" class="com.bitarts.parsian.action.ConstantsAction" method="addConstant">
+            <result name="success" type="redirectAction">prepareConstantsItems</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtHazinePezashki" class="com.bitarts.parsian.action.ClinicAction"
+                method="sabtHazinePezashkiStage1">
+            <result name="success">/jsp/management/page_hazinePezeshki.jsp</result>
+        </action>
+        <action name="searchHazinePezashki" class="com.bitarts.parsian.action.ClinicAction"
+                method="searchHazinePezashki">
+            <result name="success">/jsp/management/page_hazinePezeshki.jsp</result>
+        </action>
+        <action name="detailHazinePezashki" class="com.bitarts.parsian.action.ClinicAction"
+                method="detailHazinePezashki">
+            <result name="success">/jsp/management/page_detailHazinePezeshki.jsp</result>
+        </action>
+        <action name="sabtDetailHazinePezashki" class="com.bitarts.parsian.action.ClinicAction"
+                method="sabtDetailHazinePezashki">
+            <result name="success">/jsp/management/page_hazinePezeshki.jsp</result>
+        </action>
+        <action name="gozareshAghsatMahane" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMahaneStage1">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMahane.jsp</result>
+        </action>
+        <action name="bazgashtVaziatShow" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="bazgashtVaziatStage1">
+            <result name="success">/jsp/management/namayande/page_bazgashtVaziat.jsp</result>
+        </action>
+        <action name="bazgashtVaziat" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="bazgashtVaziatStage2">
+            <result name="success">/jsp/management/namayande/page_bazgashtVaziat.jsp</result>
+            <result name="error">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gozareshAghsatMahaneSearch" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMahaneSearch">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMahane.jsp</result>
+            <result name="input">/jsp/management/namayande/page_gozareshAghsatMahane.jsp</result>
+        </action>
+        <action name="gozareshAghsatMoavagh" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMoavaghStage1">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMoavagh.jsp</result>
+        </action>
+        <action name="gozareshAghsatMoavaghSearch" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMoavaghSearch">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMoavagh.jsp</result>
+            <result name="input">/jsp/management/namayande/page_gozareshAghsatMoavagh.jsp</result>
+        </action>
+        <action name="gozareshAghsatMali" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMaliStage1">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMali.jsp</result>
+        </action>
+        <action name="gozareshAghsatFastView" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMaliFastView">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMaliFastView.jsp</result>
+        </action>
+        <action name="gozareshAghsatMaliExcel" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMaliStageSearch">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMaliExcel.jsp</result>
+        </action>
+        <action name="gozareshAghsatMaliSearch" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMaliStageSearch">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMali.jsp</result>
+            <result name="input">/jsp/management/namayande/page_gozareshAghsatMali.jsp</result>
+        </action>
+        <action name="gozareshAghsatMaliDetail" class="com.bitarts.parsian.action.NamayandeKartablAction"
+                method="gozareshAghsatMaliStageDetail">
+            <result name="success">/jsp/management/namayande/page_gozareshAghsatMaliDetail.jsp</result>
+        </action>
+        <action name="calculateKhesaratAjaxly" class="com.bitarts.parsian.action.KhesaratAction" method="calculateKhesaratAjaxly">
+            <result name="input">/jsp/ajaxCalcKhesarat.jsp</result>
+            <result name="success">/jsp/ajaxCalcKhesarat.jsp</result>
+        </action>
+        <action name="calculateAndukhteEtcAjaxly" class="com.bitarts.parsian.action.CredebitAction" method="calculateAndukhteEtcAjaxly">
+            <result name="success">/jsp/ajaxCalcAndukhte.jsp</result>
+        </action>
+        <action name="showKhesarat" class="com.bitarts.parsian.action.KhesaratAction" method="prepareKhesarat">
+            <result name="success">/jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+        </action>
+        <action name="addKhesaratHavale" class="com.bitarts.parsian.action.KhesaratAction"
+                method="prepareKhesaratHavale">
+            <result name="success">/jsp/management/khesarat/page_khesaratHavaleAdd.jsp</result>
+        </action>
+        <action name="addKhesaratHavaleDo" class="com.bitarts.parsian.action.KhesaratAction" method="addKhesaratHavale">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+        </action>
+        <action name="delKhesaratHavale" class="com.bitarts.parsian.action.KhesaratAction" method="delKhesaratHavale">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>
+        </action>
+        <action name="sabtKhesaratHavale" class="com.bitarts.parsian.action.KhesaratAction" method="sabtKhesaratHavale">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showKhesarat</param>
+                <param name="khesarat.id">${khesarat.id}</param>
+                <param name="havaleHa">${havaleHa}</param>
+            </result>
+            <result name="input">/jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+        </action>
+        <action name="prepareGozareshKhesarat" class="com.bitarts.parsian.action.GozareshAction"
+                method="prepareKhesaratReport">
+            <result name="success">/jsp/management/khesarat/page_gozareshKhesarat.jsp</result>
+            <result name="input">/jsp/management/khesarat/page_gozareshKhesarat.jsp</result>
+        </action>
+        <action name="gozareshKhesarat" class="com.bitarts.parsian.action.GozareshAction" method="khesaratReport">
+            <result name="success">/jsp/management/khesarat/page_gozareshKhesarat.jsp</result>
+            <result name="input">/jsp/management/khesarat/page_gozareshKhesarat.jsp</result>
+        </action>
+        <action name="printKhesaratHavale" class="com.bitarts.parsian.action.KhesaratAction" method="printKhesarat">
+            <param name="sourceFilePath">report/khesaratHavale.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/KhesaratHavale.pdf</param>
+                <param name="dataSource">khesarat.havaleList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printMohasebeKhesarat" class="com.bitarts.parsian.action.KhesaratAction"
+                method="printMohasebeKhesarat">
+            <param name="sourceFilePath">report/mohasebeKhesarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/MohasebeKhesarat.pdf</param>
+                <param name="dataSource">khesarat</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printTainVaziatKhesarat" class="com.bitarts.parsian.action.KhesaratAction"
+                method="printTainVaziat">
+            <param name="sourceFilePath">report/tainVaziatKhesarat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/TainVaziatKhesarat.pdf</param>
+                <param name="dataSource">khesarat</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="prepareGozareshTedadiVaziatPishnehad" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshTedadVaziatPishnehad">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadiVaziat.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshTedadiVaziat.jsp</result>
+        </action>
+        <action name="gozareshTedadiVaziatPishnehad" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshTedadVaziatPishnehad">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadiVaziat.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshTedadiVaziat.jsp</result>
+        </action>
+        <action name="prepareGozareshMoghayeseNamayande" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshMoghayeseNamayande">
+            <result name="success">/jsp/management/gozaresh/page_gozareshMoghayeseNamayande.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshMoghayeseNamayande.jsp</result>
+        </action>
+        <action name="gozareshMoghayeseNamayande" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshMoghayeseNamayande">
+            <result name="success">/jsp/management/gozaresh/page_gozareshMoghayeseNamayande.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshMoghayeseNamayande.jsp</result>
+        </action>
+        <action name="gozareshNemudarSabtPishnehad" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshNemudarSabtPishnehad">
+            <result name="success">/jsp/management/gozaresh/page_gozareshNemudarSabtPishnehad.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshNemudarSabtPishnehad.jsp</result>
+        </action>
+        <action name="prepareGozareshNemudarSabtPishnehad" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshNemudarSabtPishnehad">
+            <result name="success">/jsp/management/gozaresh/page_gozareshNemudarSabtPishnehad.jsp</result>
+            <result name="input">/jsp/management/gozaresh/page_gozareshNemudarSabtPishnehad.jsp</result>
+        </action>
+        <action name="prepareGozareshTedadPishnehadTafkikKarbar"
+                class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshTedadPishnehadTafkikKarbar">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadTafkik.jsp</result>
+        </action>
+        <action name="gozareshTedadPishnehadTafkikKarbar" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshTedadPishnehadTafkikKarbar">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadTafkik.jsp</result>
+        </action>
+        <action name="prepareGozareshTedadPishnehadTafkikVaziat"
+                class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshTedadPishnehadTafkikVaziat">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadTafkikVaziat.jsp</result>
+        </action>
+        <action name="gozareshTedadPishnehadTafkikVaziat" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshTedadPishnehadTafkikVaziat">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTedadTafkikVaziat.jsp</result>
+        </action>
+        <action name="prepareGozareshTransitionLog" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshTransitionLog">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTransitionLog.jsp</result>
+        </action>
+        <action name="gozareshTransitionLog" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshTransitionLog">
+            <result name="success">/jsp/management/gozaresh/page_gozareshTransitionLog.jsp</result>
+        </action>
+        <action name="prepareGozareshPardakhtElectronic" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshPardakhtElectronic">
+            <result name="success">/jsp/management/gozaresh/page_gozareshElectronic.jsp</result>
+        </action>
+        <action name="gozareshPardakhtElectronic" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshPardakhtElectronic">
+            <result name="success">/jsp/management/gozaresh/page_gozareshElectronic.jsp</result>
+        </action>
+        <action name="prepareGozareshSadereVarizi" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="prepareGozareshSadereVarizi">
+            <result name="success">/jsp/management/gozaresh/page_gozareshSadereVarizi.jsp</result>
+        </action>
+        <action name="gozareshSadereVarizi" class="com.bitarts.parsian.action.GozareshModiriatAction"
+                method="makeGozareshSadereVarizi">
+            <result name="success">/jsp/management/gozaresh/page_gozareshSadereVarizi.jsp</result>
+        </action>
+        <action name="signUp" class="com.bitarts.parsian.action.LoginAction" method="prepareSignup">
+            <result name="success">/jsp/user/page_signup.jsp</result>
+        </action>
+        <action name="signUpDo" class="com.bitarts.parsian.action.LoginAction" method="signUp">
+            <result name="success">jsp/user/page_signup.jsp</result>
+            <result name="input">/jsp/user/page_signup.jsp</result>
+            <result name="error">/jsp/user/page_signup.jsp</result>
+        </action>
+        <action name="pardakhtInternetiGhest" class="com.bitarts.parsian.action.KartablAction"
+                method="pardakhtInternetiGhest">
+            <result name="success" type="redirect">${epaymentHost}/pecpaymentgateway?au=${authorityId}</result>
+            <result name="error" type="redirectAction">kartabl_login</result>
+            <result name="nosession">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="pardakhtInternetiGhestFinal" class="com.bitarts.parsian.action.KartablAction"
+                method="pardakhtInternetiGhestFinal">
+            <result name="success">jsp/user/page_paymentFinal.jsp</result>
+            <!--<result name="success" type="redirectAction">kartabl_login</result>-->
+            <!--<result name="success_namayande" type="redirectAction">-->
+                <!--<param name="actionName">editShowFormReadOnly</param>-->
+                <!--<param name="pishnehad.id">${pishnehad.id}</param>-->
+                <!--<param name="selectedTab">tabs_101</param>-->
+            <!--</result>-->
+            <result name="error" type="redirectAction">kartabl_login</result>
+            <result name="nosession">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForBimename" class="com.bitarts.parsian.action.LoginAction" method="searchForBimename">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForAllDarkhasts" class="com.bitarts.parsian.action.LoginAction" method="searchForAllDarkhasts">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="searchForDarkhasts" class="com.bitarts.parsian.action.LoginAction" method="searchForDarkhasts">
+            <result name="success">jsp/fehrestePishnahad/page_resultFehrestePishnahad.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="darkhastTaghirKod" class="com.bitarts.parsian.action.PishnahadAction" method="darkhastTaghirKod">
+            <result name="success">jsp/pishnahad/page_pishnahadeBimeOmreEnferadi.jsp</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="darkhastTozih" class="com.bitarts.parsian.action.PishnahadAction" method="darkhastTozih">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhast.id}</param>
+            </result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="darkhastKhesarat" class="com.bitarts.parsian.action.PishnahadAction" method="darkhastKhesarat">
+            <result name="success">jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>
+            <result name="error" type="redirectAction">
+                <param name="actionName">loginUser</param>
+            </result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <!--<action name="darkhastKhesarat" class="com.bitarts.parsian.action.KhesaratAction" method="prepareKhesarat">-->
+            <!--<result name="success">/jsp/bimename/page_darkhastBimenameOmreEnferadi.jsp</result>-->
+        <!--</action>-->
+        <action name="hazfDarkhast" class="com.bitarts.parsian.action.ElhaghieAction" method="hazfDarkhast">
+            <result name="success" type="redirectAction">loginUser</result>
+        </action>
+        <action name="sabtDarkhastTaghirKod" class="com.bitarts.parsian.action.PishnahadAction"
+                method="sabtDarkhastTaghirKod">
+            <result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhast.id}</param>
+            </result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="taiidDarkhastTaghirKod" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="taiidDarkhastTaghirKod">
+            <result name="success" type="redirectAction">loginUser</result>
+            <!--<result name="success" type="redirectAction">
+                <param name="actionName">editDarkhastForm</param>
+                <param name="darkhastBazkharid.id">${darkhastBazkharid.id}</param>
+            </result>-->
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+
+        <action name="taiidDarkhastTozih" class="com.bitarts.parsian.action.ElhaghieAction" method="taiidDarkhastTozih">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="sabtTaiidDarkhastTaghirKod" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="sabtTaiidDarkhastTaghirKod">
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="error">index.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printElhaghieTaghirKod" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="printElhaghieTaghirKod">
+            <param name="sourceFilePath">report/taghirKod.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/TaghirKod.pdf</param>
+                <param name="dataSource">elhaghie</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printElhaghieAzmayeshiA4" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="printElhaghieAzmayeshiA4">
+            <param name="sourceFilePath">report/elhaghiye_A4_azmayeshi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elhaghiye_A4_azmayeshi.pdf</param>
+                <param name="dataSource">elhaghieList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printElhaghieFinalA4" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="printElhaghieFinalA4">
+            <param name="sourceFilePath">report/elhaghiye_A4_final.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elhaghiye_A4_final.pdf</param>
+                <param name="dataSource">elhaghieList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printElhaghieAzmayeshiA5" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="printElhaghieAzmayeshiA5">
+                <param name="sourceFilePath">report/elhaghiye_A5_azmayeshi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elhaghiye_A5_azmayeshi.pdf</param>
+                <param name="dataSource">elhaghieList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printElhaghieFinalA5" class="com.bitarts.parsian.action.ElhaghieAction"
+                method="printElhaghieFinalA5">
+            <param name="sourceFilePath">report/elhaghiye_A5_final.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/elhaghiye_A5_final.pdf</param>
+                <param name="dataSource">elhaghieList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="changeUserPassword" class="com.bitarts.parsian.action.LoginAction" method="chageUserPassword">
+            <result name="success">/jsp/page_changePassword.jsp</result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="preMobileNumber" class="com.bitarts.parsian.action.LoginAction" method="preMobileNumber">
+            <result name="success">/jsp/user/page_setMobile.jsp</result>
+        </action>
+        <action name="setMobileNumber" class="com.bitarts.parsian.action.LoginAction" method="setMobileNumber">
+            <result name="success" type="redirectAction">loginUser</result>
+        </action>
+        <action name="deleteEtebarOperation" class="com.bitarts.parsian.action.CredebitAction" method="deleteEtebarOperation">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">deleteEtebarAjax</param>
+            </result>
+        </action>
+        <action name="editEtebarOperation" class="com.bitarts.parsian.action.CredebitAction" method="editEtebarOperation">
+            <result name="success">/jsp/daryaftPardakht/sabteSanad/loadedEtebarat.jsp</result>
+            <result name="nosession">jsp/user/page_login.jsp</result>
+        </action>
+        <action name="deleteBedehiOperation" class="com.bitarts.parsian.action.CredebitAction" method="deleteBedehiOperation">
+            <result type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">deleteEtebarAjax</param>
+            </result>
+        </action>
+        <action name="changePassword" class="com.bitarts.parsian.action.LoginAction" method="changePassword">
+            <result name="input">/jsp/page_changePassword.jsp</result>
+            <result name="success" type="redirectAction">loginUser</result>
+            <result name="modiriat" type="redirectAction">listAllUser</result>
+        </action>
+
+        <action name="showGharardad" class="com.bitarts.parsian.action.GharardadAction" method="showGharardad">
+            <result name="success">/jsp/gharardad/page_gharardad.jsp</result>
+            <result name="input">/jsp/gharardad/page_gharardad.jsp</result>
+        </action>
+        <action name="delGharardad" class="com.bitarts.parsian.action.GharardadAction" method="delGharardad">
+            <result name="success" type="redirectAction">
+                <param name="actionName">loginUser</param>
+                <param name="selectedTab">tabs-7</param>
+            </result>
+        </action>
+        <action name="addGharardad" class="com.bitarts.parsian.action.GharardadAction" method="addGharardad">
+            <result name="success">/jsp/gharardad/page_gharardad.jsp</result>
+        </action>
+        <action name="getValidationConstAjax" class="com.bitarts.parsian.action.PishnahadAction" method="getValidationConstAjax">
+            <result name="success">/jsp/estelam/validationConstAjax.jsp</result>
+        </action>
+        <action name="sabtGharardad" class="com.bitarts.parsian.action.GharardadAction" method="sabtGharardad">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+            </result>
+            <result name="input">/jsp/gharardad/page_gharardad.jsp</result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="uploadFileBimeGozar" class="com.bitarts.parsian.action.GharardadAction"
+                method="uploadFileBimeGozar">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="hazfPishnehad" class="com.bitarts.parsian.action.GharardadAction" method="hazfPishnehad">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="ersalNahaiPishnehad" class="com.bitarts.parsian.action.GharardadAction"
+                method="ersalNahaiPishnehad">
+            <result name="success">/jsp/gharardad/page_gharardad.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="nahayeeShodJami" class="com.bitarts.parsian.action.GharardadAction"
+                method="nahayeeShodJami">
+            <result name="success">/jsp/gharardad/page_gharardad.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="ersalShodSodurJami" class="com.bitarts.parsian.action.GharardadAction"
+                method="ersalShodSodurJami">
+            <result name="success">/jsp/gharardad/page_gharardad.jsp</result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="erjaPezeshPishnehad" class="com.bitarts.parsian.action.GharardadAction"
+                method="erjaPezeshkPishnehad">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="printBimenameList" class="com.bitarts.parsian.action.GharardadAction" method="printBimenameList">
+            <param name="sourceFilePath">report/bimename/bimenameChappi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/bimenameChappi.pdf</param>
+                <param name="dataSource">pishnehadReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printZamimeBimenameList" class="com.bitarts.parsian.action.GharardadAction"
+                method="printZamimeBimenameList">
+            <param name="sourceFilePath">report/printZamimeBimename.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/printZamimeBimename.pdf</param>
+                <param name="dataSource">pishnehadReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printMohasebateRiaziList" class="com.bitarts.parsian.action.GharardadAction"
+                method="printMohasebateRiaziList">
+            <param name="sourceFilePath">report/mohasebateRiazi.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/mohasebateRiazi.pdf</param>
+                <param name="dataSource">pishnehadReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="printMohasebePishPardakht" class="com.bitarts.parsian.action.GharardadAction"
+                method="printMohasebePishPardakht">
+            <param name="sourceFilePath">report/mohasebePishPardakht.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/mohasebePishPardakht.pdf</param>
+                <param name="dataSource">pishnehadReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gharardadTakhsisKarshenas" class="com.bitarts.parsian.action.GharardadAction"
+                method="takhsisKarshenas">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <action name="printGharardadBimenameBaAghsat" class="com.bitarts.parsian.action.GharardadAction"
+                method="printBimenameBaAghsat">
+            <param name="sourceFilePath">report/gharardadBimenameBaAghsat.jrxml</param>
+            <param name="destFileDIR">content/report/</param>
+            <result name="success" type="jasper">
+                <param name="location">content/report/gharardadBimenameBaAghsat.pdf</param>
+                <param name="dataSource">pishnehadReportList</param>
+                <param name="format">PDF</param>
+                <param name="realPath">${realPath}</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <action name="gharardadSodurBimename" class="com.bitarts.parsian.action.GharardadAction"
+                method="sodurJami">
+            <result name="success" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">showGharardad</param>
+                <param name="gharardad.id">${gharardad.id}</param>
+                <param name="selectedMenu">${selectedMenu}</param>
+            </result>
+            <result name="error" type="redirectAction">loginUser</result>
+        </action>
+        <!--b-h-->
+        <action name="testExCell" class="com.bitarts.parsian.action.StrutsFileUpload" method="test">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">bankExcelFile</param>
+                <param name="contentDisposition">attachment;filename="test.xls"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <result name="error">/jsp/user/page_login.jsp</result>
+        </action>
+        <!--b-h-->
+        <action name="setSessionForDaftarType" class="com.bitarts.parsian.action.LoginAction" method="setSessionDaftar">
+            <result name="success" type="stream">
+                <param name="contentType">text/html</param>
+                <param name="inputName">hasDaftareNamayande</param>
+            </result>
+            <!--<result name= "success"> /jsp/user/page_login.jsp</result>-->
+
+        </action>
+    </package>
+    <include file="actions/fin.xml"/>
+    <include file="actions/dev.xml"/>
+</struts>

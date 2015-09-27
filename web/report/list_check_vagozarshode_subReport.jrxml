@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshMablagh_subreport" pageWidth="822" pageHeight="572" orientation="Landscape" columnWidth="822" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<field name="daryafteCheck" class="com.bitarts.parsian.model.asnadeSodor.DaryafteCheck"/>
+	<field name="shenaseCredebit" class="java.lang.String"/>
+	<field name="amount_long" class="java.lang.Long"/>
+	<field name="shomareMoshtari" class="java.lang.String"/>
+	<field name="bankName" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="749" y="0" width="52" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="670" y="0" width="79" height="28"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{shenaseCredebit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="604" y="0" width="66" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="542" y="0" width="62" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{daryafteCheck}.getSeri()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="478" y="0" width="64" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{daryafteCheck}.getSerial()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="392" y="0" width="86" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{daryafteCheck}.getHesabBanki()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="247" y="0" width="69" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{daryafteCheck}.getBranchName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="174" y="0" width="73" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{daryafteCheck}.getTarikhSarresid()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement style="table_TD" mode="Transparent" x="111" y="0" width="63" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{amount_long}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" mode="Transparent" x="0" y="0" width="111" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{shomareMoshtari}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="316" y="0" width="76" height="28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bankName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="soratVaziateMali_row" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD_2" mode="Opaque" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<field name="bedehiCredebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="sanad.createdDate" class="java.lang.String"/>
+	<field name="bedehiCredebit.createdDate" class="java.lang.String"/>
+	<field name="bedehiCredebit.amount" class="java.lang.String"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="sanad.shomare" class="java.lang.String"/>
+	<field name="bedehiCredebit.ghest.sarresidDate" class="java.lang.String"/>
+	<field name="bedehiCredebit.credebitType" class="com.bitarts.parsian.model.asnadeSodor.Credebit.CredebitType"/>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement style="table_TD_2" x="466" y="0" width="89" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="table_TD_2" x="393" y="0" width="73" height="17"/>
+				<textElement/>
+			</textField>
+			<textField>
+				<reportElement style="table_TD_2" x="302" y="0" width="91" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sanad.createdDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD_2" x="116" y="0" width="85" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.credebitType}.toString().equalsIgnoreCase("ACH")?$F{bedehiCredebit.createdDate}:$F{bedehiCredebit.ghest.sarresidDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement style="table_TD_2" x="0" y="0" width="116" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD_2" x="201" y="0" width="101" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sanad.createdDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

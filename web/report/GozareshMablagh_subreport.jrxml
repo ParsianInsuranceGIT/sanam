@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshMablagh_subreport" pageWidth="822" pageHeight="572" orientation="Landscape" columnWidth="822" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="284"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<field name="radif" class="java.lang.String"/>
+	<field name="pishnehad" class="com.bitarts.parsian.model.pishnahad.Pishnehad"/>
+	<field name="irs" class="com.bitarts.parsian.service.calculations.Reports.IRs"/>
+	<field name="haghBimeKhaalesFotYekja" class="java.lang.String"/>
+	<field name="haghBimeFotDarAsarHaadese" class="java.lang.String"/>
+	<field name="haghBimeAmraazKhaas" class="java.lang.String"/>
+	<field name="haghBimeAzKaarOftaadegi" class="java.lang.String"/>
+	<field name="haghBimePardaakhti" class="java.lang.String"/>
+	<field name="jamSadere" class="java.lang.String"/>
+	<detail>
+		<band height="83" splitType="Stretch">
+			<textField>
+				<reportElement x="773" y="0" width="29" height="83"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="0" width="35" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getOstan().getCityName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="43" width="35" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getShahr().getCityName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="675" y="0" width="63" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getVahedSodur().getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="675" y="43" width="63" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getVahedSodur().getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="607" y="0" width="68" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="607" y="43" width="68" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getNamayande().getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="554" y="0" width="53" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimename().getShomare()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="554" y="43" width="53" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimename().getTarikhSodour()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="0" width="65" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimename().getTarikhShorou()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="43" width="65" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimename().getTarikhEngheza()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="0" width="52" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimeGozar().getShakhs().getFullName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="43" width="52" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getFullName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="0" width="30" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getModat_bimename()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="43" width="30" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBimeShode().getShakhs().getSen()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="72" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getSarmaye_paye_fot()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="43" width="72" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{haghBimeKhaalesFotYekja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="43" width="54" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getBazarYab().getFullName()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="0" width="54" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getNahvePardakhtHaghBimeFarsi()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="0" width="38" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getNerkh_afzayesh_salaneh_hagh_bime()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="43" width="38" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getNerkh_afzayesh_salaneh_sarmaye_fot()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="0" width="64" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getPooshesh_fot_dar_asar_haadese().equals("no")?"خیر":"بلی"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="43" width="64" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{haghBimeFotDarAsarHaadese}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="0" width="61" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getPooshesh_amraz_khas().equals("no")?"خیر":"بلی"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="51" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{pishnehad}.getEstelam().getPooshesh_moafiat().equals("no")?"خیر":"بلی"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="67" height="43"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{haghBimePardaakhti}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="43" width="61" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{haghBimeAmraazKhaas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="43" width="51" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{haghBimeAzKaarOftaadegi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="43" width="67" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jamSadere}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

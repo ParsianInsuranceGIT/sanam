@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshRanking" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="10"/>
+	<property name="ireport.y" value="62"/>
+	<property name="ireport.callouts" value="##Thu Jul 07 01:52:56 IRST 2011"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="com.bitarts.common.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<subDataset name="dataset1"/>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/media/Job/Parsian/web/report/"]]></defaultValueExpression>
+	</parameter>
+	<field name="shomareHavale" class="java.lang.String"/>
+	<field name="tarikhHavale" class="java.lang.String"/>
+	<field name="amountHavale" class="java.lang.String"/>
+	<field name="amountHavaleFarsi" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="shomareHesab" class="java.lang.String"/>
+	<field name="userCreator" class="com.bitarts.parsian.model.User"/>
+	<field name="khesarat" class="com.bitarts.parsian.model.Khesarat"/>
+	<pageHeader>
+		<band height="133">
+			<frame>
+				<reportElement x="0" y="0" width="802" height="133"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<image>
+					<reportElement x="750" y="40" width="52" height="63"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{realPath}+"report/img/f3.jpg"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="10" y="30" width="59" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[DateUtil.getCurrentDate()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="69" y="30" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[تاريخ:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="69" y="50" width="74" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[ساعت :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="10" y="50" width="60" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[DateUtil.getCurrentTime()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="89" y="68" width="29" height="20"/>
+					<box bottomPadding="2"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="normal" x="118" y="68" width="25" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[صفحه]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="normal" x="79" y="68" width="10" height="20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="B Nazanin" size="12" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[از]]></text>
+				</staticText>
+				<textField evaluationTime="Auto">
+					<reportElement x="50" y="68" width="29" height="20"/>
+					<box bottomPadding="2"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="143" y="60" width="541" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="684" y="0" width="56" height="133"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[شرکت سهامی بیمه پارسیان]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="285" y="20" width="210" height="40"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[حواله خسارت پرداختی]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="400">
+			<frame>
+				<reportElement x="0" y="0" width="802" height="400"/>
+				<staticText>
+					<reportElement mode="Opaque" x="758" y="0" width="44" height="100" backcolor="#D1D1D1"/>
+					<textElement rotation="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[مشخصات حواله]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="0" y="0" width="758" height="100"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="658" y="8" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[شماره حواله:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="658" y="39" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[تاریح صدور حواله:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="658" y="71" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[شماره پرونده خسارت:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="261" y="8" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[شماره بیمه نامه:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="261" y="39" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[بیمه گذار:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="261" y="71" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[نمایندگی:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="440" y="8" width="218" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{shomareHavale}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="440" y="39" width="218" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tarikhHavale}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="440" y="71" width="218" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getShomareParvande()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="8" width="211" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getBimename().getShomare()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="39" width="211" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getBimename().getPishnehad().getBimeGozar().getShakhs().getFullName()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="71" width="211" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getBimename().getPishnehad().getNamayande().getKodeNamayandeKargozar()]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement x="0" y="120" width="758" height="188"/>
+				</rectangle>
+				<staticText>
+					<reportElement mode="Opaque" x="758" y="120" width="44" height="188" backcolor="#D1D1D1"/>
+					<textElement/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="628" y="134" width="122" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[مدیریت محترم امور مالی:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="650" y="174" width="100" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[خواهشمند است مبلغ ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="550" y="174" width="100" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amountHavale}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="450" y="174" width="100" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[ریال به حروف:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="118" y="174" width="332" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{amountHavaleFarsi}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="50" y="174" width="68" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[ریال]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="650" y="217" width="100" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[در وجه]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="529" y="217" width="121" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="196" y="217" width="100" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[بابت پرونده خسارت شماره]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="50" y="217" width="146" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getShomareParvande()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="650" y="259" width="100" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[پرداخت نمایید.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="308" width="292" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[مدیریت خسارت عمر انفرادی - عمر و سرمایه گذاری]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="658" y="340" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تایید کننده نهایی]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="621" y="370" width="166" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{userCreator}.getFullName()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="118" y="340" width="100" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[تنظیم کننده]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="77" y="370" width="166" height="20"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{khesarat}.getKarshenasKhesarat().getFullName()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="450" y="217" width="79" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[به شماره حساب]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="296" y="217" width="152" height="20"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{shomareHesab}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

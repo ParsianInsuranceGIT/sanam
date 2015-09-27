@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="soratVaziateMali_row" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD_2" mode="Opaque" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="realPath" class="java.lang.String" isForPrompting="false"/>
+	<field name="shenaseBedehi" class="java.lang.String"/>
+	<field name="bedehi" class="java.lang.Boolean"/>
+	<field name="createdDate" class="java.lang.String"/>
+	<field name="ghest.sarresidDate" class="java.lang.String"/>
+	<field name="credebitType" class="com.bitarts.parsian.model.asnadeSodor.Credebit.CredebitType"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="pishnehad.bimename.shomare" class="java.lang.String"/>
+	<field name="identifier" class="java.lang.String"/>
+	<field name="pishnehad.bimename" class="com.bitarts.parsian.model.bimename.Bimename"/>
+	<field name="pishnehad.bimename.tarikhSodour" class="java.lang.String"/>
+	<field name="pishnehad.bimename.tarikhEbtal" class="java.lang.String"/>
+	<field name="shenaseCredebit" class="java.lang.String"/>
+	<field name="khateSanadsBedehi" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="khateSanadsEtebar" class="org.apache.struts2.views.jasperreports.ValueStackDataSource"/>
+	<field name="khateSanadsBedehi.empty" class="java.lang.Boolean"/>
+	<field name="khateSanadsEtebar.empty" class="java.lang.Boolean"/>
+	<field name="sanad.shomareSanad" class="java.lang.String"/>
+	<field name="sanad.createdDate" class="java.lang.String"/>
+	<field name="sanad.amount" class="java.lang.String"/>
+	<field name="sanadKhorde" class="java.lang.String"/>
+	<field name="sanad.tarikhPardakht" class="java.lang.String"/>
+    <field name="credebitTypeFarsi" class="java.lang.String"/>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="table_TD" x="525" y="0" width="30" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="299" y="0" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{shenaseCredebit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="152" y="0" width="84" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebitType}.toString().equalsIgnoreCase("ETEBAR_EBTAL")?$F{pishnehad.bimename.tarikhEbtal}:$F{credebitType}.toString().equals("ELHAGHIE_BARGASHTI_ETEBAR")?$F{pishnehad.bimename}.getElhaghieBazkharid().getCreatedDate():$F{pishnehad.bimename.tarikhSodour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="76" y="0" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebitType}.toString().equalsIgnoreCase("GHEST")?$F{ghest.sarresidDate}:$F{createdDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="0" y="0" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="236" y="0" width="63" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebitTypeFarsi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table_TD" x="409" y="0" width="116" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebitType}.toString().equalsIgnoreCase("ETEBAR_EBTAL")?$F{pishnehad.bimename}.getElhaghieBazkharid().getShomareElhaghiye():$F{credebitType}.toString().equals("ELHAGHIE_BARGASHTI_ETEBAR")?$F{pishnehad.bimename}.getElhaghieBazkharid().getShomareElhaghiye():$F{identifier}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="17">
+			<printWhenExpression><![CDATA[new Boolean(!($F{bedehi}.booleanValue() && $F{khateSanadsBedehi.empty}.booleanValue()) && !(!$F{bedehi}.booleanValue() && $F{khateSanadsEtebar.empty}.booleanValue()))]]></printWhenExpression>
+			<subreport>
+				<reportElement mode="Transparent" x="0" y="0" width="555" height="17"/>
+				<dataSourceExpression><![CDATA[$F{bedehi}.booleanValue()?$F{khateSanadsBedehi}:$F{khateSanadsEtebar}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$F{bedehi}.booleanValue()?$P{realPath} + "report/soratVaziateMali_etebar_row.jasper":$P{realPath} + "report/soratVaziateMali_bedehi_row.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

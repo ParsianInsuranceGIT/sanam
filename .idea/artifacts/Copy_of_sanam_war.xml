@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Copy of sanam:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Copy_of_sanam_war</output-path>
+    <root id="archive" name="Copy of sanam_war.war">
+      <element id="artifact" artifact-name="Copy of sanam:war exploded" />
+    </root>
+  </artifact>
+</component>

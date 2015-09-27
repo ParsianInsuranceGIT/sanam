@@ -1,0 +1,1 @@
+update tbl_credebit set credebit_type = 'PISHPARDAKHT' where credebit_type = 'DARYAFTE_FISH'

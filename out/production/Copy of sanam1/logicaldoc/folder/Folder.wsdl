@@ -1,0 +1,602 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="FolderServiceImplService" targetNamespace="http://folder.webservice.logicaldoc.com/" xmlns:ns1="http://cxf.apache.org/bindings/xformat" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://folder.webservice.logicaldoc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="unqualified" targetNamespace="http://folder.webservice.logicaldoc.com/" version="1.0" xmlns:tns="http://folder.webservice.logicaldoc.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="create" type="tns:create" />
+<xs:element name="createResponse" type="tns:createResponse" />
+<xs:element name="delete" type="tns:delete" />
+<xs:element name="deleteResponse" type="tns:deleteResponse" />
+<xs:element name="getFolder" type="tns:getFolder" />
+<xs:element name="getFolderResponse" type="tns:getFolderResponse" />
+<xs:element name="getGrantedGroups" type="tns:getGrantedGroups" />
+<xs:element name="getGrantedGroupsResponse" type="tns:getGrantedGroupsResponse" />
+<xs:element name="getGrantedUsers" type="tns:getGrantedUsers" />
+<xs:element name="getGrantedUsersResponse" type="tns:getGrantedUsersResponse" />
+<xs:element name="getPath" type="tns:getPath" />
+<xs:element name="getPathResponse" type="tns:getPathResponse" />
+<xs:element name="getRootFolder" type="tns:getRootFolder" />
+<xs:element name="getRootFolderResponse" type="tns:getRootFolderResponse" />
+<xs:element name="grantGroup" type="tns:grantGroup" />
+<xs:element name="grantGroupResponse" type="tns:grantGroupResponse" />
+<xs:element name="grantUser" type="tns:grantUser" />
+<xs:element name="grantUserResponse" type="tns:grantUserResponse" />
+<xs:element name="isReadable" type="tns:isReadable" />
+<xs:element name="isReadableResponse" type="tns:isReadableResponse" />
+<xs:element name="isWriteable" type="tns:isWriteable" />
+<xs:element name="isWriteableResponse" type="tns:isWriteableResponse" />
+<xs:element name="list" type="tns:list" />
+<xs:element name="listChildren" type="tns:listChildren" />
+<xs:element name="listChildrenResponse" type="tns:listChildrenResponse" />
+<xs:element name="listResponse" type="tns:listResponse" />
+<xs:element name="move" type="tns:move" />
+<xs:element name="moveResponse" type="tns:moveResponse" />
+<xs:element name="rename" type="tns:rename" />
+<xs:element name="renameResponse" type="tns:renameResponse" />
+<xs:element name="update" type="tns:update" />
+<xs:element name="updateResponse" type="tns:updateResponse" />
+<xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="wsFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="lastModified" type="xs:string" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element name="parentId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="createResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="rename">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="renameResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="grantGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:long" />
+      <xs:element name="arg2" type="xs:long" />
+      <xs:element name="arg3" type="xs:int" />
+      <xs:element name="arg4" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="grantGroupResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="grantUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:long" />
+      <xs:element name="arg2" type="xs:long" />
+      <xs:element name="arg3" type="xs:int" />
+      <xs:element name="arg4" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="grantUserResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="move">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+      <xs:element name="parentId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="moveResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="isWriteable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isWriteableResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listChildren">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listChildrenResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getPath">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getPathResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="folders" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="update">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="updateResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="getGrantedGroups">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getGrantedGroupsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:right" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="right">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" />
+      <xs:element name="permissions" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="delete">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="deleteResponse">
+    <xs:sequence />
+  </xs:complexType>
+<xs:complexType name="getRootFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getRootFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="list">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="listResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFolder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getFolderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="folder" type="tns:wsFolder" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isReadable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sid" type="xs:string" />
+      <xs:element name="folderId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="isReadableResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getGrantedUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+      <xs:element name="arg1" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getGrantedUsersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:right" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="isReadable">
+    <wsdl:part element="tns:isReadable" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moveResponse">
+    <wsdl:part element="tns:moveResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFolder">
+    <wsdl:part element="tns:getFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootFolder">
+    <wsdl:part element="tns:getRootFolder" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listResponse">
+    <wsdl:part element="tns:listResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteResponse">
+    <wsdl:part element="tns:deleteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="list">
+    <wsdl:part element="tns:list" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getFolderResponse">
+    <wsdl:part element="tns:getFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedGroups">
+    <wsdl:part element="tns:getGrantedGroups" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootFolderResponse">
+    <wsdl:part element="tns:getRootFolderResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isWriteable">
+    <wsdl:part element="tns:isWriteable" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="create">
+    <wsdl:part element="tns:create" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantGroupResponse">
+    <wsdl:part element="tns:grantGroupResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isReadableResponse">
+    <wsdl:part element="tns:isReadableResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedUsers">
+    <wsdl:part element="tns:getGrantedUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="renameResponse">
+    <wsdl:part element="tns:renameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part element="tns:createResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPath">
+    <wsdl:part element="tns:getPath" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="delete">
+    <wsdl:part element="tns:delete" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="move">
+    <wsdl:part element="tns:move" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listChildren">
+    <wsdl:part element="tns:listChildren" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantUserResponse">
+    <wsdl:part element="tns:grantUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listChildrenResponse">
+    <wsdl:part element="tns:listChildrenResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part element="tns:updateResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantUser">
+    <wsdl:part element="tns:grantUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isWriteableResponse">
+    <wsdl:part element="tns:isWriteableResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPathResponse">
+    <wsdl:part element="tns:getPathResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedUsersResponse">
+    <wsdl:part element="tns:getGrantedUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGrantedGroupsResponse">
+    <wsdl:part element="tns:getGrantedGroupsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="update">
+    <wsdl:part element="tns:update" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="grantGroup">
+    <wsdl:part element="tns:grantGroup" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="rename">
+    <wsdl:part element="tns:rename" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FolderService">
+    <wsdl:operation name="create">
+      <wsdl:input message="tns:create" name="create">
+    </wsdl:input>
+      <wsdl:output message="tns:createResponse" name="createResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <wsdl:input message="tns:rename" name="rename">
+    </wsdl:input>
+      <wsdl:output message="tns:renameResponse" name="renameResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="grantGroup">
+      <wsdl:input message="tns:grantGroup" name="grantGroup">
+    </wsdl:input>
+      <wsdl:output message="tns:grantGroupResponse" name="grantGroupResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="grantUser">
+      <wsdl:input message="tns:grantUser" name="grantUser">
+    </wsdl:input>
+      <wsdl:output message="tns:grantUserResponse" name="grantUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="move">
+      <wsdl:input message="tns:move" name="move">
+    </wsdl:input>
+      <wsdl:output message="tns:moveResponse" name="moveResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isWriteable">
+      <wsdl:input message="tns:isWriteable" name="isWriteable">
+    </wsdl:input>
+      <wsdl:output message="tns:isWriteableResponse" name="isWriteableResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listChildren">
+      <wsdl:input message="tns:listChildren" name="listChildren">
+    </wsdl:input>
+      <wsdl:output message="tns:listChildrenResponse" name="listChildrenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPath">
+      <wsdl:input message="tns:getPath" name="getPath">
+    </wsdl:input>
+      <wsdl:output message="tns:getPathResponse" name="getPathResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input message="tns:update" name="update">
+    </wsdl:input>
+      <wsdl:output message="tns:updateResponse" name="updateResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedGroups">
+      <wsdl:input message="tns:getGrantedGroups" name="getGrantedGroups">
+    </wsdl:input>
+      <wsdl:output message="tns:getGrantedGroupsResponse" name="getGrantedGroupsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input message="tns:delete" name="delete">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteResponse" name="deleteResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootFolder">
+      <wsdl:input message="tns:getRootFolder" name="getRootFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getRootFolderResponse" name="getRootFolderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <wsdl:input message="tns:list" name="list">
+    </wsdl:input>
+      <wsdl:output message="tns:listResponse" name="listResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFolder">
+      <wsdl:input message="tns:getFolder" name="getFolder">
+    </wsdl:input>
+      <wsdl:output message="tns:getFolderResponse" name="getFolderResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isReadable">
+      <wsdl:input message="tns:isReadable" name="isReadable">
+    </wsdl:input>
+      <wsdl:output message="tns:isReadableResponse" name="isReadableResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedUsers">
+      <wsdl:input message="tns:getGrantedUsers" name="getGrantedUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getGrantedUsersResponse" name="getGrantedUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FolderServiceImplServiceSoapBinding" type="tns:FolderService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="create">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="create">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rename">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="rename">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="renameResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="grantGroup">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="grantGroup">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="grantGroupResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="grantUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="grantUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="grantUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="move">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="move">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="moveResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isWriteable">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isWriteable">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isWriteableResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPath">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getPath">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPathResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="listChildren">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="listChildren">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listChildrenResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="update">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedGroups">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getGrantedGroups">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getGrantedGroupsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="delete">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRootFolder">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRootFolder">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRootFolderResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="list">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="list">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFolder">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getFolder">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getFolderResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isReadable">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isReadable">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isReadableResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGrantedUsers">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getGrantedUsers">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getGrantedUsersResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FolderServiceImplService">
+    <wsdl:port binding="tns:FolderServiceImplServiceSoapBinding" name="FolderServiceImplPort">
+      <soap:address location="http://172.16.0.158:8080/logicaldoc/services/Folder" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

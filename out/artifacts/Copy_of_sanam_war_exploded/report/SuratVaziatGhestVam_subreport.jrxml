@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GozareshMablagh_subreport" pageWidth="822" pageHeight="572" orientation="Landscape" columnWidth="822" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<field name="credebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="hazineKarmonz" class="java.lang.String"/>
+	<field name="hazineVosoul" class="java.lang.String"/>
+	<field name="sarresidDate" class="java.lang.String"/>
+	<field name="darkhastBazkharid" class="com.bitarts.parsian.model.bimename.DarkhastBazkharid"/>
+	<field name="bahrePardakhti" class="java.lang.String"/>
+	<field name="maliatBarArzeshAfzude" class="java.lang.String"/>
+	<field name="maliatLong" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="438" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.Float"><![CDATA[Float.valueOf(Math.round($F{maliatLong}.floatValue()/ 1000.00)*1000)]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="614" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hazineVosoul}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getRemainingAmount()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="20" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getShomareMoshtari()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getAmount()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="526" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{hazineKarmonz}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sarresidDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="86" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<text><![CDATA[بدهی]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="0" width="88" height="40"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<text><![CDATA[اقساط وام بیمه عمر و سرمایه گذاری]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="702" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{credebit}.getShenaseCredebit()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

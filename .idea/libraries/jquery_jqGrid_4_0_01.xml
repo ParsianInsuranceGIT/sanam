@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jquery.jqGrid-4.0.01">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/resource_lib/jqGrid/jquery.jqGrid-4.0.0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

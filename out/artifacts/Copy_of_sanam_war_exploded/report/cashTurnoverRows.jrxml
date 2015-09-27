@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cashTurnoverRows" pageWidth="555" pageHeight="756" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<field name="bedehiCredebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="etebarCredebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="sanad" class="com.bitarts.parsian.model.asnadeSodor.Sanad"/>
+	<field name="amount" class="java.lang.String"/>
+	<field name="etebarCredebit.daryafteCheck.status" class="com.bitarts.parsian.model.asnadeSodor.DaryafteCheck.Status"/>
+	<field name="etebarCredebit.daryafteCheck.statusFarsi" class="java.lang.String"/>
+	<field name="etebarCredebit.daryafteCheck" class="com.bitarts.parsian.model.asnadeSodor.DaryafteCheck"/>
+	<field name="etebarCredebit.daryafteFish" class="com.bitarts.parsian.model.asnadeSodor.DaryafteFish"/>
+	<field name="etebarCredebit.credebitType" class="com.bitarts.parsian.model.asnadeSodor.Credebit.CredebitType"/>
+	<field name="cashTurnoverRowsVM.type" class="com.bitarts.parsian.viewModel.CashTurnoverRowsVM.Type"/>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="481" y="0" width="49" height="18"/>
+				<box>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit}.getNamayande().getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="412" y="0" width="69" height="36"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit}.getRcptName()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="296" y="0" width="116" height="18"/>
+				<box>
+					<topPen lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit}.getIdentifier()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="196" y="0" width="100" height="18"/>
+				<box>
+					<topPen lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sanad}.getShomare()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="59" y="0" width="56" height="18"/>
+				<box>
+					<topPen lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.daryafteCheck}!=null?$F{etebarCredebit.daryafteCheck}.getTarikhSarresid():""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="530" y="0" width="26" height="36"/>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="18" width="59" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<leftPen lineWidth="2.0"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit}.getSubsystemName()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="296" y="18" width="116" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.credebitType}.toString().equalsIgnoreCase("PARDAKHT_SHENASEDAR")?$F{etebarCredebit}.getShomareMoshtari():" "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="196" y="18" width="100" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.daryafteCheck.status}.toString().equalsIgnoreCase("VAGOZAR_SHODE")?$F{etebarCredebit}.getShomareMoshtari():" "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="59" y="18" width="56" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit.daryafteCheck}!=null?$F{etebarCredebit.daryafteCheck.statusFarsi}:""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="59" height="18"/>
+				<box>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="481" y="18" width="49" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{bedehiCredebit}.getBazarYabSanam()!=null?$F{bedehiCredebit}.getBazarYabSanam().getCode():null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="115" y="0" width="81" height="18"/>
+				<box>
+					<topPen lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Dashed"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit}.getDaryafteCheck().getSerial()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="115" y="18" width="81" height="18"/>
+				<box>
+					<topPen lineWidth="0.25" lineStyle="Dashed"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{etebarCredebit}.getDaryafteFish().getShomareFish()!=null?$F{etebarCredebit}.getDaryafteFish().getShomareFish():" "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="soratVaziateAghsat_row" pageWidth="555" pageHeight="756" orientation="Landscape" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0263162364614133"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="normal" isDefault="true" mode="Transparent" forecolor="#000000" hAlign="Center" vAlign="Middle" pattern="" fontName="B Nazanin" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf"/>
+	<style name="table_TD" mode="Opaque" backcolor="#D7E1EF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF" hAlign="Center" vAlign="Middle" fontName="B Nazanin" fontSize="8" pdfFontName="net/sf/jasperreports/fonts/farsi/BNazanin.ttf">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<field name="amount" class="java.lang.String"/>
+	<field name="bedehiCredebit" class="com.bitarts.parsian.model.asnadeSodor.Credebit"/>
+	<field name="etebarCredebit.shomareMoshtari" class="java.lang.String"/>
+	<field name="etebarCredebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="bedehiCredebit.shomareMoshtari" class="java.lang.String"/>
+	<field name="bedehiCredebit.shenaseCredebit" class="java.lang.String"/>
+	<field name="bedehiCredebit.rcptName" class="java.lang.String"/>
+	<field name="bedehiCredebit.identifier" class="java.lang.String"/>
+	<field name="bedehiCredebit.bimename" class="com.bitarts.parsian.model.bimename.Bimename"/>
+	<field name="bedehiCredebit.sarresidDate" class="java.lang.String"/>
+	<field name="bedehiCredebit.amount" class="java.lang.String"/>
+	<field name="bedehiCredebit.credebitTypeFarsi" class="java.lang.String"/>
+    <field name="totalBedehiAmount" class="java.lang.String"/>
+	<columnHeader>
+	     <band height="18" splitType="Stretch">
+               <staticText >
+        		    <reportElement  style="table_CH" x="214" y="0" width="83" height="18" backcolor="#FFCC00"/>
+        				<box>
+        					<topPen lineStyle="Solid"/>
+        					<bottomPen lineStyle="Solid"/>
+        				</box>
+        			<textElement verticalAlignment="Middle">
+        					<font size="12" isBold="true"/>
+        			</textElement>
+        			<text><![CDATA[نام بیمه گذار]]></text>
+        		</staticText>
+        		<staticText>
+        			<reportElement  style="table_CH" x="159" y="0" width="55" height="18" backcolor="#FFCC00"/>
+        				<box>
+        					<topPen lineStyle="Solid"/>
+        					<bottomPen lineStyle="Solid"/>
+        				</box>
+        			<textElement verticalAlignment="Middle">
+        					<font size="12" isBold="true"/>
+        			</textElement>
+        			<text><![CDATA[کد نماینده]]></text>
+        	    </staticText>
+        		<staticText>
+        			<reportElement  style="table_CH" x="427" y="0" width="72" height="18" backcolor="#FFCC00"/>
+        				<box>
+        					<topPen lineStyle="Solid"/>
+        					<bottomPen lineStyle="Solid"/>
+        				</box>
+        			<textElement verticalAlignment="Middle">
+        					<font size="12" isBold="true"/>
+        			</textElement>
+        			<text><![CDATA[سر رسید بدهی]]></text>
+        		</staticText>
+     		    <staticText>
+     				<reportElement  style="table_CH" x="70" y="0" width="89" height="18" backcolor="#FFCC00"/>
+                        <box>
+                            <topPen lineStyle="Solid"/>
+                            <bottomPen lineStyle="Solid"/>
+                        </box>
+     				<textElement verticalAlignment="Middle">
+     					<font size="12" isBold="true"/>
+     				</textElement>
+     				<text><![CDATA[حق بیمه تسویه شده]]></text>
+     			</staticText>
+     			<staticText>
+     				<reportElement  style="table_CH" x="297" y="0" width="130" height="18" backcolor="#FFCC00"/>
+                        <box>
+                            <topPen lineStyle="Solid"/>
+                            <bottomPen lineStyle="Solid"/>
+                        </box>
+     				<textElement verticalAlignment="Middle">
+     					<font size="12" isBold="true"/>
+     				</textElement>
+     				<text><![CDATA[شماره بیمه نامه یا الحاقیه]]></text>
+     			</staticText>
+     			<staticText>
+     				<reportElement  style="table_CH" x="499" y="0" width="56" height="18" backcolor="#FFCC00"/>
+                        <box>
+                            <topPen lineStyle="Solid"/>
+                            <bottomPen lineStyle="Solid"/>
+                        </box>
+     				<textElement verticalAlignment="Middle">
+     					<font size="12" isBold="true"/>
+     				</textElement>
+     				<text><![CDATA[نوع بدهی]]></text>
+     			</staticText>
+     			<staticText>
+                     <reportElement style="table_CH" x="0" y="0" width="70" height="18" backcolor="#FFCC00"/>
+                     	<box>
+                     		<topPen lineStyle="Solid"/>
+                     		<bottomPen lineStyle="Solid"/>
+                     	</box>
+                     <textElement verticalAlignment="Middle">
+                     	<font size="12" isBold="true"/>
+                     </textElement>
+                     <text><![CDATA[مبلغ کل بدهی]]></text>
+                </staticText>
+     	</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="427" y="0" width="72" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.sarresidDate}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="297" y="0" width="130" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.identifier}==null?"-":$F{bedehiCredebit.identifier}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="214" y="0" width="83" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.rcptName}==null?"-":$F{bedehiCredebit.rcptName}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="159" y="0" width="55" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit}.getNamayande().getKodeNamayandeKargozar()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="70" y="0" width="89" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{amount}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="499" y="0" width="56" height="18"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.credebitTypeFarsi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="table_TD" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="70" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bedehiCredebit.amount}]]></textFieldExpression>
+			</textField>
+
+		</band>
+	</detail>
+
+	<summary>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement  style="table_CH" positionType="FixRelativeToBottom" mode="Transparent" x="70" y="8" width="89" height="20" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalBedehiAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement  style="table_CH" positionType="FixRelativeToBottom" x="159" y="8" width="63" height="20" backcolor="#FFCC00"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[جمع بدهي :]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

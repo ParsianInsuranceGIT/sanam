@@ -1,0 +1,62 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false" monitoring="autodetect"
+         dynamicConfig="true">
+    <defaultCache maxElementsInMemory="50" eternal="false" overflowToDisk="false" memoryStoreEvictionPolicy="LFU" timeToLiveSeconds="3600"/>
+    <cache name="org.hibernate.cache.UpdateTimestampsCache" maxEntriesLocalHeap="500" eternal="false"
+           overflowToDisk="false"/>
+    <cache name="org.hibernate.cache.StandardQueryCache" maxEntriesLocalHeap="500" eternal="false"
+           timeToLiveSeconds="900" overflowToDisk="false"/>
+    <cache name="com.bitarts.parsian.model.constantItems.City" maxElementsInMemory="500" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.Role" maxElementsInMemory="20" eternal="true" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.pishnahad.Fish" maxElementsInMemory="100" eternal="false" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.State" maxElementsInMemory="500" eternal="true" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.User" maxElementsInMemory="20" eternal="false" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.Namayande" maxElementsInMemory="50" eternal="false" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.log.TransitionLog" maxElementsInMemory="100" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.DarkhastBazkharid" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.Bimename" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.pishnahad.Pishnehad" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.asnadeSodor.GhestBandi" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.estelam.Estelam" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.constantItems.Constants" maxElementsInMemory="200" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.LogMosharekat" maxElementsInMemory="20" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.Elhaghiye" maxElementsInMemory="50" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.Gharardad" maxElementsInMemory="20" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.bimename.GharardadTozihat" maxElementsInMemory="20" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.management.EmzaKonande" maxElementsInMemory="100" eternal="false"
+           overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+    <cache name="com.bitarts.parsian.model.Clinic" maxElementsInMemory="100" eternal="false" overflowToDisk="false"
+           memoryStoreEvictionPolicy="LFU"/>
+</ehcache>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+- Sample namespace-based configuration
+-
+- $Id: applicationContext-security.xml 3019 2008-05-01 17:51:48Z luke_t $
+-->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+    <global-method-security secured-annotations="enabled">
+    </global-method-security>
+
+    <http auto-config="true" pattern="/jsp/user/page_login.jsp" security="none"/>
+    <http auto-config="true" access-denied-page="/jsp/user/page_login.jsp">
+        <intercept-url pattern="/jsp/daryaftPardakht/*" access="ROLE_USER"/>
+        <intercept-url pattern="/jsp/fehrestePishnahad/*" access="ROLE_USER"/>
+        <intercept-url pattern="/jsp/josteju/*" access="ROLE_USER"/>
+        <intercept-url pattern="/jsp/management/page_sabtFileTxtAzBank.jsp" access="ROLE_SUPERVISOR,ROLE_ADMIN,ROLE_KARSHENAS_MASOUL,ROLE_RAEIS_SODUR,ROLE_KARBAR_MALI"/>
+        <intercept-url pattern="/uploadFileBank" access="ROLE_SUPERVISOR,ROLE_ADMIN,ROLE_KARSHENAS_MASOUL,ROLE_RAEIS_SODUR,ROLE_KARBAR_MALI"/>
+        <intercept-url pattern="/listAllUser" access="ROLE_MALI_OPERATOR,ROLE_SUPERVISOR"/>
+        <intercept-url pattern="/jsp/management/*" access="ROLE_KARBAR_MALI,ROLE_RAEIS_SODUR,ROLE_SUPERVISOR,ROLE_KARSHENAS_MASOUL,ROLE_NAMAYANDE,ROLE_MALI_OPERATOR"/>
+
+        <intercept-url pattern="/jsp/pishnahad/*" access="ROLE_USER"/>
+        <intercept-url pattern="/jsp/transitionForms/*" access="ROLE_USER"/>
+        <intercept-url pattern="/fin/*" access="ROLE_KARBAR_MALI"/>
+        <!-- Restrict access to ALL other pages -->
+        <intercept-url pattern="/jsp/estelam/*" access="ROLE_SUPERVISOR,ROLE_USER,ROLE_ANONYMOUS"/>
+        <!-- Set the login page and what to do if login fails -->
+        <session-management session-fixation-protection="none"/>
+
+        <intercept-url pattern="/administrator/*" access="ROLE_ADMIN"/>
+
+        <form-login login-page="/jsp/user/page_login.jsp"
+                    default-target-url="/loginUser"
+                    always-use-default-target="false"
+                    authentication-failure-url="/jsp/user/page_login.jsp?error=failed"/>
+        <logout/>
+    </http>
+    <!--<beans:bean id="customUsernamePasswordAuthenticationFilter"  class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">-->
+        <!--<beans:property name="authenticationManager" ref="authenticationManager" />-->
+        <!--<beans:property name="authenticationFailureHandler" ref="failureHandler"/>-->
+        <!--<beans:property name="authenticationSuccessHandler" ref="successHandler"/>-->
+    <!--</beans:bean>-->
+    <beans:bean id="daoAuthenticationProvider"
+                class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="myUserDetailsService"/>
+    </beans:bean>
+
+    <beans:bean id="authenticationManager"
+                class="org.springframework.security.authentication.ProviderManager">
+        <beans:property name="providers">
+            <beans:list>
+                <beans:ref local="daoAuthenticationProvider"/>
+            </beans:list>
+        </beans:property>
+
+    </beans:bean>
+
+    <!--<beans:bean id="successHandler"-->
+                <!--class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">-->
+        <!--<beans:property name="defaultTargetUrl" value="/login.html"/>-->
+    <!--</beans:bean>-->
+    <!--<beans:bean id="failureHandler"-->
+                <!--class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">-->
+        <!--<beans:property name="defaultFailureUrl" value="/login.html?login_error=true"/>-->
+    <!--</beans:bean>-->
+    <!--<beans:bean id="sas"-->
+                <!--class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy"/>-->
+
+    <authentication-manager >
+        <authentication-provider user-service-ref="myUserDetailsService">
+            <password-encoder hash="md5"/>
+        </authentication-provider>
+    </authentication-manager>
+
+
+
+
+</beans:beans>

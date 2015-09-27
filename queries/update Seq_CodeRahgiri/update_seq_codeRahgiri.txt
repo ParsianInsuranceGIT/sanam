@@ -1,0 +1,11 @@
+----------------------Last Sequence For Any Namayande---------------------------
+select  
+--distinct substr(radif,1,6),
+distinct namayande_id,
+LPAD(count(radif)+1,6,0) Last_Seq
+from tbl_pishnehad  where radif like '%/93/%'
+group by 
+--substr(radif,1,6) 
+namayande_id
+;
+--------------------------------------------------------------------------------

@@ -79,6 +79,7 @@
                     <span class="noThing">&nbsp;</span>
                     <select name="bedehi_color" id="bedehi_color"   >
                         <option  value="" >انتخاب كنيد</option>
+                        <option  value="RED_ORANGE" style="background-color: #ee4f33;" >قرمز و نارنجي</option>
                         <option  value="RED" style="background-color: #F75D59;" >قرمز</option>
                         <option value="ORANGE" style="background-color: #FFA62F;"  >نارنجي</option>
                         <option  value="YELLOW" style="background-color: #ffff66;"  >زرد</option>

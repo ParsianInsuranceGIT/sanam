@@ -4657,6 +4657,19 @@ public class AsnadeSodorDAO extends BaseDAO {
                         + " OR (cre.MABLAGHTASVIENASHODE = 0 AND TO_DATE(sarresid_date , 'yyyy/mm/dd' , 'nls_calendar=persian') + NVL(MOHLAT_SARRESID , 0)  >= CURRENT_DATE AND TO_DATE(sarresid_date , 'yyyy/mm/dd' , 'nls_calendar=persian') + NVL(MOHLAT_SARRESID , 0)  <= CURRENT_DATE + 2 )  "
                         + " OR (TO_DATE(sarresid_date , 'yyyy/mm/dd' , 'nls_calendar=persian') + NVL(MOHLAT_SARRESID , 0)  > CURRENT_DATE + 2 ) "   ;
             }
+            else if(bedehiColor.compareTo("RED_ORANGE") == 0 ){
+
+                query += " and ( (sarresid_date is not NULL "        //ORANGE
+                        + " and TO_DATE(sarresid_date , 'yyyy/mm/dd' , 'nls_calendar=persian') + NVL(MOHLAT_SARRESID , 0)  <= CURRENT_DATE  "
+                        + " and length(sarresid_date) = 10 "
+                        + " AND  cre.MABLAGHTASVIENASHODE > 0 "
+                        + " AND  cre.remaining_amount_long = 0) ";
+                query += " or (sarresid_date is not NULL "       //RED
+                        + " and TO_DATE(sarresid_date , 'yyyy/mm/dd' , 'nls_calendar=persian' ) + NVL(MOHLAT_SARRESID , 0)  <= CURRENT_DATE  "
+                        + " and length(sarresid_date) = 10 "
+                        + " AND  cre.remaining_amount_long > 0 ) )  ";
+
+            }
 
         }
         if ( reshte > 0) {

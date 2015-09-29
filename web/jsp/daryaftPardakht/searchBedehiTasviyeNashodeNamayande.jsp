@@ -2,8 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div id="allofem" class="listenTextFieldEnter">
 
+    <div id="allofem" class="listenTextFieldEnter">
     <form action="/fin/listBedehiHayeTasviyeNashodeNamayande" method="post" id="listBedehiTasviyeNashodeNamayande">
         <input type="hidden" name="selectedTab" id="sel_sel_tab" value="tabs-5"/>
         <input type="hidden" name="searchPage" value="yes"/>
@@ -140,6 +140,7 @@
         </table>
     </form>
 </div>
+
 <script type="text/javascript">
     function searchBedehiTasviyeNashode() {
         $.ajax({

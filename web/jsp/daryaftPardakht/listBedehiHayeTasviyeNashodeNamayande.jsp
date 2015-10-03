@@ -109,6 +109,7 @@
                 <%--<display:column title= "نوع"  style="${css}" property="CreType" />--%>
                 <display:column title="كد بازارياب" style="${css}" property="bazaryab_sanam_id" />
                 <display:column title="مهلت سررسيد" style="${css}" property="mohlatsarresid" />
+                <display:column title="كسرسيوم" style="${css}" property="consortiumText" />
 
 
 

@@ -33,6 +33,7 @@ public class bedehiTasviyeNashode
     private Long   bazaryab_sanam_id=new Long(0);
     private int    mohlatsarresid;
     private String finalsarresid;
+    private String consortiumText;
 
 //    private Credebit credebit;
 //    private Long sumOfVosoulNashode;
@@ -42,7 +43,7 @@ public class bedehiTasviyeNashode
     public bedehiTasviyeNashode(){
 
     }
-    public bedehiTasviyeNashode(String bimenameID, String bimeGozarID, String namayandeID, String namayandeName, String vsodoorID, String vsodoorName, String sarresid, String created_date,Long mablaghKol,Long  sanadNakhorde,Long   tasvieNashode, String CreType,Long bazaryab_sanam_id, int mohlatsarresid){
+    public bedehiTasviyeNashode(String bimenameID, String bimeGozarID, String namayandeID, String namayandeName, String vsodoorID, String vsodoorName, String sarresid, String created_date,Long mablaghKol,Long  sanadNakhorde,Long   tasvieNashode, String CreType,Long bazaryab_sanam_id, int mohlatsarresid, String consortiumText){
 
             this.bimenameID     = bimenameID;
             this.bimeGozarID    = bimeGozarID;
@@ -59,6 +60,7 @@ public class bedehiTasviyeNashode
             this.sarresid_date  = sarresid;
             this.mohlatsarresid = mohlatsarresid;
             this.finalsarresid  = DateUtil.addDays(this.sarresid_date, this.mohlatsarresid);
+            this.consortiumText = consortiumText;
     }
 
     public String getBimenameID(){
@@ -158,5 +160,13 @@ public class bedehiTasviyeNashode
 
     public void setFinalsarresid(String finalsarresid) {
         this.finalsarresid = finalsarresid;
+    }
+
+    public String getConsortiumText() {
+        return consortiumText;
+    }
+
+    public void setConsortiumText(String consortiumText) {
+        this.consortiumText = consortiumText;
     }
 }

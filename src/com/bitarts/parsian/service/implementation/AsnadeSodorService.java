@@ -538,7 +538,7 @@ public class AsnadeSodorService implements IAsnadeSodorService
         boolean valid = true;
         for (Credebit etebarCredebit : etebarCredebitList) {
             etebarCredebit = findCretebitById(etebarCredebit.getId());
-            if (etebarCredebit.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK)) {
+            if (etebarCredebit.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK) && user.getDaftar().getId() == 1) {
                 for (Credebit bedehiCredebit : bedehiCredebitList) {
                     bedehiCredebit = findCretebitById(bedehiCredebit.getId());
                     int mohlatSarresid = 3;
@@ -703,7 +703,7 @@ public class AsnadeSodorService implements IAsnadeSodorService
 
         for (Credebit etebarCredebit : etebarCredebitList) {
             etebarCredebit = findCretebitById(etebarCredebit.getId());
-            if (etebarCredebit.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK)) {
+            if (etebarCredebit.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK) && user.getDaftar().getId()==1) {
                 for (Credebit bedehiCredebit : bedehiCredebitList) {
                     bedehiCredebit = findCretebitById(bedehiCredebit.getId());
                     int mohlatSarresid = 0;
@@ -3138,8 +3138,8 @@ public class AsnadeSodorService implements IAsnadeSodorService
         return asnadeSodorDAO.tedadDaftareNamayande(namayandeID);
     }
     //b-h
-    public PaginatedListImpl<bedehiTasviyeNashode> listBedehiTasviyeNashodeNamayande(int page,User user,String identifier,String rcptName,String sarresidDateFrom,String sarresidDateTo,String createdDateFrom,String createdDateTo,String amount,String remainingAmount,Long search_namayandegiId,Long search_vahedesodorId,Long bazaryabSanamId,String bedehiColor, int reshte, boolean isSearch){
-        return asnadeSodorDAO.findbedehiTasviyeNashodeNamayande(page, user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId, search_vahedesodorId,bazaryabSanamId,bedehiColor, reshte, isSearch);
+    public PaginatedListImpl<bedehiTasviyeNashode> listBedehiTasviyeNashodeNamayande(int page,User user,String identifier,String rcptName,String sarresidDateFrom,String sarresidDateTo,String createdDateFrom,String createdDateTo,String amount,String remainingAmount,Long search_namayandegiId,Long search_vahedesodorId,Long bazaryabSanamId,String bedehiColor, int reshte, int consortium,  boolean isSearch){
+        return asnadeSodorDAO.findbedehiTasviyeNashodeNamayande(page, user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId, search_vahedesodorId,bazaryabSanamId,bedehiColor, reshte, consortium,isSearch);
     }
     //b-h
     public List<sooratVaziatMali_new> findbedehiNamayandeForGozaresh(Long namayandeId,User user){

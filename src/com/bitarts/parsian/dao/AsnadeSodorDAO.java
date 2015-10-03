@@ -4564,7 +4564,7 @@ public class AsnadeSodorDAO extends BaseDAO {
         return namayande.getTedadDaftar();
     }
 
-    public PaginatedListImpl<bedehiTasviyeNashode> findbedehiTasviyeNashodeNamayande(int page,User user,String identifier,String rcptName,String sarresidDateFrom,String sarresidDateTo,String createdDateFrom,String createdDateTo,String amount,String remainingAmount,Long search_namayandegiId,Long search_vahedesodorId,Long bazaryabSanamId,String bedehiColor, int reshte, boolean isSearch){
+    public PaginatedListImpl<bedehiTasviyeNashode> findbedehiTasviyeNashodeNamayande(int page,User user,String identifier,String rcptName,String sarresidDateFrom,String sarresidDateTo,String createdDateFrom,String createdDateTo,String amount,String remainingAmount,Long search_namayandegiId,Long search_vahedesodorId,Long bazaryabSanamId,String bedehiColor, int reshte, int consortium, boolean isSearch){
         PaginatedListImpl<bedehiTasviyeNashode> resultList=new PaginatedListImpl<bedehiTasviyeNashode>();
         resultList.setPageNumber(page);
         resultList.setObjectsPerPage(PagingUtil.MAX_OBJECTS_PER_PAGE);
@@ -4582,14 +4582,18 @@ public class AsnadeSodorDAO extends BaseDAO {
                              " nvl(cre.mablaghtasvienashode, 0) as tasvieNashode, " +
                              " cretype.farsiname as CreType, " +
                              " cre.bazaryab_sanam_id as bazaryab_sanam_id, " +
-                             " nvl(cre.mohlat_sarresid, 0) as mohlatsarresid" +
+                             " nvl(cre.mohlat_sarresid, 0) as mohlatsarresid, " +
+                             " NVL(d.value,'')  as consortiumText " +
                              " from (select * from tbl_credebit where mablaghtasvienashode > 0)cre inner join " +
                              " (select * from tbl_credebittype where bedorbes = 1 )cretype on cre.credebit_type = cretype.latinname" +
                              " inner join tbl_namayande namayande on cre.namayande_id = namayande.id" +
                              " inner join tbl_namayande vsodoor on cre.vahedesodor_id = vsodoor.id" +
+                             " INNER JOIN (select * from tbl_dictionary where pid = 1013) d on cre.isconsortium = d.code "+
                              " where (1=1)  ";
         if(user.getNamayandegi()!=null){
-             query += "AND namayande.kodenamayandekargozar = " + user.getNamayandegi().getKodeNamayandeKargozar();
+             //query += "AND namayande.kodenamayandekargozar = " + user.getNamayandegi().getKodeNamayandeKargozar();
+            String sql = "SELECT kodenamayandekargozar FROM tbl_namayande  START WITH id = " + user.getNamayandegi().getId() + " CONNECT BY NOCYCLE PRIOR id = sarparast_id ";
+            query += " AND namayande.kodenamayandekargozar in ("+ sql + ")";
         }
         if(identifier != null && identifier.length() > 0)
             query += " AND cre.subsystem_identifier LIKE '%" + identifier + "%'";
@@ -4623,6 +4627,9 @@ public class AsnadeSodorDAO extends BaseDAO {
         }
         if (bazaryabSanamId != null && bazaryabSanamId > 0) {
             query += " AND  cre.bazaryab_sanam_id ="+bazaryabSanamId;
+        }
+        if(consortium > 0){
+            query += " AND cre.isconsortium = " + (consortium-1);
         }
         if (bedehiColor != null && bedehiColor.length() > 0) {
             if(bedehiColor.compareTo("RED") == 0 ){
@@ -4678,9 +4685,7 @@ public class AsnadeSodorDAO extends BaseDAO {
         if(!isSearch){
             query += " AND (1=2)";
         }
-		if (user.getNamayandegi() != null ) {
-            query += " AND  namayande.KODENAMAYANDEKARGOZAR = "+user.getNamayandegi().getKodeNamayandeKargozar();
-        }
+
         Query Str=getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery(query);
         System.out.println("bedehi tasviye nashode query ali:"+query);
         List<Object[]> tempList =Str.list();
@@ -4703,6 +4708,7 @@ public class AsnadeSodorDAO extends BaseDAO {
             String CreType               = (String)tempList.get(i)[11];
             BigDecimal bazaryab_sanam_id = (BigDecimal)tempList.get(i)[12];
             Number mohlatsarresid        = (Number)tempList.get(i)[13];
+            String consortiumText        = (String)tempList.get(i)[14];
 
             int mohlat;
             Long bazaryab;
@@ -4717,7 +4723,7 @@ public class AsnadeSodorDAO extends BaseDAO {
             else{
                 mohlat = 0;
             }
-            bedehiTasviyeNashode b = new bedehiTasviyeNashode(bimenameID, bimeGozarID, namayandeID, namayandeName, vsodoorID, vsodoorName, sarresid_date, created_date, mablaghKol.longValue(), sanadNakhorde.longValue(), tasvieNashode.longValue(), CreType, bazaryab ,mohlat);
+            bedehiTasviyeNashode b = new bedehiTasviyeNashode(bimenameID, bimeGozarID, namayandeID, namayandeName, vsodoorID, vsodoorName, sarresid_date, created_date, mablaghKol.longValue(), sanadNakhorde.longValue(), tasvieNashode.longValue(), CreType, bazaryab ,mohlat, consortiumText);
             listBedehi.add(b);
         }
         if(!isExport()) {

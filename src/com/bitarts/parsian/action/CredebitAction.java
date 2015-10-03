@@ -147,9 +147,18 @@ public class CredebitAction extends BaseAction implements ServletContextAware {
 
     //b-h
     private String bedehi_color;
+    private int    consortium;
     private int reshte;
     private String todayDate;
     private String twoDaysLaterDate;
+
+    public int getConsortium() {
+        return consortium;
+    }
+
+    public void setConsortium(int consortium) {
+        this.consortium = consortium;
+    }
 
     public String getTodayDate() {
         return todayDate;
@@ -2378,7 +2387,7 @@ public class CredebitAction extends BaseAction implements ServletContextAware {
 
         int page = PagingUtil.getPageNumberFromContext("pageNumber_bedehiTasviyeNashode");
 
-        bedehiTasviyeNashodePaginatedList=asnadeSodorService.listBedehiTasviyeNashodeNamayande(page,user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId5, search_vahedesodorId5,bazaryabSanamIdBedehi,bedehi_color,reshte, search);
+        bedehiTasviyeNashodePaginatedList=asnadeSodorService.listBedehiTasviyeNashodeNamayande(page,user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId5, search_vahedesodorId5,bazaryabSanamIdBedehi,bedehi_color,reshte,consortium, search);
         System.out.println(bedehiTasviyeNashodePaginatedList.getList().toArray().toString());
         return SUCCESS;
     }

@@ -178,12 +178,12 @@
             <result name="nosession">jsp/user/page_login.jsp</result>
         </action>
         <action name="khateSanadsHaOfSanad" class="com.bitarts.parsian.action.SabteSanadAction"
-                method="viewKhateSanadHa">
+                method="viewYekSanad">
             <result name="success">/jsp/daryaftPardakht/tbl_ListKhateSanad.jsp</result>
             <result name="nosession">jsp/user/page_login.jsp</result>
         </action>
         <action name="khateSanadHaBySanadId" class="com.bitarts.parsian.action.SabteSanadAction"
-                method="viewKhateSanadHa">
+                method="viewYekSanad">
             <result name="success">/jsp/daryaftPardakht/khateSanadHaPaginated.jsp</result>
             <result name="nosession">jsp/user/page_login.jsp</result>
         </action>

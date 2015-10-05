@@ -19,6 +19,7 @@ import com.bitarts.parsian.util.DPUtil;
 import com.bitarts.parsian.viewModel.ViewKhateSanad;
 import com.bitarts.parsian.viewModel.search.CredebitSearchForm;
 import org.apache.struts2.util.ServletContextAware;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -466,7 +467,7 @@ public class SabteSanadAction extends BaseAction implements ServletContextAware 
 
             credebit = asnadeSodorService.createEtebareDasti(credebit,resultUser);
         }
-            if (credebit == null)
+        if (credebit == null)
             addActionError("امکان ثبت اعتبار/بدهی وجود ندارد");
         etebarCredebitList = new ArrayList<Credebit>();
         etebarCredebitList.add(credebit);
@@ -474,7 +475,11 @@ public class SabteSanadAction extends BaseAction implements ServletContextAware 
     }
     public String checkEtebarDasti() //check kardane tarikhe sarreside etebar
     {
-       addActionMessage(DPUtil.isCredebitValidForSabtDasti(credebit));
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       String name = auth.getName();
+
+       User user = loginService.findUserByUsername(name);
+       addActionMessage(DPUtil.isCredebitValidForSabtDasti(credebit, user));
        return SUCCESS;
     }
     public String wirayeshEtebareCheck() //wirayeshe etebar dar safheye liste etebarat va bedehiha

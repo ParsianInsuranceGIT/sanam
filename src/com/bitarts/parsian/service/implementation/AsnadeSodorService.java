@@ -3145,4 +3145,11 @@ public class AsnadeSodorService implements IAsnadeSodorService
     public List<sooratVaziatMali_new> findbedehiNamayandeForGozaresh(Long namayandeId,User user){
         return asnadeSodorDAO.findbedehiNamayandeForGozaresh(namayandeId,user);
     }
+
+    public PaginatedListImpl<Motalebat> listMotalebatNamayande (int page , User usr , int field,Long namayandeId, String beginDate , String endDate , boolean searchPage){
+        return asnadeSodorDAO.FindMotalebatNamayande(page,usr,field , namayandeId ,beginDate , endDate, searchPage);
+    }
+    public PaginatedListImpl<Motalebat> listMotalebatSal (int page , User usr , int field, Long namayandeId , boolean searchPage){
+        return asnadeSodorDAO.FindMotalebatSal(page,usr,field, namayandeId , searchPage);
+    }
 }

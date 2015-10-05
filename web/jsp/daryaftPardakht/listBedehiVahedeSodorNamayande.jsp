@@ -35,7 +35,7 @@
     function displaytagform_bedehiSelection(formname, fields){
         var objfrm = document.forms[formname];
         if($(objfrm).serialize().indexOf('_chk') == -1){
-            alertMessage("رکوردی انتخاب نشده است");
+            alertMessage("رکوردي انتخاب نشده است");
         }else{
             for (j=fields.length-1;j>=0;j--){
                 $(objfrm).prepend("<input type='hidden' id='embedI_"+fields[j].f+"' name='"+fields[j].f+"' value='"+fields[j].v+"'></input>");
@@ -61,7 +61,7 @@
                            sort="external" htmlId="bedehiCredebitListPaginated"
                            decorator="org.displaytag.decorator.CheckboxTableDecorator"
                            partialList="true"
-                           size="${bedehiCredebitListPaginated.fullListSize}"
+                           size="bedehiCredebitListPaginated.fullListSize"
                            pagesize="${bedehiCredebitListPaginated.objectsPerPage}"
                            requestURI="?selectedTab=tabs-1&${pagingParams}" clearStatus="true" keepStatus="false"
                            excludedParams="selectedTab decorator pishnehadSearch* _chk" style="width: 100%; margin: 0 auto;">
@@ -77,21 +77,21 @@
                     <display:column property="checkbox" title="<input id='pishnehadsSelectAll' type='checkbox' title='انتخاب/حذف همه'/>" style=""/>
                     <%--<display:column title="Select" >--%>
                         <%--<input type="checkbox" name="updateGrp" value="${row.id}" checked="checked"/> </display:column>--%>
-                    <display:column title="ردیف" style="">${row_rowNum+((bedehiCredebitListPaginated.pageNumber-1)*bedehiCredebitListPaginated.objectsPerPage)}</display:column>
-                <display:column title="ردیف" style="">${pagingParams}</display:column>
-                    <display:column property="identifier" title="شماره بیمه نامه" style=""/>
-                    <display:column property="rcptName" title="نام بیمه گذار" style="" />
-                    <display:column property="namayandeName" title="نام نماینده" style="" />
-                    <display:column property="namayandeKodeNamayandeKargozar" title="کد نماینده" style="" />
-                    <display:column property="sarresidDate" title="تاریخ سررسید" style=""/>
-                    <display:column property="createdDate" title="تاریخ ایجاد" style=""/>
+                    <display:column title="رديف" style="">${row_rowNum+((bedehiCredebitListPaginated.pageNumber-1)*bedehiCredebitListPaginated.objectsPerPage)}</display:column>
+                <display:column title="رديف" style="">${pagingParams}</display:column>
+                    <display:column property="identifier" title="شماره بيمه نامه" style=""/>
+                    <display:column property="rcptName" title="نام بيمه گذار" style="" />
+                    <display:column property="namayandeName" title="نام نماينده" style="" />
+                    <display:column property="namayandeKodeNamayandeKargozar" title="کد نماينده" style="" />
+                    <display:column property="sarresidDate" title="تاريخ سررسيد" style=""/>
+                    <display:column property="createdDate" title="تاريخ ايجاد" style=""/>
                     <display:column property="amount" title="مبلغ کل" style=""/>
-                    <display:column property="paidReceivedAmountFormat" title="مبلغ دریافت شده" style=""/>
+                    <display:column property="paidReceivedAmountFormat" title="مبلغ دريافت شده" style=""/>
                     <display:column property="remainingAmount" title="مبلغ مانده" style=""/>
                     <display:column property="credebitTypeFarsi" title="نوع" style=""/>
                     <display:column property="shomareGharardad" title="شماره قرارداد" style=""/>
-                    <display:column property="statusFarsiValidationBedehi" title="وضعیت سند" style=""/>
-                    <display:column property="vosoulStateFarsi" title="وضعیت وصول" style=""/>
+                    <display:column property="statusFarsiValidationBedehi" title="وضعيت سند" style=""/>
+                    <display:column property="vosoulStateFarsi" title="وضعيت وصول" style=""/>
                     <%--<c:if test="${sessionScope.daftar=='NAMAYANDE'}">--%>
                         <%--<display:column title="عمليات" style=""> <input type="button" onclick="window.location='/fin/loadSanadZani'" value="انتقال"/></display:column>--%>
                     <%--</c:if>--%>
@@ -108,7 +108,7 @@
                 <%--<table class="inputList" cellspacing="1" cellpadding="5" style="border:1px solid black;text-align: center" >--%>
                     <%--<tr>--%>
                         <%--<td>--%>
-                            <%--<label>با انتخاب بدهی ها از جدول بالا و انتخاب حساب از منوی زیر، می توانید بدهی های خود را به صورت اینترنتی پرداخت و سند بزنید</label>--%>
+                            <%--<label>با انتخاب بدهي ها از جدول بالا و انتخاب حساب از منوي زير، مي توانيد بدهي هاي خود را به صورت اينترنتي پرداخت و سند بزنيد</label>--%>
                         <%--</td>--%>
                     <%--</tr>--%>
                     <%--<tr>--%>
@@ -121,7 +121,7 @@
                     <%--</tr>--%>
                     <%--<tr>--%>
                         <%--<td>--%>
-                            <%--<input type="button" onclick="javascript:displaytagform_bedehiSelection('pishListFormOfRKM',[{f:'par',v:['aa%22az']}])" value="ارسال به پرداخت اینترنتی"/>--%>
+                            <%--<input type="button" onclick="javascript:displaytagform_bedehiSelection('pishListFormOfRKM',[{f:'par',v:['aa%22az']}])" value="ارسال به پرداخت اينترنتي"/>--%>
                         <%--</td>--%>
                     <%--</tr>--%>
                 <%--</table>--%>

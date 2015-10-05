@@ -2,7 +2,9 @@ package com.bitarts.parsian.util;
 
 import com.bitarts.common.util.DateUtil;
 import com.bitarts.parsian.Core.Constant;
+import com.bitarts.parsian.model.User;
 import com.bitarts.parsian.model.asnadeSodor.Credebit;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,7 +35,17 @@ public class DPUtil {
     }
 
     public static String isCredebitValidForSabtDasti(Credebit c) {
-        if (c.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK)) //agar noe etebar daryafte check ast
+
+        if (c.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK) ) //agar noe etebar daryafte check ast
+        {
+            if (DateUtil.isGreaterThanOrEqual(DateUtil.getCurrentDate(), c.getSarresidDate())) //agar tarikhe jari bozorgtar ya mosavie tarikhe sarreside etebar ast
+                return "SARRESID_BEFORE_TODAY"; //peyghame monaseb
+        }
+        return "VALID";
+    }
+    public static String isCredebitValidForSabtDasti(Credebit c, User user) {
+
+        if (c.getCredebitType().equals(Credebit.CredebitType.DARYAFTE_CHECK) && user.getDaftar().getId()==1) //agar noe etebar daryafte check ast
         {
             if (DateUtil.isGreaterThanOrEqual(DateUtil.getCurrentDate(), c.getSarresidDate())) //agar tarikhe jari bozorgtar ya mosavie tarikhe sarreside etebar ast
                 return "SARRESID_BEFORE_TODAY"; //peyghame monaseb

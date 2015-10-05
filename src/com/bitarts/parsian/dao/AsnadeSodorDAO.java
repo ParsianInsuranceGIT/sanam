@@ -249,7 +249,7 @@ public class AsnadeSodorDAO extends BaseDAO {
                 "    left join (SELECT * FROM tbl_daryafte_check ) dcheck ON dcheck.ID = cre.DARYAFTE_CHECK_ID " +
                 "    left join (SELECT * FROM tbl_daryafte_fish  ) dfish  ON dfish.ID = cre.DARYAFTE_FISH_ID " +
                 "  )  etebar  ON kh.etebar_credebit_id = etebar.id " +
-                " INNER JOIN " +
+                " LEFT JOIN " +
                 "  (SELECT * FROM tbl_namayande ) nm ON nm.id = sanad.namayande_id " +
                 " INNER JOIN " +
                 "  (select * from tbl_dictionary where PID = 1010)  dfnVaziat on dfnVaziat.Value = sanad.vaziat " +
@@ -4790,6 +4790,232 @@ public class AsnadeSodorDAO extends BaseDAO {
         return namayandeIdListLong;
     }
 
+    public PaginatedListImpl<Motalebat> FindMotalebatNamayande(int page , User user , int Field , Long namayandegi , String beginDate , String endDate, boolean isSearch){
+        PaginatedListImpl<Motalebat> resultList    =   new PaginatedListImpl<Motalebat>();
+        resultList.setPageNumber(page); //(page)
+        resultList.setObjectsPerPage(PagingUtil.MAX_OBJECTS_PER_PAGE);
+
+        String Query = " select " +
+                "   nvl(namayande, ''), nvl(Name , ''), nvl(field,0) , nvl(fieldStr ,'')" +
+                "   , sum(nvl(mablagh,0)) as SaderShode , sum(nvl(sarresid_nashode2,0)) as SarresidNashode" +
+                "   , sum(nvl(Consortiumsarresid_nashode2,0)) as Consortiumsarresid_nashode " +
+                "   , sum(nvl(tasvieNashodeNahaii2,0)) as TasvieNashode, sum(nvl(consortium,0)) as consortiumNahaii ,    " +
+                "   sum(nvl(tasvieshodeNahaii2,0)) as TasvieShode from( " +
+                "   select namayande, Name, field, mablagh, " +
+                "   case when isConsortium = 1 then 0 else sarresid_nashode end as sarresid_nashode2,   " +
+                "   case when isConsortium = 1 then sarresid_nashode else 0 end as Consortiumsarresid_nashode2 , " +
+                "   case when isConsortium = 1 then 0 else tasvie_nashode end as tasvieNashodeNahaii2,  " +
+                "   case when isConsortium = 1 then tasvie_nashode else 0 end as consortium,    " +
+                "   tasvie_shode as tasvieshodeNahaii2 from(" +
+                "   select " +
+                "   v.kodenamayandekargozar as namayande, v.Name,   " +
+                "   case    " +
+                "   when created_date>'1394/04/31' then 0   " +
+                "   else amount_long end as mablagh ,   " +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) > to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') AND created_date<='1394/04/31' then mablaghtasvienashode else 0 end as sarresid_nashode," +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then mablaghtasvienashode  else 0 end as tasvie_nashode," +
+                "   case when created_date<='1394/04/31' then amount_long-nvl(mablaghtasvienashode,0) else 0 end as tasvie_shode," +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then remaining_amount_long else 0 end as sanadNakhorde," +
+                "   credebit_type, isConsortium, field  " +
+                "   from  tbl_credebit cre  " +
+                "   inner join tbl_namayande n on cre.namayande_id = n.id   " +
+                "   inner join tbl_namayande v on cre.VAHEDESODOR_ID = v.id " +
+                "   where  daftar_id = 1 and  subsystem_identifier is not null   " +
+                "   AND substr(subsystem_identifier,0,4) not in ('6100', '7100','7200')     " +
+                "   AND credebit_type in (" +
+                "   'VEHICLE_DARYAFT_ELECTRONICI',  " +
+                "   'VEHICLE_HAGHBIME', " +
+                "   'VEHICLE_HAGHBIME_ELECTRONICI', " +
+                "   'SIMAB_POLICY_PRM', " +
+                "   'SIMAB_POLICY_GHESTPRM',    " +
+                "   'SIMAB_ENDORSE_GHESTINCPRM',    " +
+                "   'SIMAB_ENDORSE_INCPRM', " +
+                "   'SIB_POLICY_PRM',   " +
+                "   'SIB_ENDORSE_INCPRM' ) " +
+                "    AND (n.kodenamayandekargozar not like '4100%' and n.kodenamayandekargozar not like '4105%' AND " +
+                "        (n.kodenamayandekargozar < '210060' OR n.kodenamayandekargozar > '210090' )AND n.kodenamayandekargozar <> '111125' AND n.kodenamayandekargozar <> '412190' " +
+                "    AND n.kodenamayandekargozar <> '610620' AND n.kodenamayandekargozar <> '610990')" +
+                "    AND" +
+                "      (v.kodenamayandekargozar not like '4100%' and v.kodenamayandekargozar not like '4105%' AND " +
+                "      (v.kodenamayandekargozar < '210060' or v.kodenamayandekargozar > '210090' )AND v.kodenamayandekargozar <> '111125' AND v.kodenamayandekargozar <> '412190' " +
+                "    AND v.kodenamayandekargozar <> '610620' AND v.kodenamayandekargozar <> '610990') " +
+                "    AND created_date>='1389/01/01' " +
+                "   )T  " +
+                "   )T2 " +
+                "   inner join  " +
+                "   (select code , value as fieldStr from tbl_dictionary where PID = 1012) dict on dict.Code = T2.field  " +
+                "   where 1=1  ";
+
+//        Integer daftar_id=user.getDaftar().getId();
+//        Query += " AND bedehi.daftar_id = " + daftar_id;
+        if ( Field > 0   ) {
+            Query += " AND  field = "+ Field;
+        }
+        if(namayandegi!= null){
+            //query += "AND namayande.kodenamayandekargozar = " + user.getNamayandegi().getKodeNamayandeKargozar();
+            String sql = "SELECT kodenamayandekargozar FROM tbl_namayande  START WITH id = " + namayandegi.toString() + " CONNECT BY NOCYCLE PRIOR id = sarparast_id ";
+            Query += " AND namayande in ("+ sql + ")";
+        }
+
+        if(!isSearch){
+            Query += " AND (1=2)";
+        }
+
+        Query += "   group by    " +
+                "   T2.namayande, T2.Name, T2.field , dict.fieldStr " +
+                "   order by 1 ASC   ";
+
+        Query Str=getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery(Query);
+        System.out.println("query motalebat namayande :"+Query);
+        List<Object[]> tempList =Str.list();
+        List<Motalebat> listMotalebt = new ArrayList<Motalebat>();
+
+        for(int i=0; i<tempList.size(); i++){
+            String Namayande                            = (String)tempList.get(i)[0];
+            String Name                                 = (String)tempList.get(i)[1];
+            BigDecimal  Reshte                          = (BigDecimal)tempList.get(i)[2];
+            String ReshteStr                            = (String)tempList.get(i)[3];
+            BigDecimal MablaghSaderNaShode              = (BigDecimal)tempList.get(i)[4];
+            BigDecimal MablaghSarresidShode             = (BigDecimal)tempList.get(i)[5];
+            BigDecimal MablaghConsortiumsarresid_nashode= (BigDecimal)tempList.get(i)[6];
+            BigDecimal MablaghTasvieNashode             = (BigDecimal)tempList.get(i)[7];
+            BigDecimal MablaghconsortiumNahaii          = (BigDecimal)tempList.get(i)[8];
+            BigDecimal MablaghTasvieShode               = (BigDecimal)tempList.get(i)[9];
+
+            Motalebat MotNm = new Motalebat("",Namayande, Name,Reshte.intValue() ,ReshteStr, MablaghSaderNaShode.longValue(),
+                    MablaghSarresidShode.longValue(), MablaghConsortiumsarresid_nashode.longValue(), MablaghTasvieNashode.longValue(), MablaghconsortiumNahaii.longValue(), MablaghTasvieShode.longValue());
+            listMotalebt.add(MotNm);
+        }
+        if(!isExport()) {
+            int pagesize=((page -1 ) * PagingUtil.MAX_OBJECTS_PER_PAGE) + PagingUtil.MAX_OBJECTS_PER_PAGE;
+            int listsize= listMotalebt.size();
+            if(listsize>=pagesize)
+                resultList.setList(listMotalebt.subList(((page-1) * PagingUtil.MAX_OBJECTS_PER_PAGE), pagesize ));
+            else
+                resultList.setList( listMotalebt.subList(((page-1)  * PagingUtil.MAX_OBJECTS_PER_PAGE), listsize));
+        }
+        else{
+            resultList.setList(listMotalebt);
+            resultList.setPageNumber(1);
+            resultList.setObjectsPerPage(Integer.MAX_VALUE);
+
+        }
+        resultList.setFullListSize(listMotalebt.size());
+
+        return resultList;
+    }
+
+    public PaginatedListImpl<Motalebat> FindMotalebatSal(int page , User user , int Field , Long namayandegi , boolean isSearch){
+        PaginatedListImpl<Motalebat> resultList    =   new PaginatedListImpl<Motalebat>();
+        resultList.setPageNumber(page); //(page)
+        resultList.setObjectsPerPage(PagingUtil.MAX_OBJECTS_PER_PAGE);
+
+        String Query =" select " +
+                "  createDate, field , fieldStr " +
+                "   , sum(mablagh) as SaderShode , sum(sarresid_nashode2) as SarresidNashode, sum(Consortiumsarresid_nashode2) as Consortiumsarresid_nashode , sum(tasvieNashodeNahaii2) as TasvieNashode, sum(consortium) as consortiumNahaii ,  " +
+                "   sum(tasvieshodeNahaii2) as TasvieShode from( " +
+                "   select createDate, field, mablagh, " +
+                "   case when isConsortium = 1 then 0 else sarresid_nashode end as sarresid_nashode2,   " +
+                "   case when isConsortium = 1 then sarresid_nashode else 0 end as Consortiumsarresid_nashode2 , " +
+                "   case when isConsortium = 1 then 0 else tasvie_nashode end as tasvieNashodeNahaii2,  " +
+                "   case when isConsortium = 1 then tasvie_nashode else 0 end as consortium,    " +
+                "   tasvie_shode as tasvieshodeNahaii2 from(" +
+                "   select " +
+                "   substr(created_date,0,4) as createDate,"+
+                "   case when credebit_type = 'SIMAB_DECENDORSE' then 0 when credebit_type = 'SIB_DECENDORSE' then 0"+
+                "   when credebit_type = 'VEHICLE_HAGHBIME_BARGASHTI' then 0" +
+                "   when created_date>'1394/04/31' then 0   " +
+                "   else amount_long end as mablagh ,   " +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) > to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') AND created_date<='1394/04/31' then mablaghtasvienashode else 0 end as sarresid_nashode," +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then mablaghtasvienashode  else 0 end as tasvie_nashode," +
+                "   case when created_date<='1394/04/31' then amount_long-nvl(mablaghtasvienashode,0) else 0 end as tasvie_shode," +
+                "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then remaining_amount_long else 0 end as sanadNakhorde," +
+                "   credebit_type, isConsortium, field  " +
+                "   from  tbl_credebit cre  " +
+                "   inner join tbl_namayande n on cre.namayande_id = n.id   " +
+                "   inner join tbl_namayande v on cre.VAHEDESODOR_ID = v.id " +
+                "   where  daftar_id = 1 and  subsystem_identifier is not null   " +
+                "   AND substr(subsystem_identifier,0,4) not in ('6100', '7100','7200')     " +
+                "   AND credebit_type in (" +
+                "   'VEHICLE_DARYAFT_ELECTRONICI',  " +
+                "   'VEHICLE_HAGHBIME', " +
+                "   'VEHICLE_HAGHBIME_ELECTRONICI', " +
+                "   'SIMAB_POLICY_PRM', " +
+                "   'SIMAB_POLICY_GHESTPRM',    " +
+                "   'SIMAB_ENDORSE_GHESTINCPRM',    " +
+                "   'SIMAB_ENDORSE_INCPRM', " +
+                "   'SIB_POLICY_PRM',   " +
+                "   'SIB_ENDORSE_INCPRM' ) " +
+                "    AND (n.kodenamayandekargozar not like '4100%' and n.kodenamayandekargozar not like '4105%' AND " +
+                "        (n.kodenamayandekargozar < '210060' OR n.kodenamayandekargozar > '210090' )AND n.kodenamayandekargozar <> '111125' AND n.kodenamayandekargozar <> '412190' " +
+                "    AND n.kodenamayandekargozar <> '610620' AND n.kodenamayandekargozar <> '610990')" +
+                "    AND" +
+                "      (v.kodenamayandekargozar not like '4100%' and v.kodenamayandekargozar not like '4105%' AND " +
+                "      (v.kodenamayandekargozar < '210060' or v.kodenamayandekargozar > '210090' )AND v.kodenamayandekargozar <> '111125' AND v.kodenamayandekargozar <> '412190' " +
+                "    AND v.kodenamayandekargozar <> '610620' AND v.kodenamayandekargozar <> '610990') " +
+                "    AND created_date>='1389/01/01' " +
+                "   )T1  " +
+                "   )T2 " +
+                "   inner join  " +
+                "   (select code , value as fieldStr from tbl_dictionary where PID = 1012) dict on dict.Code = T2.field  " +
+                "   where 1=1  ";
+
+//        Integer daftar_id=user.getDaftar().getId();
+//        Query += " AND bedehi.daftar_id = " + daftar_id;
+        if ( Field > 0   ) {
+            Query += " AND  field = "+ Field;
+        }
+        if(namayandegi != null){
+            //query += "AND namayande.kodenamayandekargozar = " + user.getNamayandegi().getKodeNamayandeKargozar();
+            String sql = "SELECT kodenamayandekargozar FROM tbl_namayande  START WITH id = " + namayandegi.toString() + " CONNECT BY NOCYCLE PRIOR id = sarparast_id ";
+            Query += " AND namayande in ("+ sql + ")";
+        }
+        if(!isSearch){
+            Query += " AND (1=2)";
+        }
+
+        Query += "   group by    " +
+                "   T2.createDate, T2.field , dict.fieldStr " +
+                "   order by 1 ASC   ";
+
+        Query Str=getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery(Query);
+        System.out.println("query motalebat sal :"+Query);
+        List<Object[]> tempList =Str.list();
+        List<Motalebat> listMotalebt = new ArrayList<Motalebat>();
+
+        for(int i=0; i<tempList.size(); i++){
+            String createDate                           =  (String)tempList.get(i)[0];
+            BigDecimal  Reshte                          = (BigDecimal)tempList.get(i)[1];
+            String ReshteStr                            = (String)tempList.get(i)[2];
+            BigDecimal MablaghSaderNaShode              = (BigDecimal)tempList.get(i)[3];
+            BigDecimal MablaghSarresidShode             = (BigDecimal)tempList.get(i)[4];
+            BigDecimal MablaghConsortiumsarresid_nashode= (BigDecimal)tempList.get(i)[5];
+            BigDecimal MablaghTasvieNashode             = (BigDecimal)tempList.get(i)[6];
+            BigDecimal MablaghconsortiumNahaii          = (BigDecimal)tempList.get(i)[7];
+            BigDecimal MablaghTasvieShode               = (BigDecimal)tempList.get(i)[8];
+
+            Motalebat MotSaal = new Motalebat(createDate, "", "" ,Reshte.intValue() ,ReshteStr, MablaghSaderNaShode.longValue(),
+                    MablaghSarresidShode.longValue(), MablaghConsortiumsarresid_nashode.longValue(), MablaghTasvieNashode.longValue(), MablaghconsortiumNahaii.longValue(), MablaghTasvieShode.longValue());
+            listMotalebt.add(MotSaal);
+        }
+        if(!isExport()) {
+            int pagesize=((page -1 ) * PagingUtil.MAX_OBJECTS_PER_PAGE) + PagingUtil.MAX_OBJECTS_PER_PAGE;
+            int listsize= listMotalebt.size();
+            if(listsize>=pagesize)
+                resultList.setList(listMotalebt.subList(((page-1) * PagingUtil.MAX_OBJECTS_PER_PAGE), pagesize ));
+            else
+                resultList.setList( listMotalebt.subList(((page-1)  * PagingUtil.MAX_OBJECTS_PER_PAGE), listsize));
+        }
+        else{
+            resultList.setList(listMotalebt);
+            resultList.setPageNumber(1);
+            resultList.setObjectsPerPage(Integer.MAX_VALUE);
+
+        }
+        resultList.setFullListSize(listMotalebt.size());
+
+        return resultList;
+    }
 
 
 }

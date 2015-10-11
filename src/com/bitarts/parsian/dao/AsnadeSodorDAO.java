@@ -4798,12 +4798,12 @@ public class AsnadeSodorDAO extends BaseDAO {
         resultList.setObjectsPerPage(PagingUtil.MAX_OBJECTS_PER_PAGE);
 
         String Query = " select " +
-                "   nvl(namayande, ''), nvl(Name , ''), nvl(field,0) , nvl(fieldStr ,'')" +
+                "   nvl(namayande, ''), nvl(Name , '')" +
                 "   , sum(nvl(mablagh,0)) as SaderShode , sum(nvl(sarresid_nashode2,0)) as SarresidNashode" +
                 "   , sum(nvl(Consortiumsarresid_nashode2,0)) as Consortiumsarresid_nashode " +
                 "   , sum(nvl(tasvieNashodeNahaii2,0)) as TasvieNashode, sum(nvl(consortium,0)) as consortiumNahaii ,    " +
                 "   sum(nvl(tasvieshodeNahaii2,0)) as TasvieShode from( " +
-                "   select namayande, Name, field, mablagh, " +
+                "   select namayande, Name, mablagh, " +
                 "   case when isConsortium = 1 then 0 else sarresid_nashode end as sarresid_nashode2,   " +
                 "   case when isConsortium = 1 then sarresid_nashode else 0 end as Consortiumsarresid_nashode2 , " +
                 "   case when isConsortium = 1 then 0 else tasvie_nashode end as tasvieNashodeNahaii2,  " +
@@ -4818,7 +4818,7 @@ public class AsnadeSodorDAO extends BaseDAO {
                 "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then mablaghtasvienashode  else 0 end as tasvie_nashode," +
                 "   case when created_date<='1394/04/31' then amount_long-nvl(mablaghtasvienashode,0) else 0 end as tasvie_shode," +
                 "   case when to_date(sarresid_date,'YYYY/MM/DD', 'nls_calendar=persian')+nvl(mohlat_sarresid,0) <= to_date('1394/04/31','YYYY/MM/DD', 'nls_calendar=persian') then remaining_amount_long else 0 end as sanadNakhorde," +
-                "   credebit_type, isConsortium, field  " +
+                "   credebit_type, isConsortium  " +
                 "   from  tbl_credebit cre  " +
                 "   inner join tbl_namayande n on cre.namayande_id = n.id   " +
                 "   inner join tbl_namayande v on cre.VAHEDESODOR_ID = v.id " +
@@ -4844,15 +4844,13 @@ public class AsnadeSodorDAO extends BaseDAO {
                 "    AND created_date>='1389/01/01' " +
                 "   )T  " +
                 "   )T2 " +
-                "   inner join  " +
-                "   (select code , value as fieldStr from tbl_dictionary where PID = 1012) dict on dict.Code = T2.field  " +
                 "   where 1=1  ";
 
 //        Integer daftar_id=user.getDaftar().getId();
 //        Query += " AND bedehi.daftar_id = " + daftar_id;
-        if ( Field > 0   ) {
-            Query += " AND  field = "+ Field;
-        }
+//        if ( Field > 0   ) {
+//            Query += " AND  field = "+ Field;
+//        }
         if(namayandegi!= null){
             //query += "AND namayande.kodenamayandekargozar = " + user.getNamayandegi().getKodeNamayandeKargozar();
             String sql = "SELECT kodenamayandekargozar FROM tbl_namayande  START WITH id = " + namayandegi.toString() + " CONNECT BY NOCYCLE PRIOR id = sarparast_id ";
@@ -4862,10 +4860,9 @@ public class AsnadeSodorDAO extends BaseDAO {
         if(!isSearch){
             Query += " AND (1=2)";
         }
-
         Query += "   group by    " +
-                "   T2.namayande, T2.Name, T2.field , dict.fieldStr " +
-                "   order by 1 ASC   ";
+                "   T2.namayande, T2.Name " +
+                "   order by 6 DESC   ";
 
         Query Str=getHibernateTemplate().getSessionFactory().getCurrentSession().createSQLQuery(Query);
         System.out.println("query motalebat namayande :"+Query);
@@ -4875,16 +4872,16 @@ public class AsnadeSodorDAO extends BaseDAO {
         for(int i=0; i<tempList.size(); i++){
             String Namayande                            = (String)tempList.get(i)[0];
             String Name                                 = (String)tempList.get(i)[1];
-            BigDecimal  Reshte                          = (BigDecimal)tempList.get(i)[2];
-            String ReshteStr                            = (String)tempList.get(i)[3];
-            BigDecimal MablaghSaderNaShode              = (BigDecimal)tempList.get(i)[4];
-            BigDecimal MablaghSarresidShode             = (BigDecimal)tempList.get(i)[5];
-            BigDecimal MablaghConsortiumsarresid_nashode= (BigDecimal)tempList.get(i)[6];
-            BigDecimal MablaghTasvieNashode             = (BigDecimal)tempList.get(i)[7];
-            BigDecimal MablaghconsortiumNahaii          = (BigDecimal)tempList.get(i)[8];
-            BigDecimal MablaghTasvieShode               = (BigDecimal)tempList.get(i)[9];
+        //    BigDecimal  Reshte                          = (BigDecimal)tempList.get(i)[2];
+        //    String ReshteStr                            = (String)tempList.get(i)[3];
+            BigDecimal MablaghSaderNaShode              = (BigDecimal)tempList.get(i)[2];
+            BigDecimal MablaghSarresidShode             = (BigDecimal)tempList.get(i)[3];
+            BigDecimal MablaghConsortiumsarresid_nashode= (BigDecimal)tempList.get(i)[4];
+            BigDecimal MablaghTasvieNashode             = (BigDecimal)tempList.get(i)[5];
+            BigDecimal MablaghconsortiumNahaii          = (BigDecimal)tempList.get(i)[6];
+            BigDecimal MablaghTasvieShode               = (BigDecimal)tempList.get(i)[7];
 
-            Motalebat MotNm = new Motalebat("",Namayande, Name,Reshte.intValue() ,ReshteStr, MablaghSaderNaShode.longValue(),
+            Motalebat MotNm = new Motalebat("",Namayande, Name, MablaghSaderNaShode.longValue(),
                     MablaghSarresidShode.longValue(), MablaghConsortiumsarresid_nashode.longValue(), MablaghTasvieNashode.longValue(), MablaghconsortiumNahaii.longValue(), MablaghTasvieShode.longValue());
             listMotalebt.add(MotNm);
         }

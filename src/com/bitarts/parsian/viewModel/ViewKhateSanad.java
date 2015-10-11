@@ -27,7 +27,8 @@ public class ViewKhateSanad {
     private Sanad.NoeSanad noe_sanad        ;
     private Sanad.Vaziat vaziat           ;
     private String mablagh_khate_sanad="";
-    private String bimename         ="";
+    private String bimenameBedehi         ="";
+    private String bimenameEtebar         ="";
     private String name_bimegozar   ="";
     private String shenase_pardakht_etebar  = "";
     private String shomare_moshtari_etebar  = "";
@@ -71,13 +72,14 @@ public class ViewKhateSanad {
 
     }
 
-    public ViewKhateSanad(String shomare_sanad, String zaman_sabt, Sanad.NoeSanad noe_sanad, Sanad.Vaziat vaziat, String mablagh_khate_sanad, String bimename, String name_bimegozar, String shenase_pardakht_etebar, String shomare_moshtari_etebar, String noe_etebar, String noe_etebar_str, String shenase_pardakht_bedehi, String shomare_moshtari_bedehi, String noe_bedehi, String noe_bedehi_str, Long mablagh_etebar, Long mablagh_bedehi, Long mande_etebar, Long mande_bedehi, String sarresid_date_etebar, String sarresid_date_bedehi, String kode_vahed_sodor_etebar, String name_vahed_sodor_etebar, String kode_vahed_sabt_etebar, String name_vahed_sabt_etebar, String kode_vahed_sodor_bedehi, String name_vahed_sodor_bedehi, String kode_vahed_sabt_bedehi, String name_vahed_sabt_bedehi, String bank, String tarikh_sanad_bank, String shomare_sanad_bank, String shomare_fish, String serial_check, String kode_vahed_sabt_sanad, String name_vahed_sabt_sanad, String vaziat_str, String noe_sanad_str, Long etebar_id, Long bedehi_id, String subsystem_name, Long sanad_id, String seri_check, String sarresid_tarikh) {
+    public ViewKhateSanad(String shomare_sanad, String zaman_sabt, Sanad.NoeSanad noe_sanad, Sanad.Vaziat vaziat, String mablagh_khate_sanad, String bimenameBedehi, String bimenameEtebar, String name_bimegozar, String shenase_pardakht_etebar, String shomare_moshtari_etebar, String noe_etebar, String noe_etebar_str, String shenase_pardakht_bedehi, String shomare_moshtari_bedehi, String noe_bedehi, String noe_bedehi_str, Long mablagh_etebar, Long mablagh_bedehi, Long mande_etebar, Long mande_bedehi, String sarresid_date_etebar, String sarresid_date_bedehi, String kode_vahed_sodor_etebar, String name_vahed_sodor_etebar, String kode_vahed_sabt_etebar, String name_vahed_sabt_etebar, String kode_vahed_sodor_bedehi, String name_vahed_sodor_bedehi, String kode_vahed_sabt_bedehi, String name_vahed_sabt_bedehi, String bank, String tarikh_sanad_bank, String shomare_sanad_bank, String shomare_fish, String serial_check, String kode_vahed_sabt_sanad, String name_vahed_sabt_sanad, String vaziat_str, String noe_sanad_str, Long etebar_id, Long bedehi_id, String subsystem_name, Long sanad_id, String seri_check, String sarresid_tarikh) {
         this.shomare_sanad = shomare_sanad;
         this.zaman_sabt = zaman_sabt;
         this.noe_sanad = noe_sanad;
         this.vaziat = vaziat;
         this.mablagh_khate_sanad = mablagh_khate_sanad;
-        this.bimename = bimename;
+        this.bimenameBedehi = bimenameBedehi;
+        this.bimenameEtebar = bimenameEtebar;
         this.name_bimegozar = name_bimegozar;
         this.shenase_pardakht_etebar = shenase_pardakht_etebar;
         this.shomare_moshtari_etebar = shomare_moshtari_etebar;
@@ -158,12 +160,20 @@ public class ViewKhateSanad {
         this.mablagh_khate_sanad = mablagh_khate_sanad;
     }
 
-    public String getBimename(){
-        return this.bimename;
+    public String getBimenameBedehi() {
+        return bimenameBedehi;
     }
 
-    public void setBimename(String bimename){
-        this.bimename = bimename;
+    public void setBimenameBedehi(String bimenameBedehi) {
+        this.bimenameBedehi = bimenameBedehi;
+    }
+
+    public String getBimenameEtebar() {
+        return bimenameEtebar;
+    }
+
+    public void setBimenameEtebar(String bimenameEtebar) {
+        this.bimenameEtebar = bimenameEtebar;
     }
 
     public String getName_bimegozar(){

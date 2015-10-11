@@ -452,6 +452,11 @@ public class Credebit implements Serializable, Comparable {
     @JoinColumn(name = "user_id")
     private User  user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sanad_zanande_id")
+    private Namayande sanadZanande;
+
+
     //----------------------------------------------------------------------------------------------------------------------
 
     public Credebit() {
@@ -1633,5 +1638,13 @@ public class Credebit implements Serializable, Comparable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Namayande getSanadZanande() {
+        return sanadZanande;
+    }
+
+    public void setSanadZanande(Namayande sanadZanande) {
+        this.sanadZanande = sanadZanande;
     }
 }

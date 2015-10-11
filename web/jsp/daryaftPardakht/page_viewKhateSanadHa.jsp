@@ -316,7 +316,8 @@
                 <display:column title="نوع سند" property="noe_sanad_str" style=""></display:column>
                 <display:column title="وضعيت سند"   property="vaziat_str" style=""></display:column>
                 <display:column title="مبلغ سند"  property="mablagh_khate_sanad" style=""/>
-                <display:column title="شماره بيمه نامه" property="bimename"  style=""></display:column>
+                <display:column title="شماره بيمه نامه / الحاقيه بدهي" property="bimenameBedehi"  style=""></display:column>
+                <display:column title="شماره بيمه نامه / الحاقيه اعتبار" property="bimenameEtebar"  style=""></display:column>
                 <display:column title="نام بيمه گذار" property="name_bimegozar" style=""/>
 
                 <display:column title="شناسه پرداخت اعتبار"  style="" property="shenase_pardakht_etebar"></display:column>
@@ -333,12 +334,12 @@
                 <display:column title="تاريخ سررسيد بدهي" property="sarresid_date_bedehi" style=""/>
                 <display:column title="كد واحد صدور اعتبار" property="kode_vahed_sodor_etebar" style=""/>
                 <display:column title="نام واحد صدور اعتبار" property="name_vahed_sodor_etebar" style=""/>
-                <display:column title="كد واحد ثبت اعتبار" property="kode_vahed_sabt_etebar" style=""/>
-                <display:column title="نام واحد ثبت اعتبار" property="name_vahed_sabt_etebar" style=""/>
+                <display:column title="كد نمايندگي اعتبار" property="kode_vahed_sabt_etebar" style=""/>
+                <display:column title="نام نمايندگي اعتبار" property="name_vahed_sabt_etebar" style=""/>
                 <display:column title="كد واحد صدور بدهي" property="kode_vahed_sodor_bedehi" style=""/>
                 <display:column title="نام واحد صدور بدهي" property="name_vahed_sodor_bedehi" style=""/>
-                <display:column title="كد واحد ثبت بدهي" property="kode_vahed_sabt_bedehi" style=""/>
-                <display:column title="نام واحد ثبت بدهي" property="name_vahed_sabt_bedehi" style=""/>
+                <display:column title="كد نمايندگي بدهي" property="kode_vahed_sabt_bedehi" style=""/>
+                <display:column title="نام نمايندگي بدهي" property="name_vahed_sabt_bedehi" style=""/>
                 <display:column title="بانک" property="bank" style=""/>
                 <display:column title="تاريخ سند بانك " property="tarikh_sanad_bank" style=""/>
                 <display:column title="شماره سند بانک " property="shomare_sanad_bank" style=""/>

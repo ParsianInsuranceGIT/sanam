@@ -188,7 +188,8 @@ public class AsnadeSodorDAO extends BaseDAO {
                 "  sanad.NOE_SANAD ," +
                 "  sanad.VAZIAT ," +
                 "  nvl(kh.AMOuNT, 0)                     AS MablaghKhateSanad," +
-                "  nvl(bedehi.SUBSYSTEM_IDENTIFIER,'')   AS Bimename," +
+                "  nvl(bedehi.SUBSYSTEM_IDENTIFIER,'')   AS BimenameBedehi," +
+                "  nvl(etebar.SUBSYSTEM_IDENTIFIER,'')   AS BimenameEtebar," +
                 "  nvl(bedehi.RCPT_NAME,'')              AS NameBimeGozar," +
                 "  nvl(etebar.SHENASE_CREDEBIT,'')       AS ShenasePardakhtEtebar," +
                 "  nvl(etebar.SHOMARE_MOSHTARI,'')       AS SHMoshtariEtebar," +
@@ -404,49 +405,50 @@ public class AsnadeSodorDAO extends BaseDAO {
                 vaziat2             = Sanad.Vaziat.DAEM;
             }
             String mablagh_khate_sanad      = (String)tempList.get(i)[4];
-            String bimename                 = (String)tempList.get(i)[5];
-            String name_bimegozar           = (String)tempList.get(i)[6];
-            String shenase_pardakht_etebar  = (String)tempList.get(i)[7];
-            String shomare_moshtari_etebar  = (String)tempList.get(i)[8];
-            String noe_etebar               = (String)tempList.get(i)[9];
-            String noe_etebar_str           = (String)tempList.get(i)[10];
-            String shenase_pardakht_bedehi  = (String)tempList.get(i)[11];
-            String shomare_moshtari_bedehi  = (String)tempList.get(i)[12];
-            String noe_bedehi               = (String)tempList.get(i)[13];
-            String noe_bedehi_str           = (String)tempList.get(i)[14];
-            BigDecimal mablagh_etebar       = (BigDecimal)tempList.get(i)[15];
-            BigDecimal   mablagh_bedehi     = (BigDecimal)tempList.get(i)[16];
-            BigDecimal   mande_etebar       = (BigDecimal)tempList.get(i)[17];
-            BigDecimal   mande_bedehi       = (BigDecimal)tempList.get(i)[18];
-            String sarresid_date_etebar     = (String)tempList.get(i)[19];
-            String sarresid_date_bedehi     = (String)tempList.get(i)[20];
-            String kode_vahed_sodor_etebar  = (String)tempList.get(i)[21];
-            String name_vahed_sodor_etebar  = (String)tempList.get(i)[22];
-            String kode_vahed_sabt_etebar   = (String)tempList.get(i)[23];
-            String name_vahed_sabt_etebar   = (String)tempList.get(i)[24];
-            String kode_vahed_sodor_bedehi  = (String)tempList.get(i)[25];
-            String name_vahed_sodor_bedehi  = (String)tempList.get(i)[26];
-            String kode_vahed_sabt_bedehi   = (String)tempList.get(i)[27];
-            String name_vahed_sabt_bedehi   = (String)tempList.get(i)[28];
-            String bank                     = (String)tempList.get(i)[29];
-            String tarikh_sanad_bank        = (String)tempList.get(i)[30];
-            String shomare_sanad_bank       = (String)tempList.get(i)[31];
-            String shomare_fish             = (String)tempList.get(i)[32];
-            String serial_check             = (String)tempList.get(i)[33];
-            String kode_vahed_sabt_sanad    = (String)tempList.get(i)[34];
-            String name_vahed_sabt_sanad    = (String)tempList.get(i)[35];
-            String vaziat_str               = (String)tempList.get(i)[37];
-            String noe_sanad_str            = (String)tempList.get(i)[38];
-            BigDecimal etebar_id            = (BigDecimal)tempList.get(i)[39];
-            BigDecimal bedehi_id            = (BigDecimal)tempList.get(i)[40];
-            String subsystem_name           = (String)tempList.get(i)[41];
-            BigDecimal sanad_id             = (BigDecimal)tempList.get(i)[42];
-            String SeriCheck                = (String)tempList.get(i)[43];
-            String TarikhCheck              = (String)tempList.get(i)[44];
+            String bimenameBedehi           = (String)tempList.get(i)[5];
+            String bimenameEtebar           = (String)tempList.get(i)[6];
+            String name_bimegozar           = (String)tempList.get(i)[7];
+            String shenase_pardakht_etebar  = (String)tempList.get(i)[8];
+            String shomare_moshtari_etebar  = (String)tempList.get(i)[9];
+            String noe_etebar               = (String)tempList.get(i)[10];
+            String noe_etebar_str           = (String)tempList.get(i)[12];
+            String shenase_pardakht_bedehi  = (String)tempList.get(i)[12];
+            String shomare_moshtari_bedehi  = (String)tempList.get(i)[13];
+            String noe_bedehi               = (String)tempList.get(i)[14];
+            String noe_bedehi_str           = (String)tempList.get(i)[15];
+            BigDecimal mablagh_etebar       = (BigDecimal)tempList.get(i)[16];
+            BigDecimal   mablagh_bedehi     = (BigDecimal)tempList.get(i)[17];
+            BigDecimal   mande_etebar       = (BigDecimal)tempList.get(i)[18];
+            BigDecimal   mande_bedehi       = (BigDecimal)tempList.get(i)[19];
+            String sarresid_date_etebar     = (String)tempList.get(i)[20];
+            String sarresid_date_bedehi     = (String)tempList.get(i)[21];
+            String kode_vahed_sodor_etebar  = (String)tempList.get(i)[22];
+            String name_vahed_sodor_etebar  = (String)tempList.get(i)[23];
+            String kode_vahed_sabt_etebar   = (String)tempList.get(i)[24];
+            String name_vahed_sabt_etebar   = (String)tempList.get(i)[25];
+            String kode_vahed_sodor_bedehi  = (String)tempList.get(i)[26];
+            String name_vahed_sodor_bedehi  = (String)tempList.get(i)[27];
+            String kode_vahed_sabt_bedehi   = (String)tempList.get(i)[28];
+            String name_vahed_sabt_bedehi   = (String)tempList.get(i)[29];
+            String bank                     = (String)tempList.get(i)[30];
+            String tarikh_sanad_bank        = (String)tempList.get(i)[31];
+            String shomare_sanad_bank       = (String)tempList.get(i)[32];
+            String shomare_fish             = (String)tempList.get(i)[33];
+            String serial_check             = (String)tempList.get(i)[34];
+            String kode_vahed_sabt_sanad    = (String)tempList.get(i)[35];
+            String name_vahed_sabt_sanad    = (String)tempList.get(i)[36];
+            String vaziat_str               = (String)tempList.get(i)[38];
+            String noe_sanad_str            = (String)tempList.get(i)[39];
+            BigDecimal etebar_id            = (BigDecimal)tempList.get(i)[40];
+            BigDecimal bedehi_id            = (BigDecimal)tempList.get(i)[41];
+            String subsystem_name           = (String)tempList.get(i)[42];
+            BigDecimal sanad_id             = (BigDecimal)tempList.get(i)[43];
+            String SeriCheck                = (String)tempList.get(i)[44];
+            String TarikhCheck              = (String)tempList.get(i)[45];
 
 
             ViewKhateSanad KhS = new ViewKhateSanad(shomare_sabt, zaman_sabt,noe_sanad ,vaziat2, mablagh_khate_sanad,
-                    bimename, name_bimegozar, shenase_pardakht_etebar, shomare_moshtari_etebar,
+                    bimenameBedehi, bimenameEtebar, name_bimegozar, shenase_pardakht_etebar, shomare_moshtari_etebar,
                     noe_etebar ,noe_etebar_str , shenase_pardakht_bedehi, shomare_moshtari_bedehi, noe_bedehi , noe_bedehi_str
                     , mablagh_etebar.longValue(), mablagh_bedehi.longValue() ,mande_etebar.longValue()
                     ,mande_bedehi.longValue() ,sarresid_date_etebar , sarresid_date_bedehi , kode_vahed_sodor_etebar
@@ -4790,7 +4792,7 @@ public class AsnadeSodorDAO extends BaseDAO {
         return namayandeIdListLong;
     }
 
-    public PaginatedListImpl<Motalebat> FindMotalebatNamayande(int page , User user , int Field , Long namayandegi , String beginDate , String endDate, boolean isSearch){
+    /*public PaginatedListImpl<Motalebat> FindMotalebatNamayande(int page , User user , int Field , Long namayandegi , String beginDate , String endDate, boolean isSearch){
         PaginatedListImpl<Motalebat> resultList    =   new PaginatedListImpl<Motalebat>();
         resultList.setPageNumber(page); //(page)
         resultList.setObjectsPerPage(PagingUtil.MAX_OBJECTS_PER_PAGE);

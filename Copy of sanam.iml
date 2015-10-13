@@ -24,12 +24,15 @@
           <file>file://$MODULE_DIR$/web/WEB-INF/application-context-job.xml</file>
           <file>file://$MODULE_DIR$/web/WEB-INF/application-context-service.xml</file>
           <file>file://$MODULE_DIR$/web/WEB-INF/application-context-security.xml</file>
+          <file>file://$MODULE_DIR$/web/WEB-INF/application-context-connection.xml</file>
         </fileset>
       </configuration>
     </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="sessionFactory" value="dataSource" />
+        </datasource-map>
       </configuration>
     </facet>
   </component>

@@ -11,8 +11,6 @@
         </element>
       </element>
       <element id="library" level="project" name="jquery.jqGrid-4.0.0" />
-      <element id="javaee-facet-resources" facet="Copy of sanam/web/Web2" />
-      <element id="javaee-facet-resources" facet="Copy of sanam/web/Web3" />
       <element id="javaee-facet-resources" facet="Copy of sanam/web/Web" />
     </root>
   </artifact>

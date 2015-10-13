@@ -27,12 +27,13 @@ public class bedehiTasviyeNashode
     private String vsodoorName="";
     private Long   mablaghKol=new Long(0);
     private String created_date="";
-    private String CreType="";
+    private String creType="";
     private Long   tasvieNashode=new Long(0);
     private Long   sanadNakhorde=new Long(0);
     private Long   bazaryab_sanam_id=new Long(0);
     private int    mohlatsarresid;
     private String finalsarresid;
+    private String consortiumText;
 
 //    private Credebit credebit;
 //    private Long sumOfVosoulNashode;
@@ -42,7 +43,7 @@ public class bedehiTasviyeNashode
     public bedehiTasviyeNashode(){
 
     }
-    public bedehiTasviyeNashode(String bimenameID, String bimeGozarID, String namayandeID, String namayandeName, String vsodoorID, String vsodoorName, String sarresid, String created_date,Long mablaghKol,Long  sanadNakhorde,Long   tasvieNashode, String CreType,Long bazaryab_sanam_id, int mohlatsarresid){
+    public bedehiTasviyeNashode(String bimenameID, String bimeGozarID, String namayandeID, String namayandeName, String vsodoorID, String vsodoorName, String sarresid, String created_date,Long mablaghKol,Long  sanadNakhorde,Long   tasvieNashode, String CreType,Long bazaryab_sanam_id, int mohlatsarresid, String consortiumText){
 
             this.bimenameID     = bimenameID;
             this.bimeGozarID    = bimeGozarID;
@@ -54,11 +55,12 @@ public class bedehiTasviyeNashode
             this.mablaghKol     = mablaghKol;
             this.sanadNakhorde  = sanadNakhorde;
             this.tasvieNashode  = tasvieNashode;
-            this.CreType        = CreType;
+            this.creType        = CreType;
             this.bazaryab_sanam_id = bazaryab_sanam_id;
             this.sarresid_date  = sarresid;
             this.mohlatsarresid = mohlatsarresid;
             this.finalsarresid  = DateUtil.addDays(this.sarresid_date, this.mohlatsarresid);
+            this.consortiumText = consortiumText;
     }
 
     public String getBimenameID(){
@@ -133,7 +135,7 @@ public class bedehiTasviyeNashode
         this.tasvieNashode = tasvieNashode;
     }
     public void setCreType(String creType){
-        this.CreType = creType;
+        this.creType = creType;
     }
     public Long getBazaryab_sanam_id(){
         return this.bazaryab_sanam_id ;
@@ -142,7 +144,7 @@ public class bedehiTasviyeNashode
         this.bazaryab_sanam_id = bazaryab_sanam_id;
     }
     public String getCreType(){
-        return this.CreType;
+        return this.creType;
     }
 
     public void setMohlatsarresid(int mohlatsarresid){
@@ -158,5 +160,13 @@ public class bedehiTasviyeNashode
 
     public void setFinalsarresid(String finalsarresid) {
         this.finalsarresid = finalsarresid;
+    }
+
+    public String getConsortiumText() {
+        return consortiumText;
+    }
+
+    public void setConsortiumText(String consortiumText) {
+        this.consortiumText = consortiumText;
     }
 }

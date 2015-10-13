@@ -45,14 +45,14 @@
         <!--<property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />-->
 
         <!--&lt;!&ndash;Sanam main&ndash;&gt;-->
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.131:1521:sanamdb" />
-        <property name="user" value="sanam" />
-        <property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />
-
-
-        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.109:1521:reportdb" />-->
+        <!--<property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.131:1521:sanamdb" />-->
         <!--<property name="user" value="sanam" />-->
-        <!--<property name="password" value="afV8zjHEcPjfccCyXBtqTQ==" />-->
+        <!--<property name="password" value="S/eZ8QeBC1TNOgALkVcesg==" />-->
+
+
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@172.16.0.109:1521:reportdb" />
+        <property name="user" value="sanam" />
+        <property name="password" value="afV8zjHEcPjfccCyXBtqTQ==" />
         <!--Convert 130-->
         <!--&lt;!&ndash;life&ndash;&gt;-->
 

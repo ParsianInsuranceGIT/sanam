@@ -104,19 +104,19 @@ public class Credebit implements Serializable, Comparable {
     }
 
     public static CredebitType[] bedehiTypes = new CredebitType[]{
-            CredebitType.GHEST,
-            CredebitType.GHEST_VAM,
-            CredebitType.PARDAKHTE_CHECK,
-            CredebitType.PARDAKHTE_TANKHAH,
-            CredebitType.VEHICLE_HAGHBIME,
-            CredebitType.VEHICLE_HAGHBIME_ELECTRONICI,
-            CredebitType.HAZINE_PEZESHKI,
-            CredebitType.BARGASHT_KARMOZD,
-            CredebitType.ACH,
-            CredebitType.HESAB_FI_MA_BEYN_BEDEHI,
-            CredebitType.DARMAN_HAGHBIME,
-            CredebitType.AZ_MAHALLE_TABLIGHAT_BEDEHI,
-            CredebitType.TASVIE_PISH_AZ_MOED_BEDEHI,
+                CredebitType.GHEST,
+                CredebitType.GHEST_VAM,
+                CredebitType.PARDAKHTE_CHECK,
+                CredebitType.PARDAKHTE_TANKHAH,
+                CredebitType.VEHICLE_HAGHBIME,
+                CredebitType.VEHICLE_HAGHBIME_ELECTRONICI,
+                CredebitType.HAZINE_PEZESHKI,
+                CredebitType.BARGASHT_KARMOZD,
+                CredebitType.ACH,
+                CredebitType.HESAB_FI_MA_BEYN_BEDEHI,
+                CredebitType.DARMAN_HAGHBIME,
+                CredebitType.AZ_MAHALLE_TABLIGHAT_BEDEHI,
+                CredebitType.TASVIE_PISH_AZ_MOED_BEDEHI,
             CredebitType.SIMAB_DEBITPROPAGANDA,
             CredebitType.SIMAB_LOSSBILL_DEC,
             CredebitType.SIMAB_LOSSBILL_DECCOMPLEMENT,
@@ -210,65 +210,65 @@ public class Credebit implements Serializable, Comparable {
     };
     public static CredebitType[] credebitTypesNaMotabarSanadDasti = new CredebitType[]
             {
-                    CredebitType.ACH //noe majazi
-                    ,CredebitType.AZ_MAHALLE_TABLIGHAT
-                    ,CredebitType.MOSHAREKAT
-                    ,CredebitType.SIMAB_CASH,
-                    CredebitType.SIMAB_FISH,
-                    CredebitType.SIMAB_CHEQUE,
-                    CredebitType.SIMAB_DECENDORSE,
-                    CredebitType.SIMAB_LOAN,
-                    CredebitType.SIMAB_CANCELCHEQUE,
-                    CredebitType.SIMAB_PROPAGANDA,
-                    CredebitType.SIMAB_DEBITPROPAGANDA,
-                    CredebitType.SIMAB_LOSSBILL_INC,
-                    CredebitType.SIMAB_LOSSBILL_ONACCOUNT,
-                    CredebitType.SIMAB_LOSSBILL_INCCOMPLEMENT,
-                    CredebitType.SIMAB_LOSSEXTRASURVEY,
-                    CredebitType.SIMAB_LOSSBILL_DEC,
-                    CredebitType.SIMAB_LOSSBILL_DECCOMPLEMENT,
-                    CredebitType.SIMAB_LOSSEXTRASURVEY_DEC,
-                    CredebitType.SIMAB_LOSSRECOVERYRECIEVE,
-                    CredebitType.SIMAB_LOSSRECOVERYRECIEVEGHEST,
-                    CredebitType.SIMAB_DEBIT_PAYMENTPAYA,
-                    CredebitType.SIMAB_CREDIT_PAYMENTPAYA,
-                    CredebitType.SIMAB_EXTRASURVEYTRANSFER,
-                    CredebitType.SIMAB_EXTRASURVEYTRANSFER_DEC,
-                    CredebitType.SIMAB_WAGEBACK,
-                    CredebitType.SIMAB_WAGEPAYED,
-                    CredebitType.SIMAB_LIFECHANGEAGENCY,
-                    CredebitType.SIMAB_POLICYTHIRDRET160111,
-                    CredebitType.SIMAB_LIFENOPAYDEBIT,
-                    CredebitType.SIMAB_POLICY_PRM,
-                    CredebitType.SIMAB_POLICY_GHESTPRM,
-                    CredebitType.SIMAB_ENDORSE_INCPRM,
-                    CredebitType.SIMAB_ENDORSE_GHESTINCPRM,
-                    CredebitType.SIMAB_CREDITREMOVESTORE,
-                    CredebitType.SIMAB_CREDITADDSTORE,
-                    CredebitType.SIMAB_INSTALLMENTLOAN,
-                    CredebitType.SIMAB_DEBITDELAYINSTALLMENTLOAN,
-                    CredebitType.SIMAB_CREDITSOLUTIONLOAN,
-                    CredebitType.SIMAB_CREDITSHARE,
-                    CredebitType.SIMAB_DEBITAGENCYWAGE,
-                    CredebitType.SIMAB_TAXFISH,
-                    CredebitType.SIMAB_PAYCASH,
-                    CredebitType.SIMAB_PAYFISH,
-                    CredebitType.SIMAB_PAYCHEQUE,
-                    CredebitType.SIMAB_CREDITCURRENT,
-                    CredebitType.SIMAB_DEBITCURRENT,
-                    CredebitType.SIMAB_DEBITBANKACCOUNT,
-                    CredebitType.SIMAB_DEBITINSUREDACCOUNT,
-                    CredebitType.SIMAB_CREDITBANKACCOUNT,
-                    CredebitType.SIMAB_CREDITINSUREDACCOUNT,
-                    CredebitType.SIMAB_CREDITELECTRONICFICH,
-                    CredebitType.SIMAB_CREDITCURRENCYCONVERSION,
-                    CredebitType.SIMAB_DEBITCURRENCYCONVERSION,
-                    CredebitType.SIMAB_CREDITAGENCYWAGE,
-                    CredebitType.SIMAB_CREDITREINSURANCE,
-                    CredebitType.SIMAB_DEBITREINSURANCE,
-                    CredebitType.SIMAB_CREDITREINSURANCEINSTALLMENT,
-                    CredebitType.SIMAB_DEBITFUND
-            };
+            CredebitType.ACH //noe majazi
+          ,CredebitType.AZ_MAHALLE_TABLIGHAT
+          ,CredebitType.MOSHAREKAT
+          ,CredebitType.SIMAB_CASH,
+           CredebitType.SIMAB_FISH,
+           CredebitType.SIMAB_CHEQUE,
+           CredebitType.SIMAB_DECENDORSE,
+           CredebitType.SIMAB_LOAN,
+           CredebitType.SIMAB_CANCELCHEQUE,
+           CredebitType.SIMAB_PROPAGANDA,
+           CredebitType.SIMAB_DEBITPROPAGANDA,
+           CredebitType.SIMAB_LOSSBILL_INC,
+           CredebitType.SIMAB_LOSSBILL_ONACCOUNT,
+           CredebitType.SIMAB_LOSSBILL_INCCOMPLEMENT,
+           CredebitType.SIMAB_LOSSEXTRASURVEY,
+           CredebitType.SIMAB_LOSSBILL_DEC,
+           CredebitType.SIMAB_LOSSBILL_DECCOMPLEMENT,
+           CredebitType.SIMAB_LOSSEXTRASURVEY_DEC,
+           CredebitType.SIMAB_LOSSRECOVERYRECIEVE,
+           CredebitType.SIMAB_LOSSRECOVERYRECIEVEGHEST,
+           CredebitType.SIMAB_DEBIT_PAYMENTPAYA,
+           CredebitType.SIMAB_CREDIT_PAYMENTPAYA,
+           CredebitType.SIMAB_EXTRASURVEYTRANSFER,
+           CredebitType.SIMAB_EXTRASURVEYTRANSFER_DEC,
+           CredebitType.SIMAB_WAGEBACK,
+           CredebitType.SIMAB_WAGEPAYED,
+           CredebitType.SIMAB_LIFECHANGEAGENCY,
+           CredebitType.SIMAB_POLICYTHIRDRET160111,
+           CredebitType.SIMAB_LIFENOPAYDEBIT,
+           CredebitType.SIMAB_POLICY_PRM,
+           CredebitType.SIMAB_POLICY_GHESTPRM,
+           CredebitType.SIMAB_ENDORSE_INCPRM,
+           CredebitType.SIMAB_ENDORSE_GHESTINCPRM,
+           CredebitType.SIMAB_CREDITREMOVESTORE,
+           CredebitType.SIMAB_CREDITADDSTORE,
+           CredebitType.SIMAB_INSTALLMENTLOAN,
+           CredebitType.SIMAB_DEBITDELAYINSTALLMENTLOAN,
+           CredebitType.SIMAB_CREDITSOLUTIONLOAN,
+           CredebitType.SIMAB_CREDITSHARE,
+           CredebitType.SIMAB_DEBITAGENCYWAGE,
+           CredebitType.SIMAB_TAXFISH,
+           CredebitType.SIMAB_PAYCASH,
+           CredebitType.SIMAB_PAYFISH,
+           CredebitType.SIMAB_PAYCHEQUE,
+           CredebitType.SIMAB_CREDITCURRENT,
+           CredebitType.SIMAB_DEBITCURRENT,
+           CredebitType.SIMAB_DEBITBANKACCOUNT,
+           CredebitType.SIMAB_DEBITINSUREDACCOUNT,
+           CredebitType.SIMAB_CREDITBANKACCOUNT,
+           CredebitType.SIMAB_CREDITINSUREDACCOUNT,
+           CredebitType.SIMAB_CREDITELECTRONICFICH,
+           CredebitType.SIMAB_CREDITCURRENCYCONVERSION,
+           CredebitType.SIMAB_DEBITCURRENCYCONVERSION,
+           CredebitType.SIMAB_CREDITAGENCYWAGE,
+           CredebitType.SIMAB_CREDITREINSURANCE,
+           CredebitType.SIMAB_DEBITREINSURANCE,
+           CredebitType.SIMAB_CREDITREINSURANCEINSTALLMENT,
+           CredebitType.SIMAB_DEBITFUND
+    };
 
     public static enum NahveVosoul {
         INTERNET,ADI
@@ -350,7 +350,7 @@ public class Credebit implements Serializable, Comparable {
     private Check check;
     @ManyToOne(fetch = FetchType.LAZY)
     private Pishnehad pishnehad;
-    //    @OneToOne(fetch = FetchType.LAZY, optional = false)
+//    @OneToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name = "ghest_id")
 //    private Ghest ghest;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -452,10 +452,6 @@ public class Credebit implements Serializable, Comparable {
     @JoinColumn(name = "user_id")
     private User  user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CREDEBITTYPEID")
-    private CredebitType credebitTypeID;
-
     //----------------------------------------------------------------------------------------------------------------------
 
     public Credebit() {
@@ -463,8 +459,8 @@ public class Credebit implements Serializable, Comparable {
     }
 
     public Credebit(String amount, String shenaseCredebit, Bimename bimename, Pishnehad pishnehad, CredebitType credebitType) {
-        setAmount(amount);
-        setRemainingAmount(amount);
+       setAmount(amount);
+       setRemainingAmount(amount);
         this.createdDate = DateUtil.getCurrentDate();
         this.createdTime = DateUtil.getCurrentTime();
         if (bimename == null) {
@@ -563,68 +559,10 @@ public class Credebit implements Serializable, Comparable {
 //        this.setVosoulDate(credebit.getVosoulDate());
         this.setNamayande(credebit.getNamayande());
         this.setVahedeSodor(credebit.getVahedeSodor());
-        // this.setUniqueCode(credebit.getUniqueCode());
+       // this.setUniqueCode(credebit.getUniqueCode());
         this.setMohlatSarresid(credebit.getMohlatSarresid());
         this.setBazarYabSanam(credebit.getBazarYabSanam());
     }
-
-    //sa
-    public Credebit(String createdDate, String createdTime, Long amount_long, Long remainingAmount_long, String shomareMoshtari, String shenaseCredebit, String rcptName, String description, String subsystemName, String shomareGharardad, String identifier, String sarresidDate, Integer mohlatSarresid, String sarresidDateWithMohlatSarresid, String authorityId, Status status, Bimename bimename, ACHStatus achStatus,  Check check, Pishnehad pishnehad, Ghest ghest, PardakhteTankhah pardakhteTankhah, DaryafteFish daryafteFish, DaryafteCheck daryafteCheck, List<KhateSanad> khateSanadsBedehi, List<KhateSanad> khateSanadsEtebar, List<KarmozdGhest> karmozdGhestList, String dateFish, String timeFish, String format, String bankName, String rahgiriACH, Namayande namayande, Namayande vahedeSodor, String terminalNoPOS, String transSerialPOS, String marjaNoPOS, String codePeygiriPOS, VaziyatVosoul vosoulState, NahveVosoul nahveVosoul, Long paidReceivedAmount, Vagozari vagozari, String uniqueCode, String vosoulDate, List<BankInfo> bankInfoList, DarkhastBazkharid darkhastBazkharid, CredebitType credebitTypeID, User user, Integer vaziatEnteghalBedehi, Credebit daftarParsian_credebit, Daftar daftar, BazarYabSanam bazarYabSanam, String devFlag) {
-        this.createdDate = createdDate;
-        this.createdTime = createdTime;
-        this.amount_long = amount_long;
-        this.remainingAmount_long = remainingAmount_long;
-        this.shomareMoshtari = shomareMoshtari;
-        this.shenaseCredebit = shenaseCredebit;
-        this.rcptName = rcptName;
-        this.description = description;
-        this.subsystemName = subsystemName;
-        this.shomareGharardad = shomareGharardad;
-        this.identifier = identifier;
-        this.sarresidDate = sarresidDate;
-        this.mohlatSarresid = mohlatSarresid;
-        this.sarresidDateWithMohlatSarresid = sarresidDateWithMohlatSarresid;
-        this.authorityId = authorityId;
-        this.status = status;
-        this.bimename = bimename;
-        this.achStatus = achStatus;
-        this.check = check;
-        this.pishnehad = pishnehad;
-        this.ghest = ghest;
-        this.pardakhteTankhah = pardakhteTankhah;
-        this.daryafteFish = daryafteFish;
-        this.daryafteCheck = daryafteCheck;
-        this.khateSanadsBedehi = khateSanadsBedehi;
-        this.khateSanadsEtebar = khateSanadsEtebar;
-        this.karmozdGhestList = karmozdGhestList;
-        this.dateFish = dateFish;
-        this.timeFish = timeFish;
-        this.format = format;
-        this.bankName = bankName;
-        this.rahgiriACH = rahgiriACH;
-        this.namayande = namayande;
-        this.vahedeSodor = vahedeSodor;
-        this.terminalNoPOS = terminalNoPOS;
-        this.transSerialPOS = transSerialPOS;
-        this.marjaNoPOS = marjaNoPOS;
-        this.codePeygiriPOS = codePeygiriPOS;
-        this.vosoulState = vosoulState;
-        this.nahveVosoul = nahveVosoul;
-        this.paidReceivedAmount = paidReceivedAmount;
-        this.vagozari = vagozari;
-        this.uniqueCode = uniqueCode;
-        this.vosoulDate = vosoulDate;
-        this.bankInfoList = bankInfoList;
-        this.darkhastBazkharid = darkhastBazkharid;
-        this.credebitTypeID = credebitTypeID;
-        this.user = user;
-        this.vaziatEnteghalBedehi = vaziatEnteghalBedehi;
-        this.daftarParsian_credebit = daftarParsian_credebit;
-        this.daftar = daftar;
-        this.bazarYabSanam = bazarYabSanam;
-        this.devFlag = devFlag;
-    }
-
     public Vagozari getVagozari() {
         return vagozari;
     }
@@ -953,14 +891,6 @@ public class Credebit implements Serializable, Comparable {
         } catch (Exception ex) {
             return "";
         }
-    }
-
-    public CredebitType getCredebitTypeID() {
-        return credebitTypeID;
-    }
-
-    public void setCredebitTypeID(CredebitType credebitTypeID) {
-        this.credebitTypeID = credebitTypeID;
     }
 
     public String getCredebitTypeFarsi() {
@@ -1453,7 +1383,7 @@ public class Credebit implements Serializable, Comparable {
                 if (vosoulState.equals(Credebit.VaziyatVosoul.TAEED_VOSOUL))
                     return "وصول شده";
             }
-            return "وصول نشده";
+        return "وصول نشده";
         }
         else
             return null;
@@ -1559,10 +1489,10 @@ public class Credebit implements Serializable, Comparable {
         if (this.credebitType != null && this.credebitType.equals(CredebitType.DARYAFTE_CHECK))
             if (this.getDaryafteCheck() != null)
                 return this.getDaryafteCheck().getSerial();
-            else if (this.credebitType != null && this.credebitType.equals(CredebitType.DARYAFTE_FISH)){
-                if (this.getDaryafteFish() != null)
-                    return this.getDaryafteFish().getShomareFish();
-            }
+        else if (this.credebitType != null && this.credebitType.equals(CredebitType.DARYAFTE_FISH)){
+            if (this.getDaryafteFish() != null)
+                return this.getDaryafteFish().getShomareFish();
+        }
         return "";
     }
 
@@ -1596,7 +1526,7 @@ public class Credebit implements Serializable, Comparable {
                         return "مبلغ مازاد";
                     else if (bankInfo.getStatus().equals(BankInfo.BankInfoStatus.Z_MABLAGH_KAMTAR))
                         return "مبلغ کمتر";
-                        //else if (bankInfo.getStatus().equals(BankInfo.BankInfoStatus.Z_MABLAGH_MOSAVI))
+                    //else if (bankInfo.getStatus().equals(BankInfo.BankInfoStatus.Z_MABLAGH_MOSAVI))
                         //return "مبلغ مساوی";
                     else if (bankInfo.getStatus().equals(BankInfo.BankInfoStatus.SANAD_KHORDE))
                         return "سند خورده";

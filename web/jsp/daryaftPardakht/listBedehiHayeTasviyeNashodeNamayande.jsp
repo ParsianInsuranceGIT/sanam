@@ -106,9 +106,10 @@
                 <%--<display:column property="paidReceivedAmountFormat" title="مبلغ دريافت شده" style=""/>--%>
                 <display:column title="مبلغ سند نخورده" style="${css}" property="sanadNakhorde" />
                 <display:column title="مبلغ تسويه نشده" style="${css}" property="tasvieNashode" />
-                <%--<display:column title= "نوع"  style="${css}" property="CreType" />--%>
+                <display:column title= "نوع"  style="${css}" property="creType" />
                 <display:column title="كد بازارياب" style="${css}" property="bazaryab_sanam_id" />
                 <display:column title="مهلت سررسيد" style="${css}" property="mohlatsarresid" />
+                <display:column title="كسرسيوم" style="${css}" property="consortiumText" />
 
 
 

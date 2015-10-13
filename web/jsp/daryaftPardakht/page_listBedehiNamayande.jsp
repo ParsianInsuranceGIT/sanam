@@ -175,7 +175,29 @@ function getUrlVars()
             </div>
         </div>
     <div id="tabs-5">
-        <div class=expandableTitleBar>
+        <b style="font-size:100%;color: #ff0000">
+            قرمز
+        </b>
+        <b style="font-size:100%;color: black">
+            : ليست بدهي هاي واحد صدور من‌ - تاريخ سررسيد اين دسته از بدهي ها قبل از امروز بوده و مبلغ سند نخورده دارند.
+            <br/>
+            <b style="font-size:100%;color: darkorange">
+                نارنجي
+            </b>
+            <b style="font-size:100%;color: black">
+                  : ليست بدهي هاي تسويه نشده - تاريخ سررسيد اين دسته از بدهي ها قبل از امروز بوده و مبلغ سند نخورده ندارند ولي مبلغ تسويه نشده دارند.
+            </b>
+            <br/>
+            <b style="font-size:100%;color: #ffff00">
+                زرد
+            </b>
+            <b style="font-size:100%;color: black">
+                :‌تاريخ سررسيد اين بدهي ها از امروز تا دو روز آينده است و مبلغ تسويه نشده دارند.
+                <br/>
+                بي رنگ :‌ بدهي هايي كه غير از بدهي هاي ياد شده در بالا باشند.
+                <br/>
+
+            </b>        <div class=expandableTitleBar>
             <div class="staticTitleBar" id="expandableAsl5" style="width:98%;direction:rtl;margin:0 auto;">
                 <div class="expandableTitleBar" id="expandableView5">
                     <p class="heading">

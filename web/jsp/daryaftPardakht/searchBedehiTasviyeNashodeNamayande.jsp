@@ -2,40 +2,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div id="allofem" class="listenTextFieldEnter">
 
+    <div id="allofem" class="listenTextFieldEnter">
     <form action="/fin/listBedehiHayeTasviyeNashodeNamayande" method="post" id="listBedehiTasviyeNashodeNamayande">
         <input type="hidden" name="selectedTab" id="sel_sel_tab" value="tabs-5"/>
         <input type="hidden" name="searchPage" value="yes"/>
         <table dir="rtl" class="inputList">
             <tr>
-                <td>شماره بیمه نامه</td>
+                <td>شماره بيمه نامه</td>
                 <td>
                     <span class="noThing">&nbsp;</span>
                     <input type="text" name="identifier" id="identifierBedehiTN"/>
                 </td>
-                <td>نام بیمه گذار</td>
+                <td>نام بيمه گذار</td>
                 <td>
                     <span class="noThing">&nbsp;</span>
                     <input type="text" name="rcptName" id="rcptNameBedehiTN"/>
                 </td>
             </tr>
             <tr>
-                <td>از تاریخ سر رسید</td>
+                <td>از تاريخ سر رسيد</td>
                 <td>
                     <input type="text" name="sarresidDateFrom" id="sarresidDateFromTN" class="datePkr" readonly="true"/>
                 </td>
-                <td>تا تاریخ سر رسید</td>
+                <td>تا تاريخ سر رسيد</td>
                 <td>
                     <input type="text" name="sarresidDateTo" id="sarresidDateToTN" class="datePkr" readonly="true"/>
                 </td>
             </tr>
             <tr>
-                <td>از تاریخ ایجاد</td>
+                <td>از تاريخ ايجاد</td>
                 <td>
                     <input type="text" name="createdDateFrom" id="createdDateFromTN" class="datePkr" readonly="true"/>
                 </td>
-                <td>تا تاریخ ایجاد</td>
+                <td>تا تاريخ ايجاد</td>
                 <td>
                     <input type="text" name="createdDateTo" id="createdDateToTN" class="datePkr" readonly="true"/>
                 </td>
@@ -68,7 +68,7 @@
                 </td>
             </tr>
             <tr>
-                <td><label>بازاریاب</label></td>
+                <td><label>بازارياب</label></td>
                 <td>
                     <span class="help ui-icon ui-icon-search" onclick="fillBazaryabSanam('bsId-tab5','bsName-tab5', '');" style="float:left;" title="جستجو"></span>
                     <input type="hidden" name="bazaryabSanamIdBedehi" id="bsId-tab5" />
@@ -106,7 +106,17 @@
                         <option  value="11" style="">نفت و انرژي</option>
                         <option  value="12" style="">درمان مسافرتي</option>
                     </select>
-
+                </td>
+                <td>
+                    كنسرسيوم
+                </td>
+                <td>
+                    <span class="noThing">&nbsp;</span>
+                    <select name="consortium" id="consortium"   >
+                        <option  value="" >انتخاب كنيد</option>
+                        <option  value="2" style="" >فقط كنسرسيوم</option>
+                        <option  value="1" style="" >فقط غيركنسرسيوم</option>
+                    </select>
                 </td>
             </tr>
             <tr>

@@ -14,7 +14,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="image/x-icon" href="/img/favicon.ico" rel="shortcut icon">
-    <title>پارسیان : <decorator:title default="..."/></title>
+    <title>پارسيان : <decorator:title default="..."/></title>
 
     <link type="text/css" rel="stylesheet" href="/css/redmond/jquery-ui-1.8.9.custom.css"/>
     <link type="text/css" rel="stylesheet" href="/css/tipsy.css"/>
@@ -121,30 +121,30 @@
                     <sec:authorize ifAnyGranted="ROLE_KARBAR_MALI">
                     <td width="11%">
                         <div >
-                            <a style="height:22px;text-emphasis-color: #2E6E9E; background: #eaf2ff;border: 1px solid #b7d2ff;filter: none;" class="easyui-splitbutton" menu="#mm"  iconCls="icon-edit"><font color="#2E6E9E">عملیات مالی</font></a>
+                            <a style="height:22px;text-emphasis-color: #2E6E9E; background: #eaf2ff;border: 1px solid #b7d2ff;filter: none;" class="easyui-splitbutton" menu="#mm"  iconCls="icon-edit"><font color="#2E6E9E">عمليات مالي</font></a>
                         </div>
                         <div id="mm" style="width:5px;">
                             <sec:authorize ifNotGranted="ROLE_MALI_VIEW">
-                                <div onclick="window.location='/fin/loadSanadZani?r=${rndValue}'"><a style="cursor:pointer">ثبت سند دستی</a></div>
+                                <div onclick="window.location='/fin/loadSanadZani?r=${rndValue}'"><a style="cursor:pointer">ثبت سند دستي</a></div>
                                 <div class="menu-sep"></div>
                             </sec:authorize>
                             <div>
                                 <span>مشاهدات</span>
                                 <div>
-                                    <div onclick="window.location='/fin/listBedehiNamayande?r=${rndValue}'"><a style="cursor:pointer">مشاهده لیست بدهی ها</a></div>
+                                    <div onclick="window.location='/fin/listBedehiNamayande?r=${rndValue}'"><a style="cursor:pointer">مشاهده ليست بدهي ها</a></div>
                                     <div onclick="window.location='/fin/viewKhateSanadHa?r=${rndValue}'"><a style="cursor:pointer">مشاهده اسناد</a></div>
                                     <sec:authorize ifAnyGranted="ROLE_NAMAYANDE">
-                                        <div onclick="window.location='/fin/listEtebaratNamayande'"><a style="cursor:pointer">لیست اعتبارات و بدهی ها</a></div>
+                                        <div onclick="window.location='/fin/listEtebaratNamayande'"><a style="cursor:pointer">ليست اعتبارات و بدهي ها</a></div>
                                     </sec:authorize>
                                     <sec:authorize ifNotGranted="ROLE_NAMAYANDE">
-                                        <div onclick="window.location='/fin/listEtebarat'"><a style="cursor:pointer">لیست اعتبارات و بدهی ها</a></div>
+                                        <div onclick="window.location='/fin/listEtebarat'"><a style="cursor:pointer">ليست اعتبارات و بدهي ها</a></div>
                                     </sec:authorize>
                                     <sec:authorize ifAnyGranted="ROLE_MALI_PARDAKHT_INTERNETI">
                                         <div class="menu-sep"></div>
-                                        <div onclick="window.location='/fin/listPardakhtInternetiBedehi'"><a style="cursor:pointer">پرداخت اینترنتی بدهی</a></div>
+                                        <div onclick="window.location='/fin/listPardakhtInternetiBedehi'"><a style="cursor:pointer">پرداخت اينترنتي بدهي</a></div>
                                     </sec:authorize>
                                     <div class="menu-sep"></div>
-                                    <div onclick="window.location='/fin/listPardakhtPaya'"><a style="cursor:pointer">پرداخت از طریق پایا</a></div>
+                                    <div onclick="window.location='/fin/listPardakhtPaya'"><a style="cursor:pointer">پرداخت از طريق پايا</a></div>
                                 </div>
                             </div>
                             <sec:authorize ifAnyGranted="ROLE_MALI_ETEBAR_CHECK">
@@ -152,26 +152,26 @@
                                     <div>
                                         <span>اعتبارات چک</span>
                                         <div>
-                                            <div onclick="window.location='/fin/elamVagozari'"><a style="cursor:pointer">عملیات چک</a></div>
+                                            <div onclick="window.location='/fin/elamVagozari'"><a style="cursor:pointer">عمليات چک</a></div>
                                             <div onclick="window.location='/fin/listVagozari'"><a
-                                                    style="cursor:pointer">لیست واگذاری</a></div>
+                                                    style="cursor:pointer">ليست واگذاري</a></div>
                                             <%--<sec:authorize ifNotGranted="ROLE_NAMAYANDE">--%>
                                                 <%--<div onclick="window.location='/fin/viewDasteCheckHa'"><a style="cursor:pointer">دسته چک ها</a></div>--%>
                                             <%--</sec:authorize>--%>
-                                            <%--<div onclick="window.location='/fin/listAllEtebaratCheck'"><a style="cursor:pointer">مشاهده چک های دریافتی</a></div>--%>
+                                            <%--<div onclick="window.location='/fin/listAllEtebaratCheck'"><a style="cursor:pointer">مشاهده چک هاي دريافتي</a></div>--%>
                                         </div>
                                     </div>
                             </sec:authorize>
                             <sec:authorize ifNotGranted="ROLE_NAMAYANDE">
                                 <sec:authorize ifNotGranted="ROLE_MALI_VIEW">
                                     <div class="menu-sep"></div>
-                                    <div onclick="window.location='/fin/listMaliNamayande.action'"><a style="cursor:pointer">لیست کنترل مالی نمایندگان</a></div>
+                                    <div onclick="window.location='/fin/listMaliNamayande.action'"><a style="cursor:pointer">ليست کنترل مالي نمايندگان</a></div>
                                     <div class="menu-sep"></div>
                                     <div>
-                                        <span>تایید وصولی</span>
+                                        <span>تاييد وصولي</span>
                                         <div>
-                                            <div onclick="window.location='/uploadFileBank.action'"><a style="cursor:pointer">آپلود فایل بانک</a></div>
-                                            <div onclick="window.location='/fin/listGozareshUpload'"><a style="cursor:pointer">گزارش آپلود فایل</a></div>
+                                            <div onclick="window.location='/uploadFileBank.action'"><a style="cursor:pointer">آپلود فايل بانک</a></div>
+                                            <div onclick="window.location='/fin/listGozareshUpload'"><a style="cursor:pointer">گزارش آپلود فايل</a></div>
                                         </div>
                                     </div>
                                 </sec:authorize>
@@ -180,21 +180,28 @@
                                         <span> گزارشات</span>
                                         <div>
                                             <%--<div class="menu-sep"></div>--%>
-                                            <div onclick="window.location='/fin/listGozareshVosouli'"><a style="cursor:pointer">گزارش وصولی</a></div>
+                                            <div onclick="window.location='/fin/listGozareshVosouli'"><a style="cursor:pointer">گزارش وصولي</a></div>
 
                                             <div class="menu-sep"></div>
-                                             <div onclick="window.location='/fin/gozareshSoratVaziyateMaliBimename'"><a style="cursor:pointer">گزارش صورت وضعیت مالی بیمه نامه</a></div>
+                                             <div onclick="window.location='/fin/gozareshSoratVaziyateMaliBimename'"><a style="cursor:pointer">گزارش صورت وضعيت مالي بيمه نامه</a></div>
 
                                             <div class="menu-sep"></div>
-                                            <div onclick="window.location='/fin/gozareshkoliEtebarvaBedehi'"><a style="cursor:pointer">گزارش کلی اعتبارات و بدهی ها</a></div>
+                                            <div onclick="window.location='/fin/gozareshkoliEtebarvaBedehi'"><a style="cursor:pointer">گزارش کلي اعتبارات و بدهي ها</a></div>
 
                                             <div class="menu-sep"></div>
-                                            <div onclick="window.location='/fin/gozaresheListeKoleBedehi'"><a style="cursor:pointer">گزارش لیست کل بدهی</a></div>
+                                            <div onclick="window.location='/fin/gozaresheListeKoleBedehi'"><a style="cursor:pointer">گزارش ليست کل بدهي</a></div>
 
                                             <div class="menu-sep"></div>
                                             <div onclick="window.location='/fin/prepareCashTurnoverReport'"><a style="cursor:pointer">گزارش عملکرد صندوق</a></div>
-                                                <div class="menu-sep"></div>
-                                                <div onclick="window.location='/fin/gozareshBedehiNamayande'"><a style="cursor:pointer">گزارش بدهي نماينده</a></div>
+                                            <div class="menu-sep"></div>
+                                            <div onclick="window.location='/fin/gozareshBedehiNamayande'"><a style="cursor:pointer">گزارش بدهي نماينده</a></div>
+
+                                            <div class="menu-sep"></div>
+                                            <div onclick="window.location='/fin/MotalebatNamayande'"><a style="cursor:pointer">گزارش مطالبات به تفكيك نماينده</a></div>
+
+                                            <div class="menu-sep"></div>
+                                            <div onclick="window.location='/fin/MotalebatSal'"><a style="cursor:pointer">گزارش مطالبات به تفكيك سال</a></div>
+
 
                                         </div>
                                     </div>
@@ -210,7 +217,7 @@
 
                     </td>
                     <td width="9%">
-                        <input type="button" value="مستند مالی" onclick="window.open('/extra/maali.pdf')"/>
+                        <input type="button" value="مستند مالي" onclick="window.open('/extra/maali.pdf')"/>
                     </td>
                                 </sec:authorize>
                     <sec:authorize ifAnyGranted="ROLE_KARBAR_MALI">
@@ -222,31 +229,31 @@
                         <sec:authorize
                                 ifAnyGranted="ROLE_ADMIN">
                             <div id="dashbord_monitor">
-                                <input type="button" value="مانیتورینگ"
+                                <input type="button" value="مانيتورينگ"
                                        onclick="window.location='/administrator/monitoring'"/>
                             </div>
                         </sec:authorize>
                         <sec:authorize
                                 ifAnyGranted="ROLE_RAEIS_SODUR,ROLE_SUPERVISOR,ROLE_KARSHENAS_MASOUL">
                             <div id="dashbord_dogmeh">
-                                <input type="button" value="داشبورد مدیریتی"
+                                <input type="button" value="داشبورد مديريتي"
                                        onclick="window.location='/jsp/management/page_mainManagementPage.jsp'"/>
                             </div>
                         </sec:authorize>
                         <sec:authorize ifAnyGranted="ROLE_KARSHENAS_BAYEGANI">
                             <div id="managementSerials_dogmeh">
-                                <input type="button" value="مدیریت سریال ها"
+                                <input type="button" value="مديريت سريال ها"
                                        onclick="window.location='/listAllSerial.action'"/>
                             </div>
                         </sec:authorize>
-                            <input type="button" value="فرم ها و مستندات مورد نیاز"
+                            <input type="button" value="فرم ها و مستندات مورد نياز"
                                    />
                     </td>
 
 
                     <td dir="rtl">
                         <sec:authorize ifNotGranted="ROLE_LIMITED_AMIN_PARSIAN">
-                            <a href="changeUserPassword?userTemp.id=${user.id}" style="float: right">تغییر رمز عبور</a>
+                            <a href="changeUserPassword?userTemp.id=${user.id}" style="float: right">تغيير رمز عبور</a>
                         </sec:authorize>
                         نام شخص وارد شده :
                            ${user!=null?user.firstName:""} ${user!=null?user.lastName:""}
@@ -254,7 +261,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <% String username = SecurityContextHolder.getContext().getAuthentication().getName();
                         System.out.println(username);%>
-                        نام نمایندگی :
+                        نام نمايندگي :
                         <c:if test="${empty user.namayandegi.name}">
                             --
                         </c:if>
@@ -288,7 +295,7 @@
         <decorator:body/>
     </div>
 
-    <div id="main_footer">مدیریت فناوری اطلاعات بیمه پارسیان - <%=DateUtil.getCurrentDate().substring(0,4)%> ©</div>
+    <div id="main_footer">مديريت فناوري اطلاعات بيمه پارسيان - <%=DateUtil.getCurrentDate().substring(0,4)%> ©</div>
 </div>
 
 <script type="text/javascript">
@@ -340,12 +347,12 @@
 
     $(document).ajaxStart(
             function () {
-                $('#main').mask('در حال بارگذاری');
+                $('#main').mask('در حال بارگذاري');
             }).ajaxStop(function () {
                 $('#main').unmask();
             });
 //    $(document).ajaxSetup({cache: false});
-    $("#main").submit(function(){ $('#main').mask('در حال بارگذاری'); document.forms[0].submit() })
+    $("#main").submit(function(){ $('#main').mask('در حال بارگذاري'); document.forms[0].submit() })
 
     $(document).ready(function(){
         $('#main').unmask();

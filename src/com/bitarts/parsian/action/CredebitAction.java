@@ -20,6 +20,7 @@ import com.bitarts.parsian.service.epayment.PgwStatus;
 import com.bitarts.parsian.service.factory.InsuranceServiceFactory;
 import com.bitarts.parsian.viewModel.CredebitVM;
 import com.bitarts.parsian.viewModel.MaliNamayande;
+import com.bitarts.parsian.viewModel.Motalebat;
 import com.bitarts.parsian.viewModel.bedehiTasviyeNashode;
 import com.bitarts.parsian.webservice.ach.ACHPayment;
 import com.bitarts.parsian.webservice.epayment.EShopServiceLocator;
@@ -147,9 +148,18 @@ public class CredebitAction extends BaseAction implements ServletContextAware {
 
     //b-h
     private String bedehi_color;
+    private int    consortium;
     private int reshte;
     private String todayDate;
     private String twoDaysLaterDate;
+
+    public int getConsortium() {
+        return consortium;
+    }
+
+    public void setConsortium(int consortium) {
+        this.consortium = consortium;
+    }
 
     public String getTodayDate() {
         return todayDate;
@@ -1521,6 +1531,111 @@ public class CredebitAction extends BaseAction implements ServletContextAware {
         return SUCCESS;
     }
 
+    private PaginatedListImpl<Motalebat>  motalebatNM ;
+    private PaginatedListImpl<Motalebat>  motalebatSaal ;
+    private int  field ;
+    private String  beginDate ;
+    private String  endDate ;
+
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getField() {
+        return field;
+    }
+
+    public void setField(int field) {
+        this.field = field;
+    }
+
+    public PaginatedListImpl<Motalebat> getMotalebatSaal() {
+        return motalebatSaal;
+    }
+
+    public void setMotalebatSaal(PaginatedListImpl<Motalebat> motalebatSaal) {
+        this.motalebatSaal = motalebatSaal;
+    }
+
+    public PaginatedListImpl<Motalebat> getMotalebatNM() {
+        return motalebatNM;
+    }
+
+    public void setMotalebatNM(PaginatedListImpl<Motalebat> motalebatNM) {
+        this.motalebatNM = motalebatNM;
+    }
+
+    public String GetListMotalebatNamayande() {
+        motalebatNM = new PaginatedListImpl<Motalebat>();
+//        motalebatNM.setPageNumber(PagingUtil.getPageNumberFromContext("pageNumber_MotalebatNamayande"));
+        motalebatNM.setObjectsPerPage(Integer.MAX_VALUE);
+        listMotalebatNamayande();
+        return SUCCESS;
+    }
+
+    public String listMotalebatNamayande(){
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = null;
+        if (username != null)
+        {
+            user = loginService.findUserByUsername(username);
+        }
+        else{
+            return Constant.NOSESSION;//"nosession";
+        }
+
+        int page        = PagingUtil.getPageNumberFromContext("page");
+        boolean search = false;
+        if(searchPage.equals("yes"))
+            search = true;
+        motalebatNM     = asnadeSodorService.listMotalebatNamayande(page,user, field, search_namayandegiId5 , beginDate,endDate , search );
+        System.out.println(motalebatNM.getList().toArray().toString());
+
+        return SUCCESS;
+    }
+    public String GetListMotalebatSal() {
+        motalebatSaal = new PaginatedListImpl<Motalebat>();
+//        motalebatSaal.setPageNumber(PagingUtil.getPageNumberFromContext("pageNumber_MotalebatSal"));
+        motalebatSaal.setObjectsPerPage(Integer.MAX_VALUE);
+        listMotalebatSal();
+        return SUCCESS;
+    }
+
+    public String listMotalebatSal(){
+
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = null;
+        if (username != null)
+        {
+            user = loginService.findUserByUsername(username);
+        }
+        else{
+            return Constant.NOSESSION;//"nosession";
+        }
+
+        int page        = PagingUtil.getPageNumberFromContext("page");
+        boolean search = false;
+        if(searchPage.equals("yes"))
+            search = true;
+        motalebatSaal     = asnadeSodorService.listMotalebatSal(page,user, field, search_namayandegiId5 , search);
+        System.out.println(motalebatSaal.getList().toArray().toString());
+
+        return SUCCESS;
+    }
+
     public String viewBankInfos(){
         Credebit myCredebit = asnadeSodorService.findCretebitById(credebit.getId());
         if(myCredebit!=null && myCredebit.getId() > 0 && !myCredebit.isBedehi()){
@@ -2378,7 +2493,7 @@ public class CredebitAction extends BaseAction implements ServletContextAware {
 
         int page = PagingUtil.getPageNumberFromContext("pageNumber_bedehiTasviyeNashode");
 
-        bedehiTasviyeNashodePaginatedList=asnadeSodorService.listBedehiTasviyeNashodeNamayande(page,user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId5, search_vahedesodorId5,bazaryabSanamIdBedehi,bedehi_color,reshte, search);
+        bedehiTasviyeNashodePaginatedList=asnadeSodorService.listBedehiTasviyeNashodeNamayande(page,user, identifier, rcptName, sarresidDateFrom, sarresidDateTo, createdDateFrom, createdDateTo, amount, remainingAmount, search_namayandegiId5, search_vahedesodorId5,bazaryabSanamIdBedehi,bedehi_color,reshte,consortium, search);
         System.out.println(bedehiTasviyeNashodePaginatedList.getList().toArray().toString());
         return SUCCESS;
     }
